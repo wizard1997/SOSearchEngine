@@ -4,8 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    fileparser.cpp
+    fileparser.cpp \
+    porter2_stemmer.cpp
 
 HEADERS += \
     AVLTree.h \
-    fileparser.h
+    fileparser.h \
+    porter2_stemmer.h
