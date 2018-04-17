@@ -17,7 +17,7 @@ void FileParser::test()
         std::cout << "found stop word\n\n";
 }
 
-
+//Stop words from the website given by the project handout
 std::unordered_set<std::string> FileParser::stopWords {
     "able", "about", "above", "abroad", "accordingly", "across", "actually",
     "adj", "after", "afterwards", "again", "against", "ago", "ahead", "ain't",
@@ -54,350 +54,46 @@ std::unordered_set<std::string> FileParser::stopWords {
     "kept", "know", "known", "knows", "last", "lately", "later", "latter",
     "latterly", "least", "less", "lest", "let", "let's", "like", "liked", "likely",
     "likewise", "little", "look", "looking", "look", "looking", "looks", "low",
-    "lower", "ltd", "made"
-    /*
-    mainly
-    make
-    makes
-    many
-    may
-    maybe
-    mayn't
-    me
-    mean
-    meantime
-    meanwhile
-    merely
-    might
-    mightn't
-    mine
-    minus
-    miss
-    more
-    moreover
-    most
-    mostly
-    mr
-    mrs
-    much
-    must
-    mustn't
-    my
-    myself
-    name
-    namely
-    nd
-    near
-    nearly
-    necessary
-    need
-    needn't
-    needs
-    neither
-    never
-    neverf
-    neverless
-    nevertheless
-    new
-    next
-    nine
-    ninety
-    no
-    nobody
-    non
-    none
-    nonetheless
-    noone
-    no-one
-    nor
-    normally
-    not
-    nothing
-    notwithstanding
-    novel
-    now
-    nowhere
-    obviously
-    of
-    off
-    often
-    oh
-    ok
-    okay
-    old
-    on
-    once
-    one
-    ones
-    one's
-    only
-    onto
-    opposite
-    or
-    other
-    others
-    otherwise
-    ought
-    oughtn't
-    our
-    ours
-    ourselves
-    out
-    outside
-    over
-    overall
-    own
-    particular
-    particularly
-    past
-    per
-    perhaps
-    placed
-    please
-    plus
-    possible
-    presumably
-    probably
-    provided
-    provides
-    que
-    quite
-    qv
-    rather
-    rd
-    re
-    really
-    reasonably
-    recent
-    recently
-    regarding
-    regardless
-    regards
-    relatively
-    respectively
-    right
-    round
-    said
-    same
-    saw
-    say
-    saying
-    says
-    second
-    secondly
-    see
-    seeing
-    seem
-    seemed
-    seeming
-    seems
-    seen
-    self
-    selves
-    sensible
-    sent
-    serious
-    seriously
-    seven
-    several
-    shall
-    shan't
-    she
-    she'd
-    she'll
-    she's
-    should
-    shouldn't
-    since
-    six
-    so
-    some
-    somebody
-    someday
-    somehow
-    someone
-    something
-    sometime
-    sometimes
-    somewhat
-    somewhere
-    soon
-    sorry
-    specified
-    specify
-    specifying
-    still
-    sub
-    such
-    sup
-    sure
-    take
-    taken
-    taking
-    tell
-    tends
-    th
-    than
-    thank
-    thanks
-    thanx
-    that
-    that'll
-    thats
-    that's
-    that've
-    the
-    their
-    theirs
-    them
-    themselves
-    then
-    thence
-    there
-    thereafter
-    thereby
-    there'd
-    therefore
-    therein
-    there'll
-    there're
-    theres
-    there's
-    thereupon
-    there've
-    these
-    they
-    they'd
-    they'll
-    they're
-    they've
-    thing
-    things
-    think
-    third
-    thirty
-    this
-    thorough
-    thoroughly
-    those
-    though
-    three
-    through
-    throughout
-    thru
-    thus
-    till
-    to
-    together
-    too
-    took
-    toward
-    towards
-    tried
-    tries
-    truly
-    try
-    trying
-    t's
-    twice
-    two
-    un
-    under
-    underneath
-    undoing
-    unfortunately
-    unless
-    unlike
-    unlikely
-    until
-    unto
-    up
-    upon
-    upwards
-    us
-    use
-    used
-    useful
-    uses
-    using
-    usually
-    v
-    value
-    various
-    versus
-    very
-    via
-    viz
-    vs
-    want
-    wants
-    was
-    wasn't
-    way
-    we
-    we'd
-    welcome
-    well
-    we'll
-    went
-    were
-    we're
-    weren't
-    we've
-    what
-    whatever
-    what'll
-    what's
-    what've
-    when
-    whence
-    whenever
-    where
-    whereafter
-    whereas
-    whereby
-    wherein
-    where's
-    whereupon
-    wherever
-    whether
-    which
-    whichever
-    while
-    whilst
-    whither
-    who
-    who'd
-    whoever
-    whole
-    who'll
-    whom
-    whomever
-    who's
-    whose
-    why
-    will
-    willing
-    wish
-    with
-    within
-    without
-    wonder
-    won't
-    would
-    wouldn't
-    yes
-    yet
-    you
-    you'd
-    you'll
-    your
-    you're
-    yours
-    yourself
-    yourselves
-    you've
-    */
+    "lower", "ltd", "made", "mainly", "make", "makes", "many", "may", "maybe",
+    "mayn't", "me", "mean", "meantime", "meanwhile", "merely", "might", "mightn't",
+    "mine", "minus", "miss", "more", "moreover", "most", "mostly", "mr", "mrs",
+    "much", "must", "mustn't", "my", "myself", "name", "namely", "nd", "near",
+    "nearly", "necessary", "need", "needn't", "needs", "neither", "never",
+    "neverless", "nevertheless", "new", "next", "nine", "ninety", "no",
+    "nobody", "non", "none", "nonetheless", "noone", "no-one", "nor",
+    "normally", "not", "nothing", "notwithstanding", "novel", "now", "nowhere",
+    "obviously", "of", "off", "often", "oh", "ok", "okay", "old", "on",
+    "once", "one", "ones", "one's", "only", "onto", "opposite", "or", "other",
+    "others", "otherwise", "ought", "oughtn't", "our", "ours", "ourselves",
+    "out", "outside", "over", "overall", "own", "particular", "particularly",
+    "past", "per", "perhaps", "placed", "please", "plus", "possible",
+    "presumably", "probably", "provided", "provides", "que", "quite", "qv",
+    "rather", "rd", "re", "really", "reasonably", "recent", "recently", "regarding",
+    "regardless", "regards", "relatively", "respectively", "right", "round", "said",
+    "same", "saw", "say", "saying", "says", "second", "secondly", "see", "seeing", "seem",
+    "seemed", "seeming", "seems", "seen", "self", "selves", "sensible", "sent", "serious",
+    "seriously", "seven", "several", "shall", "shan't", "she", "she'd", "she'll",
+    "she's", "should", "shouldn't", "since", "six", "so", "some", "somebody", "someday",
+    "somehow", "someone", "something", "sometime", "sometimes", "somewhat", "somewhere",
+    "soon", "sorry", "specified", "specify", "specifying", "still", "sub", "sure",
+    "take", "taken", "taking", "tell", "tends", "th", "than", "thank", "thanks",
+    "that", "that'll", "thats", "that's", "that've", "the", "their", "theirs", "them",
+    "themselves", "then", "thence", "there", "therafter", "thereby", "there'd", "therefore",
+    "therein", "there'll", "there're", "theres", "there's", "thereupon", "there've", "these",
+    "they", "they'd", "they'll", "they're", "they've", "thing", "things", "think", "third",
+    "thirty", "this", "thorough", "thoroughly", "those", "though", "three", "through",
+    "throughout", "thru", "till", "to", "together", "too", "took", "toward", "towards",
+    "tried", "tries", "truly", "try", "trying", "t's", "twice", "two", "un", "under",
+    "underneath", "undoing", "unfortunatley", "unless", "unlike", "unlikely", "until", "unto",
+    "up", "upon", "upwards", "us", "use", "used", "useful", "uses", "using", "usually", "v",
+    "value", "various6", "versus", "very", "via", "viz", "vs", "want", "wants", "was", "wasn't",
+    "way", "we", "we'd", "welcome", "well", "we'll", "went", "were", "we're", "weren't", "we've",
+    "what", "whatever", "what'll", "what's", "what've", "when", "whence", "whenever", "where",
+    "whereafter", "whereas", "whereby", "wherein", "where's", "whereupon", "wherever", "whether",
+    "which", "whichever", "while", "whilst", "whither", "who", "who'd", "whoever", "whole",
+    "who'll", "whom", "whomever", "who's", "whose", "why", "will", "willing", "wish", "with",
+    "within", "without", "wonder", "won't", "would", "wouldn't", "yes", "yet", "you", "you'd",
+    "you'll", "your", "you're", "yours", "yourself", "yourself", "yourselves", "you've"
 };
 
 
