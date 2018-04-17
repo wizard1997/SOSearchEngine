@@ -22,10 +22,11 @@ class AVLTree {
         AVLNode* root;
 
 
-        void insert(int x, AVLNode* & t);
+        AVLNode* insert(T dataIn, AVLNode* & nodeIn);
 
         void rotateWithLeftChild(AVLNode*& k2);
         void rotateWithRightChild(AVLNode*& k2);
+        int checkBalance(AVLNode* nodeIn);
 
     public:
 
@@ -51,6 +52,7 @@ int AVLTree<T>::height(AVLTree::AVLNode* node) {
 
 }
 
+/*
 template<class T>
 void AVLTree<T>::insert(int x, AVLTree::AVLNode*& t) {
 
@@ -104,6 +106,63 @@ void AVLTree<T>::insert(int x, AVLTree::AVLNode*& t) {
 
 }
 
+*/
+
+template<class T>
+void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
+
+        if (nodeIn == nullptr) {
+
+            nodeIn = new AVLNode ghh
+        }
+
+        if (dataIn < nodeIn->element) {
+
+            nodeIn->left  = insert(dataIn, nodeIn->left);
+        } else if (dataIn > nodeIn->element) {
+
+            nodeIn->right = insert(dataIn,nodeIn->right);
+        } else {
+
+            return nodeIn;
+        }
+        nodeIn->height = 1 + max(height(nodeIn->left),height(nodeIn->right));
+
+
+        int balance = checkBalance(node);
+
+
+
+        // LL Case c1
+        if (balance > 1 && dataIn < nodeIn->left->element) {
+
+            return rotateWithRightChild(nodeIn);
+        }
+
+        // LR Case c2
+        if (balance > 1 && dataIn > nodeIn->left->element) {
+
+            nodeIn->left =  rotateWithLeftChild(nodeIn->left);
+            return rotateWithRightChild(nodeIn);
+        }
+
+        // RR Case c3
+        if (balance < -1 && dataIn > nodeIn->right->element) {
+
+            return rotateWithLeftChild(nodeIn);
+        }
+
+        // RL Case c4
+        if (balance < -1 && key < node->right->key) {
+
+            node->right = rightRotate(node->right);
+            return leftRotate(node);
+        }
+
+
+        return node;
+}
+
 template<class T>
 void AVLTree<T>::rotateWithLeftChild(AVLTree::AVLNode*& k2) {
 
@@ -118,6 +177,33 @@ void AVLTree<T>::rotateWithLeftChild(AVLTree::AVLNode*& k2) {
     k2 = k1;
 
 
+}
+
+template<class T>
+void AVLTree<T>::rotateWithRightChild(AVLTree::AVLNode*& k2) {
+
+    AVLNode* k1 = k2->right;
+    k2->right = k1->left; //1
+
+    k1->left = k2;       //2
+
+    k2->height = max(height(k2->right), height(k2->left))+1;
+    k1->height = max(height(k1->right), height(k2));
+
+    k2 = k1;
+
+
+}
+
+template<class T>
+int AVLTree<T>::checkBalance(AVLTree::AVLNode* nodeIn) {
+
+    if (nodeIn == nullptr) {
+
+        return 0;
+    }
+
+    return height(nodeIn->left) - height(nodeIn->right);
 
 
 

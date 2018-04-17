@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     cout << "Hello World!" << endl;
 
-    FileParser t1;
-    t1.test();
+    FileParser fp1;
+    fp1.test();
     return 0;
 }
