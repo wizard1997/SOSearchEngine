@@ -113,7 +113,7 @@ void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
 
         if (nodeIn == nullptr) {
 
-            nodeIn = new AVLNode ghh
+            nodeIn = new AVLNode
         }
 
         if (dataIn < nodeIn->element) {

@@ -39,8 +39,6 @@
 #include <utility>
 
 
-
-
 namespace Porter2Stemmer
 {
     void stem(std::string& word);

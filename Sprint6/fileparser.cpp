@@ -5,6 +5,21 @@ FileParser::FileParser()
 
 }
 
+/**
+ * @brief FileParser::parseQuestionFile
+ * @param file
+ */
+void FileParser::parseQuestionFile(std::string &file)
+{
+
+}
+
+/**
+ * @brief FileParser::isStopWord Function that identifies if the given
+ * word is in fact a stop word that should be removed
+ * @param word The word that will be tested to see if it's a stop word
+ * @return True if word is a stop word, false if not
+ */
 bool FileParser::isStopWord(std::string &word)
 {
     return stopWords.count(word);
@@ -17,7 +32,8 @@ void FileParser::test()
         std::cout << "found stop word\n\n";
 }
 
-//Stop words from the website given by the project handout
+//Stop words from the website given by the project handout, minus a few that
+//I thought to be unnecessary and a few that I didn't believe to be stopWords, like "zero"
 std::unordered_set<std::string> FileParser::stopWords {
     "able", "about", "above", "abroad", "accordingly", "across", "actually",
     "adj", "after", "afterwards", "again", "against", "ago", "ahead", "ain't",

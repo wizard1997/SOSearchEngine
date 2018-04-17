@@ -10,12 +10,11 @@ int main() {
 
     FileParser fp1;
     fp1.test();
-    return 0;
-
 
     string test = "running";
-    string test1 = "jacked";
+    string test1 = "JAckE/@@d";
     Porter2Stemmer::stem(test);
+    Porter2Stemmer::trim(test1);
     Porter2Stemmer::stem(test1);
     cout << test << endl;
     cout << test1 << endl;
