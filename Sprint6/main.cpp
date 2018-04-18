@@ -4,7 +4,6 @@
 #include "porter2_stemmer.h"
 #include "AVLTree.h"
 
-<<<<<<< HEAD
 using namespace std;
 
 int main(int argc, char* argv[]) {
