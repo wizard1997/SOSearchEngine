@@ -9,9 +9,36 @@ FileParser::FileParser()
  * @brief FileParser::parseQuestionFile
  * @param file
  */
-void FileParser::parseQuestionFile(std::string &file)
+void FileParser::parseQuestionFile(std::string file)
 {
 
+    //Open the question file
+    std::ifstream questionFile;
+    questionFile.open(file);
+    if (!questionFile.is_open()) {
+        std::cout << "********** Error the question file was NOT opened **********\n\n";
+    }
+
+    std::cout << "**Question File opened\n\n**";
+    //temp here is used to bypass the very first line of file
+    char* temp = new char[50];
+    questionFile.getline(temp, 50);
+    std::cout << temp << std::endl;
+    delete [] temp;
+
+    //Reading the rest of the file into a buffer
+    std::stringstream strStream;
+    strStream << questionFile.rdbuf();
+    std::string buffer = strStream.str();
+    //std::cout << buffer;
+    questionFile.close();
+
+    int counter = 0;
+    //deal with id number and skip over to where question starts
+
+
+    //parse word for word, stem, trim, and stopword each word and then add
+    //the word into the vector for that particular id number and  go to next word
 }
 
 /**

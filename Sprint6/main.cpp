@@ -2,20 +2,21 @@
 #include "fileparser.h"
 #include "porter2_stemmer.h"
 
-using namespace std;
 
-int main() {
-    cout << "Hello World!" << endl;
+int main(int argc, char* argv[]) {
+    std::cout << "Hello World!" << std::endl;
 
-
+    std::ios_base::sync_with_stdio(false);
     FileParser fp1;
     fp1.test();
 
-    string test = "running";
-    string test1 = "JAckE/@@d";
+    std::string test = "running";
+    std::string test1 = "JAckE/@@d";
     Porter2Stemmer::stem(test);
     Porter2Stemmer::trim(test1);
     Porter2Stemmer::stem(test1);
-    cout << test << endl;
-    cout << test1 << endl;
+    std::cout << test << std::endl;
+    std::cout << test1 << std::endl;
+
+    fp1.parseQuestionFile(argv[1]);
 }
