@@ -14,7 +14,7 @@ class AVLTree {
                 AVLNode* right;
                 int height;
 
-                AVLNode(T& data, AVLNode* leftTree, AVLNode* rightTree, int h = 0)
+                AVLNode(T& data, AVLNode* leftTree = nullptr, AVLNode* rightTree = nullptr, int h = 0)
                     : element(data), left(leftTree), right(rightTree), height(h) {}
 
         };
@@ -22,146 +22,110 @@ class AVLTree {
         AVLNode* root;
 
 
-        AVLNode* insert(T dataIn, AVLNode* & nodeIn);
+
+        void insert(T dataIn, AVLNode *&nodeIn);
 
         void rotateWithLeftChild(AVLNode*& k2);
         void rotateWithRightChild(AVLNode*& k2);
         int checkBalance(AVLNode* nodeIn);
 
+        void deleteNode(AVLNode* nodeIn);
+
     public:
+
+        AVLTree();
+        ~AVLTree();
 
         int height(AVLNode* node);
 
-        int max(const int& int1, const int& int2) {return a > b ? a : b; }
+        void insert(T dataIn);
+
+        int max(const int& int1, const int& int2) const {return (int1 > int2) ? int1 : int2; }
+        void printInOrder();
 
 
 };
 
 template<class T>
-int AVLTree<T>::height(AVLTree::AVLNode* node) {
+int AVLTree<T>::height(AVLTree::AVLNode* nodeIn) {
 
 
-    if (node == nullptr) {
+    if (nodeIn == nullptr) {
 
         return -1;
     } else {
 
 
-        return node->height;
+        return nodeIn->height;
     }
 
 }
 
-/*
 template<class T>
-void AVLTree<T>::insert(int x, AVLTree::AVLNode*& t) {
+void AVLTree<T>::insert(T dataIn) {
 
-
-    if (t == nullptr) {
-
-        t = new AVLNode(x,nullptr,nullptr);
-    } else if (t < t->element) {
-
-
-        insert(x,t->left);
-
-        if (height(t->left) - height(t->right) == 2) {
-
-
-            if (x < t->left->element) {
-
-
-                rotateWithLeftChild(t); //c1
-            } else {
-
-                rotateWithRightChild(t); //c2
-            }
-
-        }
-
-
-    } else if (t->element < x) {
-
-
-        insert(x,t->right);
-
-        if (height(t->right) - height(t->left) == 2) {
-
-
-            if (x < t->right->element) {
-
-
-                rotateWithRightChild(t); //c4
-            } else {
-
-                rotateWithLeftChild(t); //c3
-            }
-
-        }
-
-
-    } else ;
-
-    t->height = max(height(t->left),height(t->right));
-
+    insert(dataIn,root);
 }
 
-*/
 
 template<class T>
 void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
 
-        if (nodeIn == nullptr) {
 
-            nodeIn = new AVLNode ghh
-        }
+    if (nodeIn == nullptr) {
 
-        if (dataIn < nodeIn->element) {
+        nodeIn = new AVLNode(dataIn,nullptr,nullptr);
 
-            nodeIn->left  = insert(dataIn, nodeIn->left);
-        } else if (dataIn > nodeIn->element) {
-
-            nodeIn->right = insert(dataIn,nodeIn->right);
-        } else {
-
-            return nodeIn;
-        }
-        nodeIn->height = 1 + max(height(nodeIn->left),height(nodeIn->right));
+    } else if (dataIn < nodeIn->element) {
 
 
-        int balance = checkBalance(node);
+        insert(dataIn,nodeIn->left);
+
+        if (height(nodeIn->left) - height(nodeIn->right) == 2) {
 
 
+            if (dataIn < nodeIn->left->element) {
 
-        // LL Case c1
-        if (balance > 1 && dataIn < nodeIn->left->element) {
 
-            return rotateWithRightChild(nodeIn);
-        }
+                rotateWithLeftChild(nodeIn); //c1
+            } else {
 
-        // LR Case c2
-        if (balance > 1 && dataIn > nodeIn->left->element) {
+                rotateWithRightChild(nodeIn->left);
+                rotateWithLeftChild(nodeIn);//c2
+            }
 
-            nodeIn->left =  rotateWithLeftChild(nodeIn->left);
-            return rotateWithRightChild(nodeIn);
-        }
-
-        // RR Case c3
-        if (balance < -1 && dataIn > nodeIn->right->element) {
-
-            return rotateWithLeftChild(nodeIn);
-        }
-
-        // RL Case c4
-        if (balance < -1 && key < node->right->key) {
-
-            node->right = rightRotate(node->right);
-            return leftRotate(node);
         }
 
 
-        return node;
+    } else if (nodeIn->element < dataIn) {
+
+
+        insert(dataIn,nodeIn->right);
+
+        if (height(nodeIn->right) - height(nodeIn->left) == 2) {
+
+
+            if (dataIn < nodeIn->right->element) {
+
+
+                rotateWithLeftChild(nodeIn->right);
+                rotateWithRightChild(nodeIn);//c3
+            } else {
+
+                rotateWithRightChild(nodeIn); //c4
+            }
+
+        }
+
+
+    } else {}
+
+    nodeIn->height = (max(height(nodeIn->left),height(nodeIn->right))) + 1;
+
 }
+
+
+
 
 template<class T>
 void AVLTree<T>::rotateWithLeftChild(AVLTree::AVLNode*& k2) {
@@ -171,8 +135,8 @@ void AVLTree<T>::rotateWithLeftChild(AVLTree::AVLNode*& k2) {
 
     k1->right = k2;       //2
 
-    k2->height = max(height(k2->left), height(k2->right))+1;
-    k1->height = max(height(k1->left), height(k2));
+    k2->height = max(height(k2->left), height(k2->right)) + 1;
+    k1->height = max(height(k1->left), k2->height) + 1;
 
     k2 = k1;
 
@@ -187,8 +151,8 @@ void AVLTree<T>::rotateWithRightChild(AVLTree::AVLNode*& k2) {
 
     k1->left = k2;       //2
 
-    k2->height = max(height(k2->right), height(k2->left))+1;
-    k1->height = max(height(k1->right), height(k2));
+    k2->height = max(height(k2->right), height(k2->left)) + 1;
+    k1->height = max(height(k1->right), k2->height) + 1;
 
     k2 = k1;
 
@@ -207,4 +171,33 @@ int AVLTree<T>::checkBalance(AVLTree::AVLNode* nodeIn) {
 
 
 
+}
+
+template<class T>
+void AVLTree<T> :: deleteNode(AVLTree::AVLNode* nodeIn) {
+
+
+  if (nodeIn != nullptr) {
+
+    deleteNode(nodeIn->left);
+    deleteNode(nodeIn->right);
+
+    delete nodeIn;
+  }
+
+
+}
+
+template<class T>
+AVLTree<T>::AVLTree() {
+
+    root = nullptr;
+
+}
+
+template<class T>
+AVLTree<T>::~AVLTree() {
+
+
+    deleteNode(root);
 }
