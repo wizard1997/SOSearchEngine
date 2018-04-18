@@ -97,7 +97,27 @@ void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
         }
 
 
+<<<<<<< HEAD
     } else if (nodeIn->element < dataIn) {
+=======
+    } else ;
+
+    t->height = max(height(t->left),height(t->right));
+
+}
+
+*/
+
+template<class T>
+void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
+
+        if (nodeIn == nullptr) {
+
+            nodeIn = new AVLNode
+        }
+
+        if (dataIn < nodeIn->element) {
+>>>>>>> ffa6b9294713d97af3fbe18fff8dfdcd8409b682
 
 
         insert(dataIn,nodeIn->right);

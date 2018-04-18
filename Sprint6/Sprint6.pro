@@ -5,9 +5,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     fileparser.cpp \
-    porter2_stemmer.cpp
+    porter2_stemmer.cpp \
+    word.cpp
 
 HEADERS += \
     AVLTree.h \
     fileparser.h \
-    porter2_stemmer.h
+    porter2_stemmer.h \
+    word.h
