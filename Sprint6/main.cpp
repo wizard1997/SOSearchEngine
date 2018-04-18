@@ -1,5 +1,8 @@
+#define CATCH_CONFIG_RUNNER
+
 #include <iostream>
 #include <cstring>
+#include "catch.hpp"
 #include "fileparser.h"
 #include "porter2_stemmer.h"
 #include "AVLTree.h"
@@ -10,16 +13,9 @@ int main(int argc, char* argv[]) {
 
     if (argc > 1 && strcmp(argv[1], "-t") == 0) {
 
-            AVLTree<string> tree1;
-            tree1.insert("abc");
-            tree1.insert("abcd");
-            tree1.insert("abcde");
-            tree1.insert("a");
-            tree1.insert("ab");
-            tree1.insert("abcede");
 
+            return Catch::Session().run();
 
-            std::cout << "test";
 
         } else if (argc > 1 && strcmp(argv[1], "-c") == 0) {
 
