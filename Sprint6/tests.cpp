@@ -20,7 +20,13 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
         REQUIRE(tree1.getRoot()->element == "abcd");
         tree1.insert("a");
         tree1.insert("ab");
-        tree1.insert("abcede");
+        tree1.insert("abcdef");
+        REQUIRE(tree1.getRoot()->left->element == "ab");
+        REQUIRE(tree1.getRoot()->right->element == "abcde");
+        REQUIRE(tree1.getRoot()->left->left->element == "a");
+
+
+
 
 
 

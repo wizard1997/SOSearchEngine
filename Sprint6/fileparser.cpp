@@ -30,15 +30,32 @@ void FileParser::parseQuestionFile(std::string file)
     std::stringstream strStream;
     strStream << questionFile.rdbuf();
     std::string buffer = strStream.str();
-    std::cout << buffer;
+    //std::cout << buffer;
     questionFile.close();
+
+    int questionBeginIndex = 0;
 
 
     //deal with id number and skip over to where question starts
 
+    while (questionBeginIndex < buffer.size()) {
 
-    //parse word for word, stem, trim, and stopword each word and then add
-    //the word into the vector for that particular id number and  go to next word
+        int idEndIndex = buffer.find('|',questionBeginIndex);
+        int questionID = atoi(buffer.substr(questionBeginIndex,idEndIndex).c_str());
+        int titleBeginIndex = buffer.find('|',idEndIndex+1);
+        for (int i = 0; i < 2; i++) {
+
+            titleBeginIndex = buffer.find('|',titleBeginIndex+1);
+
+        }
+        int titleEndIndex = buffer.find('|',titleBeginIndex+1);
+        std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex);
+        std::cout << questionID << "  Title: " << titleString << std::endl;
+        int codeBeginIndex = buffer.find("<>!<>!<>",titleEndIndex);
+        int codeEndIndex = buffer.find("<>!<>!<>",codeBeginIndex+1);
+        questionBeginIndex = codeEndIndex + 8;
+
+    }
 }
 
 /**
