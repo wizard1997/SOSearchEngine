@@ -30,7 +30,7 @@ void FileParser::parseQuestionFile(std::string file)
     std::stringstream strStream;
     strStream << questionFile.rdbuf();
     std::string buffer = strStream.str();
-    //std::cout << buffer;
+    std::cout << buffer;
     questionFile.close();
 
 

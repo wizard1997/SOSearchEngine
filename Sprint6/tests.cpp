@@ -1,37 +1,34 @@
 #include "catch.hpp"
 #include "AVLTree.h"
-#include <cstring>
+#include <string>
+#include <iostream>
 
 
 TEST_CASE("AVL Tree", "[AVLTree]") {
 
-    AVLTree<string> tree1;
-    tree1.insert("abc");
-    tree1.insert("abcd");
-    tree1.insert("abcde");
-    tree1.insert("a");
-    tree1.insert("ab");
-    tree1.insert("abcede");
+    AVLTree<std::string> tree1;
+
 
 
     std::cout << "test";
 
+    SECTION("insert/rotation behavior") {
 
-    SECTION("List behavior"){
-
-        REQUIRE(list.at(0)->data == 0);
-        REQUIRE(list.at(3)->data == 3);
-        REQUIRE(list.at(1)->next->data == 2);
-        REQUIRE(list.at(6)->previous->data == 5);
-        list.remove(9);
-        REQUIRE(list.at(8)->data == 8);
-        list.insertBack(9);
-
+        tree1.insert("abc");
+        tree1.insert("abcd");
+        tree1.insert("abcde");
+        REQUIRE(tree1.getRoot()->element == "abcd");
+        tree1.insert("a");
+        tree1.insert("ab");
+        tree1.insert("abcede");
 
 
 
     }
 
-}
 
+
+
+
+}
 
