@@ -50,10 +50,11 @@ void FileParser::parseQuestionFile(std::string file)
         }
         int titleEndIndex = buffer.find('|',titleBeginIndex+1);
         std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex);
-        std::cout << questionID << "  Title: " << titleString << std::endl;
+        std::cout << questionID << std::endl;
         int codeBeginIndex = buffer.find("<>!<>!<>",titleEndIndex);
         int codeEndIndex = buffer.find("<>!<>!<>",codeBeginIndex+1);
         questionBeginIndex = codeEndIndex + 8;
+
 
     }
 }
