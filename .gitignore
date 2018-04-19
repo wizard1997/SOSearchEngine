@@ -4,5 +4,7 @@
 # Build directories
 build-*/
 
+
+data/
 # Autosaves
 *~
