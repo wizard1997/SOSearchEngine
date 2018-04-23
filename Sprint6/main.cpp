@@ -15,11 +15,14 @@ int main(int argc, char* argv[]) {
     if (argc > 1 && strcmp(argv[1], "-t") == 0) {
 
 
-            return Catch::Session().run();
+         return Catch::Session().run();
 
 
-        } else if (argc > 1 && strcmp(argv[1], "-c") == 0) {
+    } else if (argc > 1 && strcmp(argv[1], "-p") == 0) {
 
+
+        FileParser fp1;
+        fp1.parseQuestionFile(argv[2]);
 
 
         } else {
@@ -30,5 +33,12 @@ int main(int argc, char* argv[]) {
 
 
         }
+
+
+    } else {
+         cout << "Invalid flag, check arguments" << endl;
+         return 1;
+     }
+
 
 }

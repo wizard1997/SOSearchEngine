@@ -44,6 +44,8 @@ class AVLTree {
         void printInOrder();
 
 
+        AVLNode* getRoot() const {return root; }
+        void setRoot(AVLNode* value);
 };
 
 template<class T>
@@ -67,6 +69,19 @@ void AVLTree<T>::insert(T dataIn) {
     insert(dataIn,root);
 }
 
+template<class T>
+void AVLTree<T>::printInOrder() {
+
+}
+
+
+
+
+template<class T>
+void AVLTree<T>::setRoot(AVLNode* value) {
+
+    root = value;
+}
 
 template<class T>
 void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
