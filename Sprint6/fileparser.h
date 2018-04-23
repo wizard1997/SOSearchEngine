@@ -5,6 +5,8 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <cstring>
+#include <porter2_stemmer.h>
 
 class FileParser
 {
@@ -14,7 +16,7 @@ class FileParser
         static std::unordered_set<std::string> stopWords;
 
         //vector containing each of the questions relevant words
-        std::vector<std::string> questions;
+       // std::vector<std::pair<int,std::string> questions;
 
     public:
         FileParser();

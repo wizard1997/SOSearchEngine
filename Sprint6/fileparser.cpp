@@ -19,7 +19,7 @@ void FileParser::parseQuestionFile(std::string file)
         std::cout << "********** Error the question file was NOT opened **********\n\n";
     }
 
-    std::cout << "**Question File opened**\n\n";
+    std::cout << "                  ******** Question File opened *********\n\n";
     //temp here is used to bypass the very first line of file
     char* temp = new char[50];
     questionFile.getline(temp, 50);
@@ -30,7 +30,7 @@ void FileParser::parseQuestionFile(std::string file)
     std::stringstream strStream;
     strStream << questionFile.rdbuf();
     std::string buffer = strStream.str();
-    //std::cout << buffer;
+    std::cout << buffer;
     questionFile.close();
 
 

@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//"/home/coder/Code/2015-questions.psv"
 int main(int argc, char* argv[]) {
 
     if (argc > 1 && strcmp(argv[1], "-t") == 0) {
@@ -22,8 +23,12 @@ int main(int argc, char* argv[]) {
 
 
         } else {
-            cout << "Invalid flag, check arguments" << endl;
-            return 1;
+
+            FileParser fp1;
+            fp1.parseQuestionFile(argv[1]);
+
+
+
         }
 
 }
