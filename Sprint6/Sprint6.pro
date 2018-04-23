@@ -14,4 +14,5 @@ HEADERS += \
     fileparser.h \
     porter2_stemmer.h \
     word.h \
-    catch.hpp
+    catch.hpp \
+    hashtable.h

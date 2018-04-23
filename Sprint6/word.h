@@ -1,5 +1,4 @@
-#ifndef WORD_H
-#define WORD_H
+#pragma once
 
 #include <iostream>
 
@@ -17,4 +16,4 @@ class Word
 
 };
 
-#endif // WORD_H
+

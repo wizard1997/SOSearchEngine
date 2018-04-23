@@ -1,30 +1,11 @@
 #include "catch.hpp"
 #include "AVLTree.h"
-<<<<<<< HEAD
 #include <iostream>
 #include <cstring>
-
-
-TEST_CASE("AVL Tree", "[AVLTree]") {
-/*
-    AVLTree<std::string> tree1;
-    tree1.insert("abc");
-    tree1.insert("abcd");
-    tree1.insert("abcde");
-    tree1.insert("a");
-    tree1.insert("ab");
-    tree1.insert("abcede");
-*/
-
 #include <string>
-#include <iostream>
 
 
 TEST_CASE("AVL Tree", "[AVLTree]") {
-
-    AVLTree<std::string> tree1;
-
-
 
     AVLTree<int> tree1;
     tree1.insert(20);
@@ -36,7 +17,7 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
     tree1.insert(16);
 
     std::cout << "test";
-
+}
 /*
     SECTION("List behavior"){
 
@@ -67,16 +48,9 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
     }
 
 */
-}
 
 
 
 
-
-
-
-
-
-}
 
 

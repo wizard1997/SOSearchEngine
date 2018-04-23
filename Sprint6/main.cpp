@@ -6,8 +6,9 @@
 #include "fileparser.h"
 #include "porter2_stemmer.h"
 #include "AVLTree.h"
+#include "hashtable.h"
 
-using namespace std;
+
 
 //"/home/coder/Code/2015-questions.psv"
 int main(int argc, char* argv[]) {
@@ -25,20 +26,30 @@ int main(int argc, char* argv[]) {
         fp1.parseQuestionFile(argv[2]);
 
 
-        } else {
-
-            FileParser fp1;
-            fp1.parseQuestionFile(argv[1]);
-
-
-
-        }
-
-
     } else {
-         cout << "Invalid flag, check arguments" << endl;
-         return 1;
-     }
+
+        HashTable<std::string> h;
+        std::string str = "abc";
+        std::string str1 = "abc";
+        std::string str2 = "zad";
+        std::string str3 = "cal";
+        std::string str4 = "girl";
+        std::string str5 = "taco";
+        std::string str6 = "mosquito";
+        std::string str7 = "delaware";
+        std::string str8 = "doc";
+        h.insert(str);
+        h.insert(str1);
+        h.insert(str2);
+        h.insert(str3);
+        h.insert(str4);
+        h.insert(str5);
+        h.insert(str6);
+        h.insert(str7);
+        h.insert(str8);
+        h.displayTable();
+    }
+
 
 
 }
