@@ -12,11 +12,12 @@ class Word
     public:
 
         Word();
+        Word(unsigned long&, std::string& str);
 
-        void setQuestionID(unsigned long);
-        unsigned long getQuestionID();
-        void setWordStr(std::string);
-        std::string getWordStr();
+        void setQuestionID(unsigned long& num);
+        unsigned long& getQuestionID();
+        void setWordStr(std::string& str);
+        std::string& getWordStr();
 
 
 };

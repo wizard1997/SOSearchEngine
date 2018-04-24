@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     fileparser.cpp \
     porter2_stemmer.cpp \
     word.cpp \
-    tests.cpp
+    tests.cpp \
+    queryprocessor.cpp
 
 HEADERS += \
     AVLTree.h \
@@ -15,4 +16,5 @@ HEADERS += \
     porter2_stemmer.h \
     word.h \
     catch.hpp \
-    hashtable.h
+    hashtable.h \
+    queryprocessor.h
