@@ -38,6 +38,7 @@ int main(int argc, char* argv[]) {
         std::string str6 = "mosquito";
         std::string str7 = "delaware";
         std::string str8 = "doc";
+        std::string str9 = "fortnite";
         h.insert(str);
         h.insert(str1);
         h.insert(str2);
@@ -47,6 +48,10 @@ int main(int argc, char* argv[]) {
         h.insert(str6);
         h.insert(str7);
         h.insert(str8);
+        h.insert(str9);
+        h.displayTable();
+        h.clear();
+        std::cout << "cleared\n\n";
         h.displayTable();
     }
 

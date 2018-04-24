@@ -14,27 +14,24 @@ class HashTable {
 
                 T data;
                 T key;
-                HashEntry* chain; //To be used for chaining
-
                 HashEntry(T& dataEntry, T& keyEntry)
                     : data(dataEntry), key(keyEntry) {}
 
         };
 
-        int LENGTH = 5;
+        int LENGTH = 5; //Size of the hashtable
 
-        int numBuckets;
-        //HashEntry** table;
+        int numEntries; //How many times insert has been called
         std::list<T>* table;
 
     public:
 
         HashTable();
-
-        void insert(std::string);
-        int hash(std::string str);
-
-
+        ~HashTable() {}
+        void insert(T);
+        void remove(T);
+        int hash(T);
+        void clear();
         void displayTable();
 };
 
@@ -45,11 +42,37 @@ HashTable<T>::HashTable()
     table = new std::list<T>[LENGTH];
 }
 
+/**
+ *  Hashes and then inserts the key into its assigned index
+ **/
 template<typename T>
-void HashTable<T>::insert(std::string key)
+void HashTable<T>::insert(T key)
 {
-    int hashedVal = hash(key);
-    table[hashedVal].push_back(key);
+    int index = hash(key);
+    table[index].push_back(key);
+    numEntries++; //increments how many entries have occured
+}
+
+template<typename T>
+void HashTable<T>::remove(T key)
+{
+//typename std::list<T>::iterator i = table[index].begin()
+    int index = hash(key);
+    typename std::list<T>::iterator i;
+    for (i = table[index].begin(); i != table[index].end(); ++i) {
+
+        if (*i == key) {
+            break;
+        }
+    }
+    if (i != table[index].end()){
+
+        std::cout << "outside for loop in 2nd if\n\n";
+        i = table[index].erase(i);
+
+        //table[index].remove(key);
+
+    }
 }
 
 /**
@@ -60,7 +83,7 @@ void HashTable<T>::insert(std::string key)
  * @return  and int containing where the key should go
  */
 template<typename T>
-int HashTable<T>::hash(std::string str)
+int HashTable<T>::hash(T str)
 {
     unsigned long hash = 5381; //Prime number
 
@@ -71,6 +94,19 @@ int HashTable<T>::hash(std::string str)
     return hash % LENGTH;
 }
 
+template<typename T>
+void HashTable<T>::clear()
+{
+
+    for (int i = 0; i < LENGTH; i++)
+        table[i].clear();
+
+}
+
+/**
+ *  Function that displays the hashtable, really only used for
+ *  rudimentary testing
+ **/
 template<typename T>
 void HashTable<T>::displayTable()
 {
