@@ -13,51 +13,109 @@ void FileParser::parseQuestionFile(std::string file)
 {
 
     //Open the question file
-    std::ifstream questionFile;
-    questionFile.open(file);
-    if (!questionFile.is_open()) {
+    MemoryMapped data(file,0);
+
+    if (!data.isValid()) {
         std::cout << "********** Error the question file was NOT opened **********\n\n";
+        exit(0);
     }
 
-    std::cout << "                  ******** Question File opened *********\n\n";
-    //temp here is used to bypass the very first line of file
-    char* temp = new char[50];
-    questionFile.getline(temp, 50);
-    std::cout << temp << std::endl;
-    delete [] temp;
-
-    //Reading the rest of the file into a buffer
-    std::stringstream strStream;
-    strStream << questionFile.rdbuf();
-    std::string buffer = strStream.str();
-    std::cout << buffer;
-    questionFile.close();
-
-    int questionBeginIndex = 0;
+    std::cout << "\t\t******** Question File mapped to memory *********\n\n";
 
 
-    //deal with id number and skip over to where question starts
+    int bufferbegin = 50;
+    int it = 50;
+    int bufferSize = 1000000;
 
-    while (questionBeginIndex < buffer.size()) {
+    while (bufferbegin < data.mappedSize()) {
 
-        int idEndIndex = buffer.find('|',questionBeginIndex);
-        int questionID = atoi(buffer.substr(questionBeginIndex,idEndIndex).c_str());
-        int titleBeginIndex = buffer.find('|',idEndIndex+1);
-        for (int i = 0; i < 2; i++) {
 
-            titleBeginIndex = buffer.find('|',titleBeginIndex+1);
+
+        std::string buffer;
+
+        while (it < bufferSize) {
+
+            buffer += data[it];
+            it++;
 
         }
-        int titleEndIndex = buffer.find('|',titleBeginIndex+1);
-        std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex);
-        std::cout << questionID << std::endl;
-        int codeBeginIndex = buffer.find("<>!<>!<>",titleEndIndex);
-        int codeEndIndex = buffer.find("<>!<>!<>",codeBeginIndex+1);
-        questionBeginIndex = codeEndIndex + 8;
 
+        it = 0;
+
+        bufferbegin += bufferSize;
+
+
+        int questionBeginIndex = 0;
+
+        //deal with id number and skip over to where question starts
+
+        while (questionBeginIndex < buffer.size()) {
+
+            int idEndIndex = buffer.find('|',questionBeginIndex);
+            int questionID = atoi(buffer.substr(questionBeginIndex,idEndIndex).c_str());
+            int titleBeginIndex = buffer.find('|',idEndIndex+1);
+            for (int i = 0; i < 2; i++) {
+
+                titleBeginIndex = buffer.find('|',titleBeginIndex+1);
+
+            }
+            int titleEndIndex = buffer.find('|',titleBeginIndex+1);
+            std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex-1);
+            parseString(titleString);
+            std::cout << questionID << std::endl;
+            int codeBeginIndex = buffer.find("<>!<>!<>",titleEndIndex+1);
+            int codeEndIndex = codeBeginIndex;
+            if (buffer[codeBeginIndex - 1] == '\"') {
+
+                codeBeginIndex = codeBeginIndex + 8;
+                codeEndIndex = buffer.find("<>!<>!<>",codeBeginIndex);
+                questionBeginIndex = codeEndIndex + 9;
+            } else {
+
+                questionBeginIndex = codeBeginIndex + 16;
+            }
+
+        }
 
     }
+
 }
+
+void FileParser::parseString(std::string& stringIn) {
+
+
+    size_t i = 0;
+    size_t j = 0;
+    //detect word and form substring
+    while (i < stringIn.size() && j < stringIn.size()) {
+
+        if ((stringIn[i] != ' ') && ((stringIn[i] >= 'a' && stringIn[i] <= 'z') || (stringIn[i] >= 'A' && stringIn[i] <= 'Z'))) {
+            while (((stringIn[j] >= 'a' && stringIn[j] <= 'z') || (stringIn[j] >= 'A' && stringIn[j] <= 'Z')) || stringIn[j] == '\'') {
+
+                j++;
+            }
+
+            std::string stringSection = stringIn.substr(i, j-i);
+            if (stringSection.size() > 2 && !isStopWord(stringSection)) {
+
+
+                tree.insert(stringSection);
+            }
+            //assign counters
+            i = j+1;
+            j = i;
+
+        } else {
+
+            i++;
+            j = i;
+        }
+
+    }
+
+}
+
+
 
 /**
  * @brief FileParser::isStopWord Function that identifies if the given
