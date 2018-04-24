@@ -17,7 +17,9 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
     tree1.insert(16);
 
     std::cout << "test";
+
 }
+
 /*
     SECTION("List behavior"){
 
@@ -47,8 +49,8 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
 
     }
 
+}
 */
-
 
 
 

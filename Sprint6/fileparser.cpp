@@ -70,11 +70,13 @@ bool FileParser::isStopWord(std::string &word)
     return stopWords.count(word);
 }
 
-void FileParser::test()
+void FileParser::test(std::string str)
 {
-    std::string val = "about";
+    std::string val = str;
     if(isStopWord(val))
-        std::cout << "found stop word\n\n";
+        std::cout << "found stop word: " << str << std::endl;
+    else
+        std::cout << str << " is not a stop word" << std::endl;
 }
 
 //Stop words from the website given by the project handout, minus a few that

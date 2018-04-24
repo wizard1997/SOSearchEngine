@@ -25,6 +25,6 @@ class FileParser
         void parseTagFile();
 
         static bool isStopWord(std::string& word);
-        void test(); //not a function to be included in final submission
+        void test(std::string); //not a function to be included in final submission
 };
 
