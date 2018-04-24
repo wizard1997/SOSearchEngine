@@ -8,7 +8,9 @@ SOURCES += main.cpp \
     porter2_stemmer.cpp \
     word.cpp \
     tests.cpp \
+    queryprocessor.cpp \
     MemoryMapped.cpp
+
 
 HEADERS += \
     AVLTree.h \
@@ -17,4 +19,5 @@ HEADERS += \
     word.h \
     catch.hpp \
     hashtable.h \
+    queryprocessor.h \
     MemoryMapped.h
