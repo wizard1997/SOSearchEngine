@@ -23,36 +23,68 @@ void FileParser::parseQuestionFile(std::string file)
     std::cout << "\t\t******** Question File mapped to memory *********\n\n";
 
 
-    int bufferbegin = 50;
-    int it = 50;
-    int bufferSize = 1000000;
 
-    while (bufferbegin < data.mappedSize()) {
+    size_t it = 50;
+    size_t bufferSize = 1000000;
+
+    while (it < data.size()) {
 
 
 
-        std::string buffer;
+        std::string buffer ="";
 
-        while (it < bufferSize) {
+        int counter = 0;
+        while (it < data.size() && counter < bufferSize) {
 
-            buffer += data[it];
+            if (data[it] < 128) {
+
+                buffer += data[it];
+
+            }
             it++;
+            counter++;
 
         }
 
-        it = 0;
-
-        bufferbegin += bufferSize;
 
 
-        int questionBeginIndex = 0;
+
+
+
+        int questionBeginIndex = buffer.find("<>?<>?<>", questionBeginIndex);
+        questionBeginIndex = buffer.find("<>!<>!<>", questionBeginIndex);
+        questionBeginIndex = buffer.find("<>!<>!<>", questionBeginIndex +1);
+        questionBeginIndex = (buffer.find('\n', questionBeginIndex+1)+1);
+
+
+
+
+
 
         //deal with id number and skip over to where question starts
 
-        while (questionBeginIndex < buffer.size()) {
+//        std::cout << buffer;
+        int lastQuestionBeginIndex = buffer.rfind("<>?<>?<>");
+        lastQuestionBeginIndex = buffer.rfind("<>?<>?<>",lastQuestionBeginIndex-1);
+        for (int i = 0; i < 4; i++) {
+
+            lastQuestionBeginIndex = buffer.rfind('|',lastQuestionBeginIndex-1);
+
+        }
+        lastQuestionBeginIndex = buffer.rfind('\n',lastQuestionBeginIndex-1);
+        lastQuestionBeginIndex++;
+        int lastQuestionIdEnd = buffer.find('|',lastQuestionBeginIndex);
+        int lastQuestionId = atoi(buffer.substr(lastQuestionBeginIndex,lastQuestionIdEnd).c_str());
+
+
+        while (true) {
 
             int idEndIndex = buffer.find('|',questionBeginIndex);
             int questionID = atoi(buffer.substr(questionBeginIndex,idEndIndex).c_str());
+            if (questionID == lastQuestionId) {
+
+                break;
+            }
             int titleBeginIndex = buffer.find('|',idEndIndex+1);
             for (int i = 0; i < 2; i++) {
 
@@ -62,22 +94,21 @@ void FileParser::parseQuestionFile(std::string file)
             int titleEndIndex = buffer.find('|',titleBeginIndex+1);
             std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex-1);
             parseString(titleString);
-            std::cout << questionID << std::endl;
-            int codeBeginIndex = buffer.find("<>!<>!<>",titleEndIndex+1);
-            int codeEndIndex = codeBeginIndex;
-            if (buffer[codeBeginIndex - 1] == '\"') {
+            //std::cout << questionID << std::endl;
+            int codeBeginIndex = buffer.find("<>!<>!<>", titleEndIndex+1);
+            int codeEndIndex = buffer.find("<>!<>!<>", codeBeginIndex+1);
 
-                codeBeginIndex = codeBeginIndex + 8;
-                codeEndIndex = buffer.find("<>!<>!<>",codeBeginIndex);
-                questionBeginIndex = codeEndIndex + 9;
-            } else {
+            questionBeginIndex = (buffer.find('\n',codeEndIndex)+1);
 
-                questionBeginIndex = codeBeginIndex + 16;
-            }
+
+
+
 
         }
 
     }
+
+    tree.printInOrder();
 
 }
 
@@ -98,7 +129,11 @@ void FileParser::parseString(std::string& stringIn) {
             std::string stringSection = stringIn.substr(i, j-i);
             if (stringSection.size() > 2 && !isStopWord(stringSection)) {
 
+                for (size_t i = 0; i < stringSection.size(); i++) {
 
+                    stringSection[i] = tolower(stringSection[i]);
+                }
+                Porter2Stemmer::stem(stringSection);
                 tree.insert(stringSection);
             }
             //assign counters

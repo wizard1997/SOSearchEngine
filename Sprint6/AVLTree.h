@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 template<class T>
 class AVLTree {
@@ -30,6 +31,8 @@ class AVLTree {
         int checkBalance(AVLNode* nodeIn);
 
         void deleteNode(AVLNode* nodeIn);
+        void printInOrder(AVLNode* nodeIn);
+
 
     public:
 
@@ -70,9 +73,27 @@ void AVLTree<T>::insert(T dataIn) {
 }
 
 template<class T>
-void AVLTree<T>::printInOrder() {
+void AVLTree<T>::printInOrder(AVLNode* nodeIn) {
+
+    if (nodeIn != nullptr) {
+
+        printInOrder(nodeIn->left);
+        std::cout << nodeIn->element << "  ";
+        printInOrder(nodeIn->right);
+
+    }
+
 
 }
+
+template<class T>
+void AVLTree<T>::printInOrder() {
+
+    printInOrder(root);
+
+}
+
+
 
 
 
