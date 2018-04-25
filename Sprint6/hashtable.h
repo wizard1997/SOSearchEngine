@@ -19,7 +19,7 @@ class HashTable {
 
         };
 
-        int LENGTH = 5; //Size of the hashtable
+        int LENGTH = 3000; //Size of the hashtable
 
         int numEntries; //How many times insert has been called
         std::list<T>* table;

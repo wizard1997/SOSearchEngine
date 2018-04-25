@@ -9,6 +9,7 @@
 #include <porter2_stemmer.h>
 #include "MemoryMapped.h"
 #include "AVLTree.h"
+#include "hashtable.h"
 
 class FileParser
 {
@@ -17,7 +18,7 @@ class FileParser
         //List of stop words
         static std::unordered_set<std::string> stopWords;
         AVLTree<std::string> tree;
-
+        HashTable<std::string> table;
         //vector containing each of the questions relevant words
        // std::vector<std::pair<int,std::string> questions;
 

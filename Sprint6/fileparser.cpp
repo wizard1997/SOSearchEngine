@@ -109,6 +109,7 @@ void FileParser::parseQuestionFile(std::string file)
     }
 
     tree.printInOrder();
+    //table.displayTable();
 
 }
 
@@ -135,6 +136,7 @@ void FileParser::parseString(std::string& stringIn) {
                 }
                 Porter2Stemmer::stem(stringSection);
                 tree.insert(stringSection);
+                //table.insert(stringSection);
             }
             //assign counters
             i = j+1;
