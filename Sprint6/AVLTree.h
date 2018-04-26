@@ -93,11 +93,6 @@ void AVLTree<T>::printInOrder() {
 
 }
 
-
-
-
-
-
 template<class T>
 void AVLTree<T>::setRoot(AVLNode* value) {
 

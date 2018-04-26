@@ -46,20 +46,10 @@ void FileParser::parseQuestionFile(std::string file)
 
         }
 
-
-
-
-
-
         int questionBeginIndex = buffer.find("<>?<>?<>", questionBeginIndex);
         questionBeginIndex = buffer.find("<>!<>!<>", questionBeginIndex);
         questionBeginIndex = buffer.find("<>!<>!<>", questionBeginIndex +1);
         questionBeginIndex = (buffer.find('\n', questionBeginIndex+1)+1);
-
-
-
-
-
 
         //deal with id number and skip over to where question starts
 
@@ -93,7 +83,9 @@ void FileParser::parseQuestionFile(std::string file)
             }
             int titleEndIndex = buffer.find('|',titleBeginIndex+1);
             std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex-1);
+
             parseString(titleString);
+
             //std::cout << questionID << std::endl;
             int codeBeginIndex = buffer.find("<>!<>!<>", titleEndIndex+1);
             int codeEndIndex = buffer.find("<>!<>!<>", codeBeginIndex+1);
@@ -108,8 +100,8 @@ void FileParser::parseQuestionFile(std::string file)
 
     }
 
-    tree.printInOrder();
-    //table.displayTable();
+    //tree.printInOrder();
+    table.displayTable();
 
 }
 
@@ -134,9 +126,17 @@ void FileParser::parseString(std::string& stringIn) {
 
                     stringSection[i] = tolower(stringSection[i]);
                 }
-                Porter2Stemmer::stem(stringSection);
-                tree.insert(stringSection);
-                //table.insert(stringSection);
+
+                //Parse the string as long it's not a stop word
+                if ( isStopWord(stringSection) == false ) {
+
+                    Porter2Stemmer::stem(stringSection);
+                    //tree.insert(stringSection);
+                    table.insert(stringSection);
+
+                }
+
+
             }
             //assign counters
             i = j+1;
@@ -251,7 +251,7 @@ std::unordered_set<std::string> FileParser::stopWords {
     "which", "whichever", "while", "whilst", "whither", "who", "who'd", "whoever", "whole",
     "who'll", "whom", "whomever", "who's", "whose", "why", "will", "willing", "wish", "with",
     "within", "without", "wonder", "won't", "would", "wouldn't", "yes", "yet", "you", "you'd",
-    "you'll", "your", "you're", "yours", "yourself", "yourself", "yourselves", "you've"
+    "you'll", "your", "you're", "yours", "yourself", "yourself", "yourselves", "you've", "how", "why"
 };
 
 

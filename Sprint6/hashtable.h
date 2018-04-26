@@ -19,8 +19,8 @@ class HashTable {
 
         };
 
-        int LENGTH = 3000; //Size of the hashtable
-
+        int LENGTH = 10000; //Size of the hashtable
+        int maxChainLength = 20;
         int numEntries; //How many times insert has been called
         std::list<T>* table;
 
@@ -30,6 +30,8 @@ class HashTable {
         ~HashTable() {}
         void insert(T);
         void remove(T);
+        void resize();
+        void rehash();
         int hash(T);
         void clear();
         void displayTable();
@@ -48,9 +50,22 @@ HashTable<T>::HashTable()
 template<typename T>
 void HashTable<T>::insert(T key)
 {
-    int index = hash(key);
+    size_t index = std::hash<T>()(key);
+    index = index % LENGTH;
+
+    //std::hash<T>{} (key);
+    //size_t index = (key) % LENGTH;
+
+
+    //int index = hash(key);
     table[index].push_back(key);
     numEntries++; //increments how many entries have occured
+
+    /*
+    if ( table[index].size() > maxChainLength) {
+        rehash();
+    }
+    */
 }
 
 template<typename T>
@@ -73,6 +88,24 @@ void HashTable<T>::remove(T key)
         //table[index].remove(key);
 
     }
+}
+
+template<typename T>
+void HashTable<T>::resize()
+{
+    int oldLength = LENGTH;
+    LENGTH *= LENGTH;
+    HashTable<T> tempTable;
+
+//    for (int i = 0; i < oldLength; i++) {
+  //      std::fill_n(tempTable, LENGTH, nullptr);
+    //}
+}
+
+template<typename T>
+void HashTable<T>::rehash()
+{
+
 }
 
 /**
