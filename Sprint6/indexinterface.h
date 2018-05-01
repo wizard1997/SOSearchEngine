@@ -16,7 +16,6 @@ class IndexInterface
         virtual void addQuestionForWord(unsigned long);
         virtual std::list<unsigned long>& getQuestionsForWord();
 
-        void getTaco();
 
 
 };

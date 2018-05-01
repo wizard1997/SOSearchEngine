@@ -9,6 +9,7 @@ class Word
 
         std::vector<unsigned long> questionsContainingWord;
         std::string stringData;
+        int questionId;
 
     public:
 
