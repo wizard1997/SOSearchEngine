@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
         std::string str7 = "delaware";
         std::string str8 = "doc";
         std::string str9 = "fortnite";
-        h.insert(str);
+        //h.insert(str);
         h.insert(str1);
         h.insert(str2);
         h.insert(str3);

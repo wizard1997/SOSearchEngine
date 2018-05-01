@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
 
 class Word
 {
@@ -13,13 +14,14 @@ class Word
     public:
 
         Word();
-        Word(unsigned long&, std::string& str);
+        Word(unsigned long num, std::string& str);
 
-        void setQuestionID(unsigned long& num);
-        unsigned long& getQuestionID();
+        void addQuestionID(unsigned long num);
+        std::vector<unsigned long> getQuestions();
         void setWordStr(std::string& str);
         std::string& getWordStr();
 
+        Word& operator=(Word&);
 
 };
 

@@ -2,24 +2,23 @@
 
 Word::Word()
 {
-    questionID = 0;
     stringData = "";
 }
 
-Word::Word(unsigned long& num, std::string &str)
+Word::Word(unsigned long num, std::string &str)
 {
-    questionID = num;
+    questionsContainingWord.push_back(num);
     stringData = str;
 }
 
-void Word::setQuestionID(unsigned long &num)
+void Word::addQuestionID(unsigned long num)
 {
-    questionID = num;
+    questionsContainingWord.push_back(num);
 }
 
-unsigned long& Word::getQuestionID()
+std::vector<unsigned long> Word::getQuestions()
 {
-    return questionID;
+    return questionsContainingWord;
 }
 
 void Word::setWordStr(std::string &str)
@@ -30,6 +29,11 @@ void Word::setWordStr(std::string &str)
 std::string& Word::getWordStr()
 {
     return stringData;
+}
+
+Word &Word::operator=(Word & input)
+{
+
 }
 
 

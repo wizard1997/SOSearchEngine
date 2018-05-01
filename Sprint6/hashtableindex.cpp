@@ -5,8 +5,10 @@ HashTableIndex::HashTableIndex()
 
 }
 
-void HashTableIndex::addWord(std::string& str, unsigned long qID)
+/*
+void HashTableIndex::addWord(Word& word)
 {
-    table.insert(str);
+    table.insert(word);
 
 }
+*/
