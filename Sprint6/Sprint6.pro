@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++11
+CONFIG += console c++14
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -21,3 +21,8 @@ HEADERS += \
     hashtable.h \
     queryprocessor.h \
     MemoryMapped.h
+
+
+
+
+

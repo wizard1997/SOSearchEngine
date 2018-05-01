@@ -10,6 +10,7 @@
 #include "MemoryMapped.h"
 #include "AVLTree.h"
 #include "hashtable.h"
+#include <dirent.h>
 
 class FileParser
 {
@@ -19,11 +20,12 @@ class FileParser
         static std::unordered_set<std::string> stopWords;
         AVLTree<std::string> tree;
         HashTable<std::string> table;
+
         //vector containing each of the questions relevant words
        // std::vector<std::pair<int,std::string> questions;
 
     public:
-        FileParser();
+        FileParser(std::string dirIn);
 
         void parseQuestionFile(std::string file);
         void parseTagFile();

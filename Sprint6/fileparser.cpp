@@ -1,7 +1,26 @@
 #include "fileparser.h"
 
-FileParser::FileParser()
-{
+FileParser::FileParser(std::string dirIn) {
+
+     DIR* dirp;
+     dirent* dp;
+
+     if ((dirp = opendir("../Sprint6/data/")) != NULL) {
+       /* print all the files and directories within directory */
+       while ((dp = readdir(dirp)) != NULL) {
+
+         std::cout << std::string(dp->d_name) << std::endl;
+       }
+
+       closedir(dirp);
+
+     } else {
+       /* could not open directory */
+       std::cout << "could not open directory";
+
+     }
+
+
 
 }
 
@@ -14,6 +33,7 @@ void FileParser::parseQuestionFile(std::string file)
 
     //Open the question file
     MemoryMapped data(file,0);
+
 
     if (!data.isValid()) {
         std::cout << "********** Error the question file was NOT opened **********\n\n";
@@ -101,7 +121,7 @@ void FileParser::parseQuestionFile(std::string file)
     }
 
     //tree.printInOrder();
-    table.displayTable();
+    //table.displayTable();
 
 }
 
@@ -131,8 +151,8 @@ void FileParser::parseString(std::string& stringIn) {
                 if ( isStopWord(stringSection) == false ) {
 
                     Porter2Stemmer::stem(stringSection);
-                    //tree.insert(stringSection);
-                    table.insert(stringSection);
+                    tree.insert(stringSection);
+                    //table.insert(stringSection);
 
                 }
 

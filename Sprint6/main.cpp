@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     } else if (argc > 1 && strcmp(argv[1], "-p") == 0) {
 
 
-        FileParser fp1;
+        FileParser fp1(argv[2]);
         fp1.parseQuestionFile(argv[2]);
 
 
