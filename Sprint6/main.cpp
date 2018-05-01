@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
     } else {
 
         HashTable<std::string> h;
-        std::string str = "abc";
+        int num = 17;
         std::string str1 = "abc";
         std::string str2 = "zad";
         std::string str3 = "cal";
