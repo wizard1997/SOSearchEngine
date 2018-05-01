@@ -5,14 +5,18 @@ FileParser::FileParser(std::string dirIn) {
      DIR* dirp;
      dirent* dp;
 
-     if ((dirp = opendir("../Sprint6/data/")) != NULL) {
+     if ((dirp = opendir(dirIn.c_str())) != NULL) {
        /* print all the files and directories within directory */
        while ((dp = readdir(dirp)) != NULL) {
 
-         std::cout << std::string(dp->d_name) << std::endl;
+         if (strlen(dp->d_name) > 3) {
+
+             fileList.push_back(dp->d_name);
+         }
        }
 
        closedir(dirp);
+
 
      } else {
        /* could not open directory */

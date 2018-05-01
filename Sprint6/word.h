@@ -10,7 +10,11 @@ class Word
 
         std::vector<unsigned long> questionsContainingWord;
         std::string stringData;
+
         int totalFrequency;
+
+        int questionId;
+
 
     public:
 
@@ -23,6 +27,15 @@ class Word
         std::string getWordStr() const;
 
         bool operator==(const Word& rhs) const;
+
+        friend std::ostream& operator<< (std::ostream& out, const Word& wordOut) {
+
+        //overload stream insertion operator
+
+            out << wordOut.stringData;
+            return out;
+
+        }
 
 };
 
