@@ -1,9 +1,9 @@
-#include "hashtableindex.h"
+//#include "hashtableindex.h"
 
-HashTableIndex::HashTableIndex()
-{
+//HashTableIndex::HashTableIndex()
+//{
 
-}
+//}
 
 /*
 void HashTableIndex::addWord(Word& word)

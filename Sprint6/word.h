@@ -24,6 +24,15 @@ class Word
 
         Word& operator=(Word&);
 
+        friend std::ostream& operator<< (std::ostream& out, const Word& wordOut) {
+
+        //overload stream insertion operator
+
+            out << wordOut.stringData;
+            return out;
+
+        }
+
 };
 
 

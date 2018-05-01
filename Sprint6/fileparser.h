@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <list>
 #include <sstream>
 #include <cstring>
 #include <porter2_stemmer.h>
@@ -20,6 +21,8 @@ class FileParser
         static std::unordered_set<std::string> stopWords;
         AVLTree<std::string> tree;
         HashTable<std::string> table;
+        std::list<std::string> fileList;
+
 
         //vector containing each of the questions relevant words
        // std::vector<std::pair<int,std::string> questions;

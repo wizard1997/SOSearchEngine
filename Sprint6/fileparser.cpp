@@ -9,10 +9,14 @@ FileParser::FileParser(std::string dirIn) {
        /* print all the files and directories within directory */
        while ((dp = readdir(dirp)) != NULL) {
 
-         std::cout << std::string(dp->d_name) << std::endl;
+         if (strlen(dp->d_name) > 3) {
+
+             fileList.push_back(dp->d_name);
+         }
        }
 
        closedir(dirp);
+
 
      } else {
        /* could not open directory */
