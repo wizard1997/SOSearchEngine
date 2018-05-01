@@ -1,12 +1,13 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 class Word
 {
     private:
 
-        unsigned long questionID;
+        std::vector<unsigned long> questionsContainingWord;
         std::string stringData;
 
     public:

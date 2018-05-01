@@ -112,10 +112,6 @@ void FileParser::parseQuestionFile(std::string file)
 
             questionBeginIndex = (buffer.find('\n',codeEndIndex)+1);
 
-
-
-
-
         }
 
     }
@@ -273,5 +269,4 @@ std::unordered_set<std::string> FileParser::stopWords {
     "within", "without", "wonder", "won't", "would", "wouldn't", "yes", "yet", "you", "you'd",
     "you'll", "your", "you're", "yours", "yourself", "yourself", "yourselves", "you've", "how", "why"
 };
-
 
