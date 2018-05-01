@@ -53,19 +53,14 @@ void HashTable<T>::insert(T key)
     size_t index = std::hash<T>()(key);
     index = index % LENGTH;
 
-    //std::hash<T>{} (key);
-    //size_t index = (key) % LENGTH;
-
-
-    //int index = hash(key);
     table[index].push_back(key);
     numEntries++; //increments how many entries have occured
 
-    /*
+
     if ( table[index].size() > maxChainLength) {
         rehash();
     }
-    */
+
 }
 
 template<typename T>
@@ -97,14 +92,25 @@ void HashTable<T>::resize()
     LENGTH *= LENGTH;
     HashTable<T> tempTable;
 
-//    for (int i = 0; i < oldLength; i++) {
-  //      std::fill_n(tempTable, LENGTH, nullptr);
-    //}
+    for (int i = 0; i < oldLength; i++) {
+
+        std::fill_n(tempTable, LENGTH, nullptr);
+
+    }
 }
 
 template<typename T>
 void HashTable<T>::rehash()
 {
+    std::list<T> *temp = new std::list<T>;
+
+   // for (int i = 0; i < LENGTH; i++) {
+
+        //while ( table[i]._Node._M_next != nullptr ) {
+
+        //}
+   // }
+
 
 }
 

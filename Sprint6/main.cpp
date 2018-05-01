@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 
 
         FileParser fp1(argv[2]);
-       // fp1.parseQuestionFile(argv[2]);
+        fp1.parseQuestionFile(argv[2]);
 
 
     } else {

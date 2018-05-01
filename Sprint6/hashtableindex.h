@@ -8,10 +8,11 @@ class HashTableIndex : public IndexInterface
 
     private:
 
-        HashTable<std::string> table;
 
     public:
 
         HashTableIndex();
+        //void addWord(Word&) override;
+        HashTable<Word> table;
 };
 
