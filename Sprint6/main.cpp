@@ -8,6 +8,7 @@
 #include "AVLTree.h"
 #include "hashtable.h"
 
+
 //"/home/coder/Code/2015-questions.psv"
 int main(int argc, char* argv[]) {
 
@@ -27,7 +28,9 @@ int main(int argc, char* argv[]) {
 
     } else {
 
+
         std::cout << "Invalid flag input" << std::endl;
+
     }
 
 
