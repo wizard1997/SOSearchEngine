@@ -92,16 +92,12 @@ void FileParser::parseQuestionFile(std::string file)
 
             questionBeginIndex = (buffer.find('\n',codeEndIndex)+1);
 
-
-
-
-
         }
 
     }
 
     //tree.printInOrder();
-    table.displayTable();
+    //table.displayTable();
 
 }
 
@@ -131,8 +127,8 @@ void FileParser::parseString(std::string& stringIn) {
                 if ( isStopWord(stringSection) == false ) {
 
                     Porter2Stemmer::stem(stringSection);
-                    //tree.insert(stringSection);
-                    table.insert(stringSection);
+                    tree.insert(stringSection);
+                    //table.insert(stringSection);
 
                 }
 
@@ -253,5 +249,4 @@ std::unordered_set<std::string> FileParser::stopWords {
     "within", "without", "wonder", "won't", "would", "wouldn't", "yes", "yet", "you", "you'd",
     "you'll", "your", "you're", "yours", "yourself", "yourself", "yourselves", "you've", "how", "why"
 };
-
 

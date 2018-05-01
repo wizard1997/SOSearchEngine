@@ -8,8 +8,6 @@
 #include "AVLTree.h"
 #include "hashtable.h"
 
-
-
 //"/home/coder/Code/2015-questions.psv"
 int main(int argc, char* argv[]) {
 
@@ -24,7 +22,6 @@ int main(int argc, char* argv[]) {
 
         FileParser fp1;
         fp1.parseQuestionFile(argv[2]);
-
 
 
     } else {

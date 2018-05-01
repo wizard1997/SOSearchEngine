@@ -9,7 +9,10 @@ SOURCES += main.cpp \
     word.cpp \
     tests.cpp \
     queryprocessor.cpp \
-    MemoryMapped.cpp
+    MemoryMapped.cpp \
+    indexinterface.cpp \
+    avltreeindex.cpp \
+    hashtableindex.cpp
 
 
 HEADERS += \
@@ -20,4 +23,7 @@ HEADERS += \
     catch.hpp \
     hashtable.h \
     queryprocessor.h \
-    MemoryMapped.h
+    MemoryMapped.h \
+    indexinterface.h \
+    avltreeindex.h \
+    hashtableindex.h

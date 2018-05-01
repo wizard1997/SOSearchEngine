@@ -19,7 +19,7 @@ class HashTable {
 
         };
 
-        int LENGTH = 10000; //Size of the hashtable
+        int LENGTH = 100000; //Size of the hashtable
         int maxChainLength = 20;
         int numEntries; //How many times insert has been called
         std::list<T>* table;
