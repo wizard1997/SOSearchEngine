@@ -6,17 +6,16 @@
 class IndexInterface
 {
 
-    private:
 
-        std::vector<unsigned long> questionsContainingWord;
 
     public:
 
         IndexInterface();
 
-        void addWord();
-        void addQuestionForWord(unsigned long);
-        std::list<unsigned long>& getQuestionsForWord();
+        virtual void addWord(std::string&, unsigned long);
+        virtual void addQuestionForWord(unsigned long);
+        virtual std::list<unsigned long>& getQuestionsForWord();
 
 };
+
 

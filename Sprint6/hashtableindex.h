@@ -3,9 +3,15 @@
 #include "hashtable.h"
 #include "indexinterface.h"
 
-class HashTableIndex:public IndexInterface
+class HashTableIndex : public IndexInterface
 {
-public:
-    HashTableIndex();
+
+    private:
+
+        HashTable<std::string> table;
+
+    public:
+
+        HashTableIndex();
 };
 

@@ -10,7 +10,6 @@ SOURCES += main.cpp \
     tests.cpp \
     queryprocessor.cpp \
     MemoryMapped.cpp \
-    indexinterface.cpp \
     avltreeindex.cpp \
     hashtableindex.cpp
 
