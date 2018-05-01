@@ -125,6 +125,22 @@ void FileParser::parseQuestionFile(std::string file)
 
 }
 
+void FileParser::selectDetectedFile() {
+
+    std::cout << "----------------------------------------\n"
+                 "List of files detected in specific path:\n"
+                 "----------------------------------------\n";
+
+    for (int i = 0; i < fileList.size(); i++) {
+
+        std::cout << i << ".\t" << fileList[i] << std::endl;
+    }
+
+
+
+
+}
+
 void FileParser::parseString(std::string& stringIn) {
 
 
