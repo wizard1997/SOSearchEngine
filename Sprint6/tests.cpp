@@ -1,5 +1,6 @@
 #include "catch.hpp"
 #include "AVLTree.h"
+#include "word.h"
 #include <iostream>
 #include <cstring>
 #include <string>
@@ -18,6 +19,21 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
 
     std::cout << "test";
 
+}
+
+TEST_CASE("Word class", "[Word") {
+
+    SECTION("overloading operators") {
+
+        std::string str = "taco";
+        std::string str1 = "taco";
+        std::string str2 = "notTaco";
+
+        Word t1(2463918, str);
+        Word t2(8584894, str1);
+        REQUIRE(t1 == t2);
+
+    }
 }
 
 /*

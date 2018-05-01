@@ -8,6 +8,7 @@
 #include "AVLTree.h"
 #include "hashtable.h"
 
+
 //"/home/coder/Code/2015-questions.psv"
 int main(int argc, char* argv[]) {
 
@@ -26,31 +27,7 @@ int main(int argc, char* argv[]) {
 
     } else {
 
-        HashTable<std::string> h;
-        int num = 17;
-        std::string str1 = "abc";
-        std::string str2 = "zad";
-        std::string str3 = "cal";
-        std::string str4 = "girl";
-        std::string str5 = "taco";
-        std::string str6 = "mosquito";
-        std::string str7 = "delaware";
-        std::string str8 = "doc";
-        std::string str9 = "fortnite";
-        //h.insert(str);
-        h.insert(str1);
-        h.insert(str2);
-        h.insert(str3);
-        h.insert(str4);
-        h.insert(str5);
-        h.insert(str6);
-        h.insert(str7);
-        h.insert(str8);
-        h.insert(str9);
-        h.displayTable();
-        h.clear();
-        std::cout << "cleared\n\n";
-        h.displayTable();
+
     }
 
 

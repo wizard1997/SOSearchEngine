@@ -16,24 +16,24 @@ void Word::addQuestionID(unsigned long num)
     questionsContainingWord.push_back(num);
 }
 
-std::vector<unsigned long> Word::getQuestions()
+std::vector<unsigned long> Word::getQuestions() const
 {
     return questionsContainingWord;
 }
 
-void Word::setWordStr(std::string &str)
+void Word::setWordStr(const std::string& str)
 {
     stringData = str;
 }
 
-std::string& Word::getWordStr()
+std::string Word::getWordStr() const
 {
     return stringData;
 }
 
-Word &Word::operator=(Word & input)
+bool Word::operator==(const Word& rhs) const
 {
-
+    return stringData == rhs.getWordStr();
 }
 
 
