@@ -21,7 +21,7 @@ class FileParser
         static std::unordered_set<std::string> stopWords;
         AVLTree<std::string> tree;
         HashTable<std::string> table;
-        std::vector<std::string> fileList;
+        std::vector<std::string> fileVec;
 
 
         //vector containing each of the questions relevant words

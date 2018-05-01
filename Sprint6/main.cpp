@@ -22,7 +22,10 @@ int main(int argc, char* argv[]) {
 
 
         FileParser fp1(argv[2]);
-        fp1.selectDetectedFile();
+        while (true) {
+
+            fp1.selectDetectedFile();
+        }
         std::cout << "test1" << std::endl;
 
 
