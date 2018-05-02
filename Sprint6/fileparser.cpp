@@ -11,7 +11,7 @@ FileParser::FileParser(std::string dirIn) {
 
          if (strlen(dp->d_name) > 3) {
 
-             fileList.push_back(dp->d_name);
+             fileVec.push_back(dirIn + dp->d_name);
          }
        }
 
@@ -57,7 +57,7 @@ void FileParser::parseQuestionFile(std::string file)
 
         std::string buffer ="";
 
-        int counter = 0;
+        size_t counter = 0;
         while (it < data.size() && counter < bufferSize) {
 
             if (data[it] < 128) {
@@ -120,7 +120,7 @@ void FileParser::parseQuestionFile(std::string file)
 
     }
 
-    //tree.printInOrder();
+    tree.printInOrder();
     //table.displayTable();
 
 }
@@ -131,10 +131,21 @@ void FileParser::selectDetectedFile() {
                  "List of files detected in specific path:\n"
                  "----------------------------------------\n";
 
-    for (int i = 0; i < fileList.size(); i++) {
+    for (size_t i = 0; i < fileVec.size(); i++) {
 
-        std::cout << i << ".\t" << fileList[i] << std::endl;
+        std::cout << i+1 << ".\t" << fileVec[i] << std::endl;
     }
+    std::cout << "Please enter number of file to parse: ";
+    int selection;
+    std::cin >> selection;
+    std::cout << "\nParsing file: " << fileVec[selection-1] << std::endl;
+    if (selection == 0) {
+
+        std::cout << "\nFinished parsing. Exiting.\n";
+        return;
+    }
+    parseQuestionFile(fileVec[selection-1]);
+
 
 
 
@@ -143,48 +154,31 @@ void FileParser::selectDetectedFile() {
 
 void FileParser::parseString(std::string& stringIn) {
 
+    auto done = stringIn.end();
+    auto end = stringIn.begin();
+    decltype(end) index;
 
-    size_t i = 0;
-    size_t j = 0;
-    //detect word and form substring
-    while (i < stringIn.size() && j < stringIn.size()) {
-
-        if ((stringIn[i] != ' ') && ((stringIn[i] >= 'a' && stringIn[i] <= 'z') || (stringIn[i] >= 'A' && stringIn[i] <= 'Z'))) {
-            while (((stringIn[j] >= 'a' && stringIn[j] <= 'z') || (stringIn[j] >= 'A' && stringIn[j] <= 'Z')) || stringIn[j] == '\'') {
-
-                j++;
-            }
-
-            std::string stringSection = stringIn.substr(i, j-i);
-            if (stringSection.size() > 2 && !isStopWord(stringSection)) {
-
-                for (size_t i = 0; i < stringSection.size(); i++) {
-
-                    stringSection[i] = tolower(stringSection[i]);
-                }
-
-                //Parse the string as long it's not a stop word
-                if ( isStopWord(stringSection) == false ) {
-
-                    Porter2Stemmer::stem(stringSection);
-                    tree.insert(stringSection);
-                    //table.insert(stringSection);
-
-                }
+    while((index = std::find_if(end, done, std::not1(std::ptr_fun(isspace)))) != done) {
+        end = std::find_if(index, done, std::ptr_fun(isspace));
+        std::string word(index, end);
+        if (word.size() > 2 && !isStopWord(word)) {
 
 
-            }
-            //assign counters
-            i = j+1;
-            j = i;
+            Porter2Stemmer::trim(word);
+            Porter2Stemmer::stem(word);
+            tree.insert(word);
+            //table.insert(stringSection);
 
-        } else {
-
-            i++;
-            j = i;
         }
 
+
+
+
     }
+
+//        for(auto&& p: wordsMap)
+//            std::cout << p.first << ": " << p.second << '\n';
+
 
 }
 
@@ -201,14 +195,6 @@ bool FileParser::isStopWord(std::string &word)
     return stopWords.count(word);
 }
 
-void FileParser::test(std::string str)
-{
-    std::string val = str;
-    if(isStopWord(val))
-        std::cout << "found stop word: " << str << std::endl;
-    else
-        std::cout << str << " is not a stop word" << std::endl;
-}
 
 //Stop words from the website given by the project handout, minus a few that
 //I thought to be unnecessary and a few that I didn't believe to be stopWords, like "zero"

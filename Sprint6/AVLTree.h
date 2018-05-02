@@ -148,7 +148,11 @@ void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
         }
 
 
-    } else {}
+    } else {
+
+        //std::cout << ".";
+
+    }
 
     nodeIn->height = (max(height(nodeIn->left),height(nodeIn->right))) + 1;
 
