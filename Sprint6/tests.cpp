@@ -17,11 +17,11 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
     tree1.insert(22);
     tree1.insert(16);
 
-    std::cout << "test";
+    std::cout << "test" << std::endl;
 
 }
 
-TEST_CASE("Word class", "[Word") {
+TEST_CASE("Word class", "[Word]") {
 
     SECTION("overloading operators") {
 
@@ -31,9 +31,12 @@ TEST_CASE("Word class", "[Word") {
 
         Word t1(2463918, str);
         Word t2(8584894, str1);
+        Word t3(8388289, str2);
         REQUIRE(t1 == t2);
-
+        REQUIRE(t1 != t3);
+        std::cout << t1;
     }
+
 }
 
 /*
