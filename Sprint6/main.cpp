@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     } else if (argc > 1 && strcmp(argv[1], "-p") == 0) {
 
 
-        FileParser fp1(argv[2]);
+        FileParser fp1(argv[1]);
         fp1.selectDetectedFile();
         std::cout << "test1" << std::endl;
 
