@@ -135,7 +135,7 @@ void FileParser::selectDetectedFile() {
 
         std::cout << i+1 << ".\t" << fileVec[i] << std::endl;
     }
-    std::cout << "Please enter number of file to parse: ";
+    std::cout << "Please enter number of file to parse or enter 0 to quit: ";
     int selection;
     std::cin >> selection;
     std::cout << "\nParsing file: " << fileVec[selection-1] << std::endl;

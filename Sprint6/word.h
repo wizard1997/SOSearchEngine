@@ -13,7 +13,6 @@ class Word
 
         int totalFrequency;
 
-        int questionId;
 
 
     public:
@@ -39,6 +38,7 @@ class Word
             return out;
 
         }
+
 
 };
 

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <vector>
+#include "hashtable.h"
 
 
 TEST_CASE("AVL Tree", "[AVLTree]") {
@@ -20,21 +22,55 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
     std::cout << "test" << std::endl;
 
 }
+TEST_CASE("Hash Table", "[HashTable") {
+
+    std::string str = "taco";
+    std::string str1 = "taco";
+    std::string str2 = "notTaco";
+    Word t1(2463918, str);
+    Word t2(8584894, str1);
+    Word t3(8388289, str2);
+
+    HashTable<Word> htable;
+    htable.insert(t1);
+    htable.insert(t2);
+    htable.insert(t3);
+
+    htable.displayTable();
+
+    Word sol = htable.getWord(t3);
+
+}
 
 TEST_CASE("Word class", "[Word]") {
 
-    SECTION("overloading operators") {
+    SECTION ("overloading operators") {
 
         std::string str = "taco";
         std::string str1 = "taco";
         std::string str2 = "notTaco";
 
-        Word t1(2463918, str);
+        Word t1(432422, str);
         Word t2(8584894, str1);
         Word t3(8388289, str2);
         REQUIRE(t1 == t2);
         REQUIRE(t1 != t3);
         std::cout << t1;
+
+        t2 = t3;
+        REQUIRE (t2 == t3);
+    }
+    SECTION ("vector of id numbers") {
+
+        std::string str = "taco";
+
+        Word w(123456,str);
+        w.addQuestionID(987654);
+        w.addQuestionID(7576384);
+
+        //std::vector<unsigned long> v = w.getQuestions();
+        std::cout << w;
+
     }
 
 }

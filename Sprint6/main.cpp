@@ -22,13 +22,11 @@ int main(int argc, char* argv[]) {
 
 
 
-        FileParser fp1(argv[1]);
-        fp1.selectDetectedFile();
 
-        FileParser fp2(argv[2]);
+        FileParser fp1(argv[2]);
         while (true) {
 
-            fp2.selectDetectedFile();
+            fp1.selectDetectedFile();
         }
 
         std::cout << "test1" << std::endl;
