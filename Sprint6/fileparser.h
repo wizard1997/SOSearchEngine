@@ -12,6 +12,7 @@
 #include "AVLTree.h"
 #include "hashtable.h"
 #include <dirent.h>
+#include "IndexHandler.h"
 
 class FileParser
 {
@@ -28,18 +29,26 @@ class FileParser
        // std::vector<std::pair<int,std::string> questions;
 
     public:
+
+
         FileParser(std::string dirIn);
+
+
+
         AVLTree<std::string> tree;
         HashTable<std::string> table;
-        void parseQuestionFile(std::string file);
-        void parseTagFile();
-        bool selectDetectedFile();
+        IndexHandler indexhandler;
 
+
+        void parseQuestionFile(std::string file);
+        void parseTagFile(); //TODO
+        bool selectDetectedFile();
+        bool selectDataType;
         void parseString(std::string& stringIn);
         void parseAllValidFiles();
 
         void runMenu();
         static bool isStopWord(std::string& word);
-        void test(std::string); //not a function to be included in final submission
+
 };
 
