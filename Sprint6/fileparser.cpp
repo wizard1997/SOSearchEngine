@@ -200,7 +200,7 @@ void FileParser::parseString(std::string& stringIn) {
             Porter2Stemmer::trim(word);
             Porter2Stemmer::stem(word); 
 
-
+            indexhandler.index->addWord(word,idNum);
 
         }
 
@@ -233,6 +233,7 @@ void FileParser::runMenu() {
 
 
     while (true) {
+        inde
 
 
 

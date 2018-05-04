@@ -20,22 +20,29 @@ IndexHandler::~IndexHandler() {
 
 bool IndexHandler::selectDS() {
 
-    std::string indexChoice(choiceIn);
-    if (indexChoice == "tree") {
+    while (true) {
 
 
-        index = new AVLTreeIndex;
-
-    } else if (indexChoice == "table") {
-
-
-        index = new HashTableIndex;
-
-    } else {
+        std::cout
+        std::cout << "Welcome! Please select which underlying data structure you wish to use:"
+        std::string indexChoice(choiceIn);
+        if (indexChoice == "tree") {
 
 
-        std::cout << "\nNo valid data structure selected.";
-        index = nullptr;
+            index = new AVLTreeIndex;
+
+        } else if (indexChoice == "table") {
+
+
+            index = new HashTableIndex;
+
+        } else {
+
+
+            std::cout << "\nNo valid data structure selected.";
+            index = nullptr;
+        }
+
     }
 
 

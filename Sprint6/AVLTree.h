@@ -24,7 +24,7 @@ class AVLTree {
 
 
 
-        void insert(T dataIn, AVLNode *&nodeIn);
+        T& insert(T dataIn, AVLNode *&nodeIn);
 
         void rotateWithLeftChild(AVLNode*& k2);
         void rotateWithRightChild(AVLNode*& k2);
@@ -42,7 +42,7 @@ class AVLTree {
 
         int height(AVLNode* node);
 
-        void insert(T dataIn);
+        bool insert(T dataIn);
 
         int max(const int& int1, const int& int2) const {return (int1 > int2) ? int1 : int2; }
         void printInOrder();
@@ -101,7 +101,7 @@ void AVLTree<T>::setRoot(AVLNode* value) {
 }
 
 template<class T>
-void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
+T& AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
 
 
     if (nodeIn == nullptr) {
@@ -156,7 +156,7 @@ void AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
     }
 
     nodeIn->height = (max(height(nodeIn->left),height(nodeIn->right))) + 1;
-
+    return nodeIn->element;
 }
 
 

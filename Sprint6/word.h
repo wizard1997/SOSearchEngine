@@ -11,21 +11,21 @@ class Word
 {
     private:
 
-        std::vector<std::pair<int, unsigned long>> questionData;
+        std::unordered_set<std::pair<int, unsigned long>> questionData;
         std::string stringData;
 
 
     public:
 
         Word();
-        Word(int frequency, unsigned long id, std::string& str);
+        Word(std::string& str);
         ~Word();
 
 
         void addQuestionData(int, unsigned long);
         std::string getWordStr() const;
         void setWordStr(const std::string& str);
-        std::vector<std::pair<int, unsigned long>>& getQuestionData();
+        std::unordered_set<std::pair<int, unsigned long>>& getQuestionData();
 
         std::vector<unsigned long> getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData);
 

@@ -2,12 +2,12 @@
 
 Word::Word()
 {
-    stringData = "";
+
 }
 
-Word::Word(int frequency, unsigned long num, std::string &str)
+Word::Word(std::string &str)
 {
-    questionData.push_back(std::make_pair (frequency, num) );
+
     stringData = str;
 }
 
@@ -36,7 +36,7 @@ void Word::setWordStr(const std::string& str)
     stringData = str;
 }
 
-std::vector<std::pair<int, unsigned long>>& Word::getQuestionData()
+std::unordered_set<std::pair<int, unsigned long>>& Word::getQuestionData()
 {
     return questionData;
 }

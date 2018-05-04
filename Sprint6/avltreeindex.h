@@ -16,7 +16,7 @@ class AVLTreeIndex : public IndexInterface {
 
         AVLTreeIndex();
 
-        void addWord(Word&);
+        void addWord(std::string,unsigned long);
         Word& getWord(Word&);
 
 
