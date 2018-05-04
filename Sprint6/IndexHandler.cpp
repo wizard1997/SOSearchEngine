@@ -7,7 +7,7 @@ IndexHandler::IndexHandler() {
 
 
 }
-
+/*
 IndexHandler::~IndexHandler() {
 
     if (index) {
@@ -48,3 +48,4 @@ bool IndexHandler::selectDS() {
 
 
 }
+*/
