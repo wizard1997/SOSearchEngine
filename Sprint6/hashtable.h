@@ -31,7 +31,7 @@ class HashTable {
 
         HashTable();
         ~HashTable() {}
-        void insert(T);
+        T& insert(T);
         void remove(T);
         void resize();
         int hash(T);
@@ -53,22 +53,35 @@ HashTable<T>::HashTable()
  *  Hashes and then inserts the key into its assigned index
  **/
 template<typename T>
-void HashTable<T>::insert(T key)
+T& HashTable<T>::insert(T key)
 {
     //Create a string that can be hashed from a Word
     std::string keyWord = key.getWordStr();
-
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
+    for (auto iter : table[index]) {
+
+        if (iter == key) {
+
+            //std::cout << "found Word: " << iter;
+            return iter;
+
+        }
+    }
+
     table[index].push_back(key);
+
+    for (auto it : table[index]) {
+
+        if (it == key) {
+
+            return it;
+
+        }
+    }
     numEntries++; //increments how many entries have occured
 
-/*
-    if ( table[index].size() > maxChainLength) {
-        rehash();
-    }
-*/
 }
 
 template<typename T>
@@ -170,6 +183,6 @@ T& HashTable<T>::getWord(T key)
         }
 
     }
-    return -1;
+
 
 }

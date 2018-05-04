@@ -1,6 +1,6 @@
 #include "avltreeindex.h"
 
-
+/*
 
 AVLTreeIndex::AVLTreeIndex()
 {
@@ -17,3 +17,4 @@ Word& AVLTreeIndex::getWord(Word &)
 {
 
 }
+*/
