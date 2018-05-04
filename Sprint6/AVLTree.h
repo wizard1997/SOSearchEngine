@@ -29,6 +29,7 @@ class AVLTree {
         void rotateWithLeftChild(AVLNode*& k2);
         void rotateWithRightChild(AVLNode*& k2);
         int checkBalance(AVLNode* nodeIn);
+        T& getWord(T);
 
         void deleteNode(AVLNode* nodeIn);
         void printInOrder(AVLNode* nodeIn);

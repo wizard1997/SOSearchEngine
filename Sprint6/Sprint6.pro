@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     queryprocessor.cpp \
     MemoryMapped.cpp \
     avltreeindex.cpp \
-    hashtableindex.cpp
+    hashtableindex.cpp \
+    IndexHandler.cpp
 
 
 HEADERS += \
@@ -25,4 +26,5 @@ HEADERS += \
     MemoryMapped.h \
     indexinterface.h \
     avltreeindex.h \
-    hashtableindex.h
+    hashtableindex.h \
+    IndexHandler.h

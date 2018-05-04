@@ -9,7 +9,7 @@
 #include "hashtable.h"
 
 
-//"/home/coder/Code/2015-questions.psv"
+
 int main(int argc, char* argv[]) {
 
     if (argc > 1 && strcmp(argv[1], "-t") == 0) {
@@ -22,14 +22,15 @@ int main(int argc, char* argv[]) {
 
 
 
-
         FileParser fp1(argv[2]);
-        while (true) {
 
-            fp1.selectDetectedFile();
+        bool run = true;
+        while (run) {
+
+            run = fp1.selectDetectedFile();
         }
 
-        std::cout << "test1" << std::endl;
+    //    std::cout << "test1" << std::endl;
 
 
     } else {

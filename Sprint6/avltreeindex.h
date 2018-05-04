@@ -2,11 +2,18 @@
 
 #include "AVLTree.h"
 #include "indexinterface.h"
+#include "word.h"
 
-/*
-class AVLTreeIndex:IndexInterface
-{
+
+class AVLTreeIndex : public IndexInterface {
+
+
 public:
+
     AVLTreeIndex();
+    void addWord(Word&);
+
+
+
 };
-*/
+
