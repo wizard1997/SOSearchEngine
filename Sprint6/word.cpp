@@ -5,31 +5,67 @@ Word::Word()
     stringData = "";
 }
 
-Word::Word(unsigned long num, std::string &str)
+Word::Word(int frequency, unsigned long num, std::string &str)
 {
-    questionsContainingWord.push_back(num);
+    questionData.push_back(std::make_pair (frequency, num) );
     stringData = str;
 }
 
 Word::~Word()
 {
-    if (!questionsContainingWord.empty())
-        questionsContainingWord.clear();
+    if (!questionData.empty())
+        questionData.clear();
 }
 
-void Word::addQuestionID(unsigned long num)
+/**
+ * @brief Word::addQuestionData Adds the question ID and
+ * how many times that word appears in that particular
+ * question
+ *
+ * @param freq How many times the Word appears in the question
+ *
+ * @param id Question ID
+ **/
+void Word::addQuestionData(int freq, unsigned long id)
 {
-    questionsContainingWord.push_back(num);
-}
-
-std::vector<unsigned long> Word::getQuestions() const
-{
-    return questionsContainingWord;
+    questionData.push_back(std::make_pair (freq, id) );
 }
 
 void Word::setWordStr(const std::string& str)
 {
     stringData = str;
+}
+
+std::vector<std::pair<int, unsigned long>>& Word::getQuestionData()
+{
+    return questionData;
+}
+
+/**
+ * @brief Word::getMostFrequent Function that finds the questions
+ * where the Word is used most frequently
+ *
+ * @param inputVectData The questionData vec from a Word
+ *
+ * @return A vector of question IDs sorted so that the first element
+ * in the vector is the question where the Word is most common. Descending order
+ **/
+std::vector<unsigned long> Word::getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData)
+{
+    //Vector to be returned
+    std::vector<unsigned long> sortedIDVec;
+
+    //Sorts the vector pair and inserts the ID number into the return vector
+    std::sort(inputVectData.begin(), inputVectData.end(), std::greater<>());
+    for (size_t i = 0; i < inputVectData.size(); i++) {
+
+        sortedIDVec.push_back(inputVectData[i].second);
+        //std::cout << inputVectData[i].second << std::endl;
+
+    }
+
+    return sortedIDVec;
+
 }
 
 std::string Word::getWordStr() const
@@ -50,8 +86,6 @@ bool Word::operator!=(const Word &rhs) const
 Word &Word::operator=(const Word &input)
 {
     stringData = input.stringData;
-    questionsContainingWord = input.questionsContainingWord;
-    totalFrequency = input.totalFrequency;
     return *this;
 }
 

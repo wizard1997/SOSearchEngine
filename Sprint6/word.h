@@ -3,33 +3,39 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <utility>
+#include <bits/stdc++.h>
+#include <functional>
 
 class Word
 {
     private:
 
-        std::vector<unsigned long> questionsContainingWord;
+        std::vector<std::pair<int, unsigned long>> questionData;
         std::string stringData;
-
-        int totalFrequency;
-
 
 
     public:
 
         Word();
-        Word(unsigned long num, std::string& str);
+        Word(int frequency, unsigned long id, std::string& str);
         ~Word();
 
-        void addQuestionID(unsigned long num);
-        std::vector<unsigned long> getQuestions() const;
-        void setWordStr(const std::string& str);
+
+        void addQuestionData(int, unsigned long);
         std::string getWordStr() const;
+        void setWordStr(const std::string& str);
+        std::vector<std::pair<int, unsigned long>>& getQuestionData();
+
+        std::vector<unsigned long> getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData);
+
 
         //operators
         bool operator==(const Word& rhs) const;
         bool operator!=(const Word& rhs) const;
         Word& operator=(const Word& input);
+
+
         friend std::ostream& operator<< (std::ostream& out, const Word& wordOut) {
 
         //overload stream insertion operator

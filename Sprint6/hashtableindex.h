@@ -3,18 +3,19 @@
 #include "hashtable.h"
 #include "indexinterface.h"
 
-/*
+
 class HashTableIndex : public IndexInterface
 {
 
     private:
 
+        HashTable<Word> table;
 
     public:
 
         HashTableIndex();
-        //void addWord(Word&) override;
-        HashTable<Word> table;
+        void addWord(Word&) override;
+
 };
 
-*/
+

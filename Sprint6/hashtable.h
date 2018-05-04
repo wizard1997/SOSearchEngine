@@ -34,12 +34,11 @@ class HashTable {
         void insert(T);
         void remove(T);
         void resize();
-        void rehash();
         int hash(T);
         void clear();
         void displayTable();
 
-        T getWord(T key);
+        T& getWord(T key);
 };
 
 
@@ -64,11 +63,11 @@ void HashTable<T>::insert(T key)
     table[index].push_back(key);
     numEntries++; //increments how many entries have occured
 
-
+/*
     if ( table[index].size() > maxChainLength) {
         rehash();
     }
-
+*/
 }
 
 template<typename T>
@@ -105,21 +104,6 @@ void HashTable<T>::resize()
         std::fill_n(tempTable, LENGTH, nullptr);
 
     }
-}
-
-template<typename T>
-void HashTable<T>::rehash()
-{
-    std::list<T> *temp = new std::list<T>;
-
-   // for (int i = 0; i < LENGTH; i++) {
-
-        //while ( table[i]._Node._M_next != nullptr ) {
-
-        //}
-   // }
-
-
 }
 
 /**
@@ -168,21 +152,23 @@ void HashTable<T>::displayTable()
 }
 
 template<typename T>
-T HashTable<T>::getWord(T key)
+T& HashTable<T>::getWord(T key)
 {
 
     std::string keyWord = key.getWordStr();
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
-    std::cout << index;
     for (auto iter : table[index]) {
 
-        if (iter == key)
-            std::cout << "found Word: " << key;
-            break;
+        if (iter == key) {
+
+            std::cout << "found Word: " << iter;
+            return iter;
+
+        }
 
     }
 
-    return key;
+
 }

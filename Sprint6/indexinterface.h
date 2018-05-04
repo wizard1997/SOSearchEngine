@@ -9,12 +9,11 @@ class IndexInterface
 {
 
 
-
     public:
 
         IndexInterface();
 
-        //add a ord into AVL tree or Hash Table
+        //add a word into AVL tree or Hash Table
         virtual void addWord(Word&);
 
         //adds a question id to the word's vector if that question has that word
