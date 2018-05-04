@@ -15,8 +15,7 @@ class HashTableIndex: public IndexInterface
     public:
 
         HashTableIndex();
-
-        void addWord(Word&);
+        void addWord(std::string, unsigned long);
         Word& getWord(Word&);
 
 };

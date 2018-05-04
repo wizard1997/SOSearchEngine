@@ -8,9 +8,9 @@ HashTableIndex::HashTableIndex()
 }
 
 
-void HashTableIndex::addWord(Word& word)
+void HashTableIndex::addWord(std::string, unsigned long)
 {
-    table.insert(word);
+
 }
 
 Word &HashTableIndex::getWord(Word& word)

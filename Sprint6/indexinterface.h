@@ -13,8 +13,8 @@ class IndexInterface
 
         IndexInterface();
 
-        //add a Word into AVL tree or Hash Table
-        virtual void addWord(Word&) = 0;
+        //
+        virtual void addWord(std::string, unsigned long) = 0;
 
         //returns a Word
         virtual Word& getWord(Word&) = 0;

@@ -39,6 +39,7 @@ class HashTable {
         void displayTable();
 
         T& getWord(T key);
+
 };
 
 
