@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <list>
+#include <algorithm>
+#include <word.h>
+#include <array>
 
 template<typename T>
 class HashTable {
@@ -19,7 +22,7 @@ class HashTable {
 
         };
 
-        int LENGTH = 100000; //Size of the hashtable
+        int LENGTH = 10; //Size of the hashtable
         int maxChainLength = 20;
         int numEntries; //How many times insert has been called
         std::list<T>* table;
@@ -35,6 +38,8 @@ class HashTable {
         int hash(T);
         void clear();
         void displayTable();
+
+        T getWord(T key);
 };
 
 
@@ -50,7 +55,10 @@ HashTable<T>::HashTable()
 template<typename T>
 void HashTable<T>::insert(T key)
 {
-    size_t index = std::hash<T>()(key);
+    //Create a string that can be hashed from a Word
+    std::string keyWord = key.getWordStr();
+
+    size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
     table[index].push_back(key);
@@ -157,4 +165,24 @@ void HashTable<T>::displayTable()
 
         std::cout << std::endl;
     }
+}
+
+template<typename T>
+T HashTable<T>::getWord(T key)
+{
+
+    std::string keyWord = key.getWordStr();
+    size_t index = std::hash<std::string>()(keyWord);
+    index = index % LENGTH;
+
+    std::cout << index;
+    for (auto iter : table[index]) {
+
+        if (iter == key)
+            std::cout << "found Word: " << key;
+            break;
+
+    }
+
+    return key;
 }

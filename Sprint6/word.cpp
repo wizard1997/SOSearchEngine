@@ -13,7 +13,8 @@ Word::Word(unsigned long num, std::string &str)
 
 Word::~Word()
 {
-    questionsContainingWord.clear();
+    if (!questionsContainingWord.empty())
+        questionsContainingWord.clear();
 }
 
 void Word::addQuestionID(unsigned long num)
@@ -51,6 +52,7 @@ Word &Word::operator=(const Word &input)
     stringData = input.stringData;
     questionsContainingWord = input.questionsContainingWord;
     totalFrequency = input.totalFrequency;
+    return *this;
 }
 
 
