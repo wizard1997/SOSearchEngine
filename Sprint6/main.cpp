@@ -28,15 +28,15 @@ int main(int argc, char* argv[]) {
         while (run) {
 
             run = fp1.selectDetectedFile();
-        }
 
-    //    std::cout << "test1" << std::endl;
+        }
 
 
     } else {
 
 
         std::cout << "Invalid flag input" << std::endl;
+
 
     }
 

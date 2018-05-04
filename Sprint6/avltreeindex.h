@@ -4,7 +4,7 @@
 #include "indexinterface.h"
 #include "word.h"
 
-
+/*
 class AVLTreeIndex : public IndexInterface {
 
 
@@ -16,4 +16,4 @@ public:
 
 
 };
-
+*/

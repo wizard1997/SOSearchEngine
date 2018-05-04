@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include "avltreeindex.h"
-#include "hashtableindex.h"
 
 class IndexInterface
 {
@@ -15,18 +13,20 @@ class IndexInterface
 
         IndexInterface();
 
-        //add a word into AVL tree or Hash Table
-        virtual void addWord(Word&);
+        //add a Word into AVL tree or Hash Table
+        virtual void addWord(Word&) = 0;
+
+        //returns a Word
+        virtual Word& getWord(Word&) = 0;
 
         //adds a question id to the word's vector if that question has that word
-        virtual void addQuestionForWord(unsigned long);
+        virtual void addQuestionForWord(unsigned long) = 0;
 
-        virtual std::list<unsigned long>& getQuestionsForWord();
+        virtual std::list<unsigned long>& getQuestionsForWord() = 0;
 
-        virtual bool alreadyIndexed(Word&);
+        virtual bool alreadyIndexed(Word&) = 0;
 
 
 
 };
-
 

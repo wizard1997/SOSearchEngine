@@ -198,9 +198,9 @@ void FileParser::parseString(std::string& stringIn) {
 
 
             Porter2Stemmer::trim(word);
-            Porter2Stemmer::stem(word);
-            tree.insert(word);
-            //table.insert(stringSection);
+            Porter2Stemmer::stem(word); 
+
+            index.addWord(word,idNum)
 
         }
 

@@ -4,7 +4,8 @@
 #include "indexinterface.h"
 
 
-class HashTableIndex : public IndexInterface
+
+class HashTableIndex: public IndexInterface
 {
 
     private:
@@ -14,7 +15,9 @@ class HashTableIndex : public IndexInterface
     public:
 
         HashTableIndex();
-        void addWord(Word&) override;
+
+        void addWord(Word&);
+        Word& getWord(Word&);
 
 };
 
