@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include "avltreeindex.h"
+#include "hashtableindex.h"
 
 class IndexInterface
 {

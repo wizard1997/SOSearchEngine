@@ -1,5 +1,15 @@
 #include "fileparser.h"
 
+void FileParser::selectDetectedFile(size_t index) {
+
+    std::string path = fileVec[index];
+    if (path.substr(path.size()-3,3) == "psv") {
+
+        parseQuestionFile(path);
+    }
+
+}
+
 FileParser::FileParser(std::string dirIn) {
 
      DIR* dirp;
@@ -120,12 +130,11 @@ void FileParser::parseQuestionFile(std::string file)
 
     }
 
-    tree.printInOrder();
-    //table.displayTable();
+
 
 }
 
-void FileParser::selectDetectedFile() {
+bool FileParser::selectDetectedFile() {
 
     std::cout << "----------------------------------------\n"
                  "List of files detected in specific path:\n"
@@ -135,16 +144,40 @@ void FileParser::selectDetectedFile() {
 
         std::cout << i+1 << ".\t" << fileVec[i] << std::endl;
     }
+    std::cout << "X.\tParse all valid detected files" << std::endl;
     std::cout << "Please enter number of file to parse: ";
-    int selection;
+    char selection;
     std::cin >> selection;
-    std::cout << "\nParsing file: " << fileVec[selection-1] << std::endl;
-    if (selection == 0) {
+    if (selection == 'X') {
+
+        parseAllValidFiles();
+        std::cout << std::endl;
+        return true;
+
+    } else if (selection == '0') {
 
         std::cout << "\nFinished parsing. Exiting.\n";
-        return;
+        return false;
+
+    } else if (selection == 'S') {
+
+
+
+
+    } else if (selection < '9' && selection > '0') {
+
+        size_t selectionNum = selection - '0';
+        std::cout << "\nParsing file: " << fileVec[selectionNum-1] << std::endl;
+        parseQuestionFile(fileVec[selectionNum-1]);
+        return true;
+
+    } else {
+
+
+        return true;
+
     }
-    parseQuestionFile(fileVec[selection-1]);
+
 
 
 
@@ -179,6 +212,31 @@ void FileParser::parseString(std::string& stringIn) {
 //        for(auto&& p: wordsMap)
 //            std::cout << p.first << ": " << p.second << '\n';
 
+
+}
+
+void FileParser::parseAllValidFiles() {
+
+
+    for (size_t i = 0; i < fileVec.size(); i++) {
+
+
+        selectDetectedFile(i);
+
+    }
+
+
+}
+
+void FileParser::runMenu() {
+
+
+
+    while (true) {
+
+
+
+    }
 
 }
 

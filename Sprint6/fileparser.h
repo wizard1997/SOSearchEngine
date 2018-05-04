@@ -19,9 +19,9 @@ class FileParser
 
         //List of stop words
         static std::unordered_set<std::string> stopWords;
-        AVLTree<std::string> tree;
-        HashTable<std::string> table;
+
         std::vector<std::string> fileVec;
+        void selectDetectedFile(size_t);
 
 
         //vector containing each of the questions relevant words
@@ -29,13 +29,16 @@ class FileParser
 
     public:
         FileParser(std::string dirIn);
-
+        AVLTree<std::string> tree;
+        HashTable<std::string> table;
         void parseQuestionFile(std::string file);
         void parseTagFile();
-        void selectDetectedFile();
+        bool selectDetectedFile();
 
         void parseString(std::string& stringIn);
+        void parseAllValidFiles();
 
+        void runMenu();
         static bool isStopWord(std::string& word);
         void test(std::string); //not a function to be included in final submission
 };
