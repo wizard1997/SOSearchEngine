@@ -4,16 +4,22 @@
 #include "indexinterface.h"
 #include "word.h"
 
-/*
+
 class AVLTreeIndex : public IndexInterface {
 
 
-public:
+    private:
 
-    AVLTreeIndex();
-    void addWord(Word&);
+        AVLTree<Word> tree;
+
+    public:
+
+        AVLTreeIndex();
+
+        void addWord(Word&);
+        Word& getWord(Word&);
 
 
 
 };
-*/
+

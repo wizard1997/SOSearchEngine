@@ -89,4 +89,14 @@ Word &Word::operator=(const Word &input)
     return *this;
 }
 
+bool Word::operator>(const Word &rhs)
+{
+    return stringData > rhs.getWordStr();
+}
+
+bool Word::operator<(const Word &rhs)
+{
+    return stringData < rhs.getWordStr();
+}
+
 

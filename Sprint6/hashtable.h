@@ -169,6 +169,6 @@ T& HashTable<T>::getWord(T key)
         }
 
     }
-
+    return -1;
 
 }

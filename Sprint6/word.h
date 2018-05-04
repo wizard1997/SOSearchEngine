@@ -34,7 +34,8 @@ class Word
         bool operator==(const Word& rhs) const;
         bool operator!=(const Word& rhs) const;
         Word& operator=(const Word& input);
-
+        bool operator>(const Word& rhs);
+        bool operator<(const Word& rhs);
 
         friend std::ostream& operator<< (std::ostream& out, const Word& wordOut) {
 
