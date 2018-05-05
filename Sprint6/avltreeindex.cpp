@@ -3,13 +3,13 @@
 
 
 void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
-{
+{/*
    // Word wordT(word);
     Word* inplaceWord = tree.insert(Word(word));
     if (inplaceWord->questionData.size() > 0) {
 
 
-        for (auto& w: inplaceWord->questionData) {
+        //for (auto& w: inplaceWord->questionData) {
 
 
             if (w.second == idNum) {
@@ -21,8 +21,8 @@ void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 
     }
 
-    inplaceWord->addQuestionData(1,idNum);
-
+    //inplaceWord->addQuestionData(1,idNum);
+*/
 }
 
 //Word& AVLTreeIndex::getWord(Word &)

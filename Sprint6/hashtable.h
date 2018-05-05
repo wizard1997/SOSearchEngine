@@ -22,7 +22,7 @@ class HashTable {
 
         };
 
-        int LENGTH = 10; //Size of the hashtable
+        int LENGTH = 50000; //Size of the hashtable
         int maxChainLength = 20;
         int numEntries; //How many times insert has been called
         std::list<T>* table;
@@ -47,6 +47,7 @@ template<typename T>
 HashTable<T>::HashTable()
 {
     table = new std::list<T>[LENGTH];
+    numEntries = 0;
 }
 
 /**
@@ -55,14 +56,14 @@ HashTable<T>::HashTable()
 template<typename T>
 T& HashTable<T>::insert(T key)
 {
+
     //Create a string that can be hashed from a Word
     std::string keyWord = key.getWordStr();
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
     table[index].push_back(key);
-   // T& temp = table[index].end();
-
+    numEntries++; //increments how many entries have occured
     for (auto& it : table[index]) {
 
         if (it == key) {
@@ -72,8 +73,8 @@ T& HashTable<T>::insert(T key)
         }
     }
 
-    return key;
-    numEntries++; //increments how many entries have occured
+    //return key;
+
 
 }
 
@@ -166,7 +167,7 @@ T& HashTable<T>::getWord(T key)
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
-    for (auto iter : table[index]) {
+    for (auto& iter : table[index]) {
 
         if (iter == key) {
 

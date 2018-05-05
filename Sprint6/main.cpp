@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
         x->addWord(str, num1);
 
 
+
         std::cout << "test";
         //return Catch::Session().run();
 
@@ -38,7 +39,9 @@ int main(int argc, char* argv[]) {
 
         FileParser fp1(argv[2]);
 
-       fp1.runMenu();
+        fp1.runMenu();
+
+        std::cout << "test";
 
     } else {
 
