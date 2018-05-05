@@ -1,6 +1,6 @@
 #include "IndexHandler.h"
 #include "avltreeindex.h"
-//#include "hashtableindex.h"
+#include "hashtableindex.h"
 
 IndexHandler::IndexHandler() {
 
@@ -40,7 +40,7 @@ bool IndexHandler::selectDS() {
         } else if (indexChoice == 2) {
 
 
-          //  index = new HashTableIndex;
+            index = new HashTableIndex;
             return false;
 
         } else {
