@@ -61,9 +61,11 @@ int HashTable<T>::getNumUniqueWords() const
 template<typename T>
 HashTable<T>::HashTable()
 {
+
     table = new std::list<T>[LENGTH];
     numEntries = 0;
     numUniqueWords = 0;
+
 }
 
 /**
@@ -77,9 +79,9 @@ T& HashTable<T>::insert(const T& key)
     std::string keyWord = key.getWordStr();
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
-    //std::string keyWord = key.getWordStr();
-    //int index = hash(keyWord);
 
+    //If it's already inserted return a reference to that word
+    //in the table
     if (exists(key, index)) {
 
         numEntries++;
@@ -87,6 +89,7 @@ T& HashTable<T>::insert(const T& key)
 
     }
 
+    //Else add the word to the table and return a reference to it
     table[index].push_back(key);
     numUniqueWords++;
     numEntries++;
@@ -98,9 +101,10 @@ T& HashTable<T>::insert(const T& key)
 template<typename T>
 void HashTable<T>::remove(T key)
 {
-//typename std::list<T>::iterator i = table[index].begin()
+
     int index = hash(key);
     typename std::list<T>::iterator i;
+
     for (i = table[index].begin(); i != table[index].end(); ++i) {
 
         if (*i == key) {
@@ -111,8 +115,6 @@ void HashTable<T>::remove(T key)
 
         std::cout << "outside for loop in 2nd if\n\n";
         i = table[index].erase(i);
-
-        //table[index].remove(key);
 
     }
 }
@@ -194,6 +196,12 @@ bool HashTable<T>::exists(T key, size_t index)
 
 }
 
+/**
+ *
+ *  Find a word in the hash table and return a reference
+ *  to it
+ *
+ **/
 template<typename T>
 T& HashTable<T>::getWord(T key)
 {
