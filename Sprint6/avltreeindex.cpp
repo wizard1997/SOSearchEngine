@@ -2,6 +2,11 @@
 
 
 
+void AVLTreeIndex::print()
+{
+    std::cout << "In avlIndex print" << std::endl;
+}
+
 void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 {
 
@@ -22,6 +27,11 @@ void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 
     inplaceWord.addQuestionData(1,idNum);
 
+}
+
+std::vector<unsigned long> AVLTreeIndex::mostFrequentOccurance(Word& word)
+{
+    std::cout << "AvlIndex mostFreqwunt" << std::endl;
 }
 
 Word& AVLTreeIndex::getWord(Word& wordIn) {

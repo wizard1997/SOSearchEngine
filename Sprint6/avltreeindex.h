@@ -16,9 +16,10 @@ class AVLTreeIndex : public IndexInterface {
 
         AVLTreeIndex() {std::cout << "avltree construct" << std::endl;}
         //~AVLTreeIndex() {std::cout << "avltree index destructor called" << std::endl;}
-
+        void print();
         void addWord(std::string,unsigned long);
-        Word& getWord(Word&);
+        std::vector<unsigned long> mostFrequentOccurance(Word&);
+        Word& getWord(const Word&);
 
 
 

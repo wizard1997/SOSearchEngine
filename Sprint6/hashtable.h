@@ -22,59 +22,76 @@ class HashTable {
 
         };
 
-        int LENGTH = 50000; //Size of the hashtable
-        int maxChainLength = 20;
+        int LENGTH = 300; //Size of the hashtable
         int numEntries; //How many times insert has been called
+        int numUniqueWords; //How many unique words are in the table
         std::list<T>* table;
 
     public:
 
         HashTable();
         ~HashTable() {}
-        T& insert(T);
+        T& insert(const T& key);
         void remove(T);
         void resize();
-        int hash(T);
+        int hash(std::string str) const;
         void clear();
         void displayTable();
 
+        bool exists(T key, size_t index);
         T& getWord(T key);
 
+        int getNumEntries() const;
+        int getNumUniqueWords() const;
 };
 
+
+template<typename T>
+int HashTable<T>::getNumEntries() const
+{
+    return numEntries;
+}
+
+template<typename T>
+int HashTable<T>::getNumUniqueWords() const
+{
+    return numUniqueWords;
+}
 
 template<typename T>
 HashTable<T>::HashTable()
 {
     table = new std::list<T>[LENGTH];
     numEntries = 0;
+    numUniqueWords = 0;
 }
 
 /**
  *  Hashes and then inserts the key into its assigned index
  **/
 template<typename T>
-T& HashTable<T>::insert(T key)
+T& HashTable<T>::insert(const T& key)
 {
 
     //Create a string that can be hashed from a Word
     std::string keyWord = key.getWordStr();
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
+    //std::string keyWord = key.getWordStr();
+    //int index = hash(keyWord);
 
-    table[index].push_back(key);
-    numEntries++; //increments how many entries have occured
-    for (auto& it : table[index]) {
+    if (exists(key, index)) {
 
-        if (it == key) {
+        numEntries++;
+        return getWord(key);
 
-            return it; //used to be return it
-
-        }
     }
 
-    //return key;
+    table[index].push_back(key);
+    numUniqueWords++;
+    numEntries++;
 
+    return getWord(key);
 
 }
 
@@ -122,7 +139,7 @@ void HashTable<T>::resize()
  * @return  and int containing where the key should go
  */
 template<typename T>
-int HashTable<T>::hash(T str)
+int HashTable<T>::hash(std::string str) const
 {
     unsigned long hash = 5381; //Prime number
 
@@ -160,6 +177,24 @@ void HashTable<T>::displayTable()
 }
 
 template<typename T>
+bool HashTable<T>::exists(T key, size_t index)
+{
+
+    for (auto& iter : table[index]) {
+
+        if (iter == key) {
+
+
+            return true;
+
+        }
+
+    }
+    return false;
+
+}
+
+template<typename T>
 T& HashTable<T>::getWord(T key)
 {
 
@@ -171,7 +206,6 @@ T& HashTable<T>::getWord(T key)
 
         if (iter == key) {
 
-            std::cout << "found Word: " << iter;
             return iter;
 
         }

@@ -4,18 +4,15 @@
 
 void HashTableIndex::addWord(std::string word, unsigned long idNum)
 {
-
     Word &wordObj = table.insert(Word(word));
-
-
     if (wordObj.questionData.size() > 0) {
-
 
         for (auto& w: wordObj.questionData) {
 
             if (w.second == idNum) {
 
                 w.first++;
+
                 return;
 
             }
@@ -24,19 +21,24 @@ void HashTableIndex::addWord(std::string word, unsigned long idNum)
     }
 
     wordObj.addQuestionData(1, idNum);
-/*
-    std::vector<std::pair<int, unsigned long>> vect = wordObj.getQuestionData();
-    for (size_t i=0; i<vect.size(); i++)
-    {
-
-        std::cout << vect[i].first << " "
-             << vect[i].second << std::endl;
-    }
-*/
 }
 
-Word &HashTableIndex::getWord(Word& word)
+void HashTableIndex::print()
+{
+    table.displayTable();
+    std::cout << "Total entries: " << table.getNumEntries() << std::endl;
+    std::cout << "Total unique words: " << table.getNumUniqueWords() << std::endl;
+
+}
+
+std::vector<unsigned long> HashTableIndex::mostFrequentOccurance(Word& word)
+{
+    //std::vector<unsigned long> returnVect = word.getMostFrequent(word.questionData);
+    //return returnVect;
+    word.getMostFrequent(word.questionData);
+}
+
+Word& HashTableIndex::getWord(const Word& word)
 {
     return table.getWord(word);
 }
-

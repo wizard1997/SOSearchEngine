@@ -22,11 +22,15 @@ int main(int argc, char* argv[]) {
 
     } else if (argc > 1 && strcmp(argv[1], "-p") == 0) {
 
-
-
+        std::string str = "store";
+        Word w(str);
         FileParser fp1(argv[2]);
 
         fp1.runMenu();
+
+        fp1.indexhandler.index->print();
+        fp1.indexhandler.index->getWord(w);
+        fp1.indexhandler.index->mostFrequentOccurance(w);
 
     } else {
 
