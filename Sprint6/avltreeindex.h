@@ -18,7 +18,7 @@ class AVLTreeIndex : public IndexInterface {
         //~AVLTreeIndex() {std::cout << "avltree index destructor called" << std::endl;}
 
         void addWord(std::string,unsigned long);
-       // Word& getWord(Word&);
+        Word& getWord(Word&);
 
 
 

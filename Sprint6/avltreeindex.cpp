@@ -24,7 +24,9 @@ void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 
 }
 
-//Word& AVLTreeIndex::getWord(Word &)
-//{
+Word& AVLTreeIndex::getWord(Word& wordIn) {
 
-//}
+
+    return (tree.access(wordIn));
+
+}

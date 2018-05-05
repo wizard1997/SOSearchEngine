@@ -25,15 +25,15 @@ class AVLTree {
 
 
 
-        void insert(const T& dataIn, AVLNode *&nodeIn);
+        void insert(const T& dataIn, AVLNode *&nodeIn, AVLNode*& returnNode);
 
         void rotateWithLeftChild(AVLNode*& k2);
         void rotateWithRightChild(AVLNode*& k2);
         int checkBalance(AVLNode* nodeIn);
-        T& getElement(AVLNode*&, const T&);
+        void getElement(AVLNode*&, const T&,AVLNode*& returnNode);
 
         void deleteNode(AVLNode* nodeIn);
-        void printInOrder(AVLNode* nodeIn);
+        void printInOrder(AVLNode*& nodeIn);
 
 
     public:
@@ -44,6 +44,7 @@ class AVLTree {
         int height(AVLNode* node);
 
         T& insert(const T& dataIn);
+        T& access(const T& dataIn);
 
         int max(const int& int1, const int& int2) const {return (int1 > int2) ? int1 : int2; }
         void printInOrder();
@@ -73,12 +74,39 @@ int AVLTree<T>::height(AVLTree::AVLNode* nodeIn) {
 template<class T>
 T& AVLTree<T>::insert(const T& dataIn) {
 
-    insert(dataIn,root);
-    return getElement(root,dataIn);
+    AVLTree::AVLNode* temp = nullptr;
+    insert(dataIn,root,temp);
+
+    return temp->element;
 }
 
 template<class T>
-void AVLTree<T>::printInOrder(AVLNode* nodeIn) {
+T& AVLTree<T>::access(const T& dataIn) {
+
+    AVLTree::AVLNode* current = root;
+    while (current != nullptr && current->element != dataIn) {
+
+        if(current->element > dataIn) {
+
+            current = current->left;
+        } else {
+
+            current = current->right;
+        }
+    }
+
+    if (current == nullptr) {
+
+        throw std::out_of_range("The element does not exist in the tree");
+    } else {
+
+        return current->element;
+    }
+
+}
+
+template<class T>
+void AVLTree<T>::printInOrder(AVLNode*& nodeIn) {
 
     if (nodeIn != nullptr) {
 
@@ -119,18 +147,19 @@ void AVLTree<T>::setCount(const size_t& value)
 }
 
 template<class T>
-void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn) {
+void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn, AVLNode*& returnNode) {
 
 
     if (nodeIn == nullptr) {
 
         nodeIn = new AVLNode(dataIn,nullptr,nullptr);
+        returnNode = nodeIn;
         count++;
 
     } else if (dataIn < nodeIn->element) {
 
 
-        insert(dataIn,nodeIn->left);
+        insert(dataIn,nodeIn->left,returnNode);
 
         if (height(nodeIn->left) - height(nodeIn->right) == 2) {
 
@@ -150,7 +179,7 @@ void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn) {
     } else if (nodeIn->element < dataIn) {
 
 
-        insert(dataIn,nodeIn->right);
+        insert(dataIn,nodeIn->right,returnNode);
 
         if (height(nodeIn->right) - height(nodeIn->left) == 2) {
 
@@ -170,7 +199,7 @@ void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn) {
 
     } else {
 
-        //std::cout << ".";
+        returnNode = nodeIn;
 
     }
 
@@ -228,20 +257,26 @@ int AVLTree<T>::checkBalance(AVLTree::AVLNode* nodeIn) {
 }
 
 template<class T>
-T& AVLTree<T>::getElement(AVLTree::AVLNode*& nodeIn, const T& keyIn) {
+void AVLTree<T>::getElement(AVLTree::AVLNode*& nodeIn, const T& keyIn, AVLTree::AVLNode*& returnObj) {
 
-    if (keyIn < nodeIn->element) {
+    if (nodeIn == nullptr) {
 
-        return getElement(nodeIn->left, keyIn);
+        return;
+
+    } else if (keyIn < nodeIn->element) {
+
+        getElement(nodeIn->left, keyIn, returnObj);
 
     } else if (keyIn > nodeIn->element) {
 
-        return getElement(nodeIn->right, keyIn);
+        getElement(nodeIn->right, keyIn, returnObj);
     } else if (keyIn == nodeIn->element) {
 
-
-        return nodeIn->element;
+        returnObj = nodeIn;
+        return;
     }
+
+    return;
 
 }
 

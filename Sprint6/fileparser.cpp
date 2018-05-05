@@ -244,6 +244,33 @@ void FileParser::runMenu() {
         run = selectDetectedFile();
     }
 
+
+    while (true) {
+
+        std::cout << std::endl << "Please enter a search query (0 to exit): ";
+        std::string query = "placeholder";
+        std::cin >> query;
+        Word queryword(query);
+        if (query == "0") {
+
+            std::cout << "\nThanks for searching!\n";
+            break;
+        }
+        Word& found = indexhandler.index->getWord(queryword);
+        if (found != queryword) {
+
+
+            std::cout << "\nQuery not found. Try again." << std::endl;
+            continue;
+        }
+
+        std::cout << found << std::endl;
+
+
+    }
+
+
+
     std::cout << "testaddy" << std::endl;
 
 }
