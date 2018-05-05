@@ -30,7 +30,7 @@ Word::~Word()
  **/
 void Word::addQuestionData(int freq, unsigned long id)
 {
-    questionData.insert(std::pair<int,unsigned long> (freq, id));
+    questionData.push_back(std::make_pair (freq, id) );
 }
 
 void Word::setWordStr(const std::string& str)
@@ -38,6 +38,10 @@ void Word::setWordStr(const std::string& str)
     stringData = str;
 }
 
+std::vector<std::pair<int, unsigned long>>& Word::getQuestionData()
+{
+    return questionData;
+}
 
 
 /**
@@ -49,23 +53,23 @@ void Word::setWordStr(const std::string& str)
  * @return A vector of question IDs sorted so that the first element
  * in the vector is the question where the Word is most common. Descending order
  **/
-//std::vector<unsigned long> Word::getMostFrequent(std::map<int, unsigned long>& inputVectData)
-//{
-//    //Vector to be returned
-//    std::vector<unsigned long> sortedIDVec;
+std::vector<unsigned long> Word::getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData)
+{
+    //Vector to be returned
+    std::vector<unsigned long> sortedIDVec;
 
-//    //Sorts the vector pair and inserts the ID number into the return vector
-//    std::sort(inputVectData.begin(), inputVectData.end(), std::greater<>());
-//    for (auto& w: inputVectData) {
+    //Sorts the vector pair and inserts the ID number into the return vector
+    std::sort(inputVectData.begin(), inputVectData.end(), std::greater<>());
+    for (size_t i = 0; i < inputVectData.size(); i++) {
 
-//        sortedIDVec.push_back(w.second);
-//        //std::cout << inputVectData[i].second << std::endl;
+        sortedIDVec.push_back(inputVectData[i].second);
+        //std::cout << inputVectData[i].second << std::endl;
 
-//    }
+    }
 
-//    return sortedIDVec;
+    return sortedIDVec;
 
-//}
+}
 
 std::string Word::getWordStr() const
 {
@@ -85,15 +89,16 @@ bool Word::operator!=(const Word &rhs) const
 Word &Word::operator=(const Word &input)
 {
     stringData = input.stringData;
+    questionData = input.questionData;
     return *this;
 }
 
-bool Word::operator>(const Word &rhs) const
+bool Word::operator>(const Word &rhs)
 {
     return stringData > rhs.getWordStr();
 }
 
-bool Word::operator<(const Word &rhs) const
+bool Word::operator<(const Word &rhs)
 {
     return stringData < rhs.getWordStr();
 }

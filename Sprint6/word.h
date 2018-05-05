@@ -6,6 +6,8 @@
 #include <utility>
 #include <bits/stdc++.h>
 #include <functional>
+#include <unordered_set>
+
 
 class Word
 {
@@ -16,25 +18,29 @@ class Word
 
     public:
 
+        std::vector<std::pair<int, unsigned long>> questionData;
+
         Word();
         Word(std::string& str);
         ~Word();
 
-        std::map<int, unsigned long> questionData;
+        int getQuestionDataSize();
+        unsigned long getIDNumber();
 
         void addQuestionData(int, unsigned long);
         std::string getWordStr() const;
         void setWordStr(const std::string& str);
+        std::vector<std::pair<int, unsigned long>>& getQuestionData();
 
-      //  std::vector<unsigned long> getMostFrequent(std::map<int,unsigned long>& inputVectData);
+        std::vector<unsigned long> getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData);
 
 
         //operators
         bool operator==(const Word& rhs) const;
         bool operator!=(const Word& rhs) const;
         Word& operator=(const Word& input);
-        bool operator>(const Word& rhs) const;
-        bool operator<(const Word& rhs) const;
+        bool operator>(const Word& rhs);
+        bool operator<(const Word& rhs);
 
         friend std::ostream& operator<< (std::ostream& out, const Word& wordOut) {
 

@@ -60,26 +60,19 @@ T& HashTable<T>::insert(T key)
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
-    for (auto iter : table[index]) {
-
-        if (iter == key) {
-
-            //std::cout << "found Word: " << iter;
-            return iter;
-
-        }
-    }
-
     table[index].push_back(key);
+   // T& temp = table[index].end();
 
-    for (auto it : table[index]) {
+    for (auto& it : table[index]) {
 
         if (it == key) {
 
-            return it;
+            return it; //used to be return it
 
         }
     }
+
+    return key;
     numEntries++; //increments how many entries have occured
 
 }
