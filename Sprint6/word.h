@@ -30,7 +30,7 @@ class Word
         std::string getWordStr() const;
         void setWordStr(const std::string& str);
 
-        std::vector<unsigned long> getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData);
+        std::vector<std::pair<int, unsigned long>>& getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData);
 
 
         //operators
