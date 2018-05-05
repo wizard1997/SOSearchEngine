@@ -265,10 +265,10 @@ void FileParser::runMenu() {
         }
 
         std::cout << found << std::endl;
-        for (auto& q: found.questionData) {
+        for (auto& q: queryword.getMostFrequent()) {
 
 
-            std::cout << std::endl << q.second;
+            std::cout << q.first << "   "  << q.second << std::endl;
 
         }
 

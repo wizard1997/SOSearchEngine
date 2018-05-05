@@ -35,7 +35,7 @@ std::vector<unsigned long> HashTableIndex::mostFrequentOccurance(Word& word)
 {
     //std::vector<unsigned long> returnVect = word.getMostFrequent(word.questionData);
     //return returnVect;
-    word.getMostFrequent(word.questionData);
+    //word.getMostFrequent(word.questionData);
 }
 
 Word& HashTableIndex::getWord(const Word& word)
