@@ -97,7 +97,7 @@ T& AVLTree<T>::access(const T& dataIn) {
 
     if (current == nullptr) {
 
-        throw std::out_of_range("The element does not exist in the tree");
+        std::cout << "\nThe element does not exist in the tree\n";
     } else {
 
         return current->element;

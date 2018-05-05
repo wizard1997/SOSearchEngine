@@ -49,16 +49,22 @@ void Word::setWordStr(const std::string& str)
  * @return A vector of question IDs sorted so that the first element
  * in the vector is the question where the Word is most common. Descending order
  **/
-std::vector<std::pair<int, unsigned long>> Word::getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData)
+std::vector<std::pair<int, unsigned long>> Word::getMostFrequent()
 {
     //Vector to be returned
     std::vector<std::pair<int, unsigned long>> sortedIDVec;
 
     //Sorts the vector pair and inserts the ID number into the return vector
-    std::sort(inputVectData.begin(), inputVectData.end(), std::greater<>());
-    for (size_t i = 0; i < 10; i++) {
+    std::sort(questionData.begin(), questionData.end(), std::greater<>());
+    int i = 0;
+    for (auto& q: questionData) {
 
-        sortedIDVec.push_back(std::make_pair (inputVectData[i].first, inputVectData[i].second) );
+        i++;
+        if (i > 10) {
+
+            break;
+        }
+        sortedIDVec.push_back(std::make_pair (questionData[i].first, questionData[i].second) );
 
     }
 

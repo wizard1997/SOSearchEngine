@@ -250,6 +250,8 @@ void FileParser::runMenu() {
         std::cout << std::endl << "Please enter a search query (0 to exit): ";
         std::string query = "placeholder";
         std::cin >> query;
+        Porter2Stemmer::trim(query);
+        Porter2Stemmer::stem(query);
         Word queryword(query);
         if (query == "0") {
 
@@ -265,10 +267,12 @@ void FileParser::runMenu() {
         }
 
         std::cout << found << std::endl;
-        for (auto& q: found.questionData) {
+        int i = 0;
+        for (auto& q: found.getMostFrequent()) {
 
+            i++;
 
-            std::cout << std::endl << q.second;
+            std::cout << std::endl << q.second << " - " << q.first;
 
         }
 
