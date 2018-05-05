@@ -2,6 +2,11 @@
 
 
 
+void AVLTreeIndex::print()
+{
+    std::cout << "In avlIndex print" << std::endl;
+}
+
 void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 {
 

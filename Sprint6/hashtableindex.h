@@ -15,11 +15,11 @@ class HashTableIndex: public IndexInterface
 
     public:
 
-        HashTableIndex() {std::cout << "hashtable construct" << std::endl;}
+       HashTableIndex() {std::cout << "hashtable construct" << std::endl;}
         void addWord(std::string, unsigned long);
         //Word& getWord(Word&);
 
-
+        void print();
 
 };
 

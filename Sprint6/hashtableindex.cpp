@@ -7,14 +7,14 @@ void HashTableIndex::addWord(std::string word, unsigned long idNum)
     Word &wordObj = table.insert(Word(word));
     if (wordObj.questionData.size() > 0) {
 
-        std::cout << "tstingaddword";
+        //std::cout << "tstingaddword";
         for (auto& w: wordObj.questionData) {
 
             if (w.second == idNum) {
 
                 w.first++;
 
-                std::cout << "in fiif" << std::endl;
+          //      std::cout << "in fiif" << std::endl;
                 return;
 
             }
@@ -32,6 +32,14 @@ void HashTableIndex::addWord(std::string word, unsigned long idNum)
              << vect[i].second << std::endl;
     }
 */
+}
+
+void HashTableIndex::print()
+{
+    table.displayTable();
+    std::cout << "Total entries: " << table.getNumEntries() << std::endl;
+    std::cout << "Total unique words: " << table.getNumUniqueWords() << std::endl;
+
 }
 /*
 Word &HashTableIndex::getWord(Word& word)

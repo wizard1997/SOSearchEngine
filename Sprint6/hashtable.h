@@ -22,15 +22,16 @@ class HashTable {
 
         };
 
-        int LENGTH = 500; //Size of the hashtable
+        int LENGTH = 300; //Size of the hashtable
         //int maxChainLength = 20;
         int numEntries; //How many times insert has been called
+        int numUniqueWords; //How many unique words are in the table
         std::list<T>* table;
 
     public:
 
         HashTable();
-        //~HashTable() {}
+        ~HashTable() {}
         T& insert(const T& key);
         void remove(T);
         void resize();
@@ -38,16 +39,32 @@ class HashTable {
         void clear();
         void displayTable();
 
+        bool exists(T key, size_t index);
         T& getWord(T key);
 
+        int getNumEntries() const;
+        int getNumUniqueWords() const;
 };
 
+
+template<typename T>
+int HashTable<T>::getNumEntries() const
+{
+    return numEntries;
+}
+
+template<typename T>
+int HashTable<T>::getNumUniqueWords() const
+{
+    return numUniqueWords;
+}
 
 template<typename T>
 HashTable<T>::HashTable()
 {
     table = new std::list<T>[LENGTH];
     numEntries = 0;
+    numUniqueWords = 0;
 }
 
 /**
@@ -64,21 +81,18 @@ T& HashTable<T>::insert(const T& key)
     //std::string keyWord = key.getWordStr();
     //int index = hash(keyWord);
 
-    std::cout << index << std::endl;
-    table[index].push_back(key);
-    numEntries++; //increments how many entries have occured
+    if (exists(key, index)) {
 
+        numEntries++;
+        return getWord(key);
 
-    for (auto& it : table[index]) {
-
-        if (it == key) {
-
-            std::cout << "in fiif" << std::endl;
-            return it; //used to be return it
-
-        }
     }
 
+    table[index].push_back(key);
+    numUniqueWords++;
+    numEntries++;
+
+    return getWord(key);
 
 }
 
@@ -164,6 +178,24 @@ void HashTable<T>::displayTable()
 }
 
 template<typename T>
+bool HashTable<T>::exists(T key, size_t index)
+{
+
+    for (auto& iter : table[index]) {
+
+        if (iter == key) {
+
+
+            return true;
+
+        }
+
+    }
+    return false;
+
+}
+
+template<typename T>
 T& HashTable<T>::getWord(T key)
 {
 
@@ -175,7 +207,6 @@ T& HashTable<T>::getWord(T key)
 
         if (iter == key) {
 
-            std::cout << "found Word: " << iter;
             return iter;
 
         }

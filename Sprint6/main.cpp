@@ -40,8 +40,8 @@ int main(int argc, char* argv[]) {
 
         fp1.runMenu();
 
-
-        std::cout << "test";
+        fp1.indexhandler.index->print();
+        //std::cout << "test";
 
     } else {
 
