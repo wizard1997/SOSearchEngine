@@ -17,6 +17,16 @@ Word::~Word()
         questionData.clear();
 }
 
+int Word::getQuestionDataSize()
+{
+    return questionData.size();
+}
+
+unsigned long Word::getIDNumber()
+{
+
+}
+
 /**
  * @brief Word::addQuestionData Adds the question ID and
  * how many times that word appears in that particular
@@ -36,10 +46,11 @@ void Word::setWordStr(const std::string& str)
     stringData = str;
 }
 
-std::unordered_set<std::pair<int, unsigned long>>& Word::getQuestionData()
+std::vector<std::pair<int, unsigned long>>& Word::getQuestionData()
 {
     return questionData;
 }
+
 
 /**
  * @brief Word::getMostFrequent Function that finds the questions
@@ -86,6 +97,7 @@ bool Word::operator!=(const Word &rhs) const
 Word &Word::operator=(const Word &input)
 {
     stringData = input.stringData;
+    questionData = input.questionData;
     return *this;
 }
 

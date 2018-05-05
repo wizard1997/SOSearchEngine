@@ -66,13 +66,13 @@ int AVLTree<T>::height(AVLTree::AVLNode* nodeIn) {
     }
 
 }
-
+/*
 template<class T>
 void AVLTree<T>::insert(T dataIn) {
 
     insert(dataIn,root);
 }
-
+*/
 template<class T>
 void AVLTree<T>::printInOrder(AVLNode* nodeIn) {
 

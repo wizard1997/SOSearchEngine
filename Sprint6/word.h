@@ -6,26 +6,31 @@
 #include <utility>
 #include <bits/stdc++.h>
 #include <functional>
+#include <unordered_set>
+
 
 class Word
 {
     private:
 
-        std::unordered_set<std::pair<int, unsigned long>> questionData;
         std::string stringData;
 
 
     public:
 
+        std::vector<std::pair<int, unsigned long>> questionData;
+
         Word();
         Word(std::string& str);
         ~Word();
 
+        int getQuestionDataSize();
+        unsigned long getIDNumber();
 
         void addQuestionData(int, unsigned long);
         std::string getWordStr() const;
         void setWordStr(const std::string& str);
-        std::unordered_set<std::pair<int, unsigned long>>& getQuestionData();
+        std::vector<std::pair<int, unsigned long>>& getQuestionData();
 
         std::vector<unsigned long> getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData);
 

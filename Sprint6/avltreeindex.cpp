@@ -1,5 +1,5 @@
 #include "avltreeindex.h"
-
+/*
 void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 {
 
@@ -21,3 +21,4 @@ Word& AVLTreeIndex::getWord(Word &)
 {
 
 }
+*/

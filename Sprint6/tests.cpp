@@ -1,13 +1,30 @@
 #include "catch.hpp"
+#include "indexinterface.h"
 #include "AVLTree.h"
 #include "word.h"
 #include <iostream>
 #include <cstring>
 #include <string>
 #include <vector>
-#include "hashtable.h"
+//#include "hashtable.h"
+#include "IndexHandler.h"
+//#include "hashtableindex.h"
 
 
+TEST_CASE("Hash index", "[hash index]") {
+
+    std::string str = "taco";
+    Word w(str);
+    w.addQuestionData(4, 234234);
+    //w.first++;
+    Word v = w;
+
+
+    std::cout << "test" << std::endl;
+
+}
+
+/*
 TEST_CASE("AVL Tree", "[AVLTree]") {
 
     AVLTree<int> tree1;
@@ -27,9 +44,9 @@ TEST_CASE("Hash Table", "[HashTable]") {
     std::string str = "taco";
     std::string str1 = "taco";
     std::string str2 = "notTaco";
-    Word t1(4, 2463918, str);
-    Word t2(8, 8584894, str1);
-    Word t3(12, 8388289, str2);
+    //Word t1(4, 2463918, str);
+    //Word t2(8, 8584894, str1);
+    //Word t3(12, 8388289, str2);
 
     HashTable<Word> htable;
     htable.insert(t1);
@@ -50,9 +67,9 @@ TEST_CASE("Word class", "[Word]") {
         std::string str1 = "taco";
         std::string str2 = "notTaco";
 
-        Word t1(10, 432422, str);
-        Word t2(2, 8584894, str1);
-        Word t3(3, 8388289, str2);
+        //Word t1(10, 432422, str);
+        //Word t2(2, 8584894, str1);
+        //Word t3(3, 8388289, str2);
         REQUIRE(t1 == t2);
         REQUIRE(t1 != t3);
 
@@ -64,7 +81,7 @@ TEST_CASE("Word class", "[Word]") {
     SECTION ("sorting frequency") {
 
         std::string str = "fortnite";
-        Word t(10, 432422, str);
+       // Word t(10, 432422, str);
         t.addQuestionData(3, 803202);
         t.addQuestionData(5, 732920);
         t.addQuestionData(24, 829839);
