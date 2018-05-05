@@ -72,7 +72,6 @@ T& HashTable<T>::insert(T key)
         }
     }
 
-    return key;
     numEntries++; //increments how many entries have occured
 
 }
@@ -166,7 +165,7 @@ T& HashTable<T>::getWord(T key)
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
-    for (auto iter : table[index]) {
+    for (auto& iter : table[index]) {
 
         if (iter == key) {
 

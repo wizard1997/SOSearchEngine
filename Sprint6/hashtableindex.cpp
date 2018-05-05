@@ -14,7 +14,7 @@ void HashTableIndex::addWord(std::string word, unsigned long idNum)
 
     }
 
-    for (auto& w: wordObj.getQuestionData()) {
+    for (auto& w: wordObj.questionData) {
 
         if (w.second == idNum) {
 
@@ -26,9 +26,9 @@ void HashTableIndex::addWord(std::string word, unsigned long idNum)
     }
 
     wordObj.addQuestionData(1, idNum);
-    std::cout  << wordObj.getQuestionDataSize() << std::endl;
+    std::cout  << wordObj.questionData.size() << std::endl;
 
-    std::vector<std::pair<int, unsigned long>> vect = wordObj.getQuestionData();
+    std::vector<std::pair<int, unsigned long>> vect = wordObj.questionData;
     for (size_t i=0; i<vect.size(); i++)
     {
 

@@ -24,13 +24,11 @@ class Word
         Word(std::string& str);
         ~Word();
 
-        int getQuestionDataSize();
         unsigned long getIDNumber();
 
         void addQuestionData(int, unsigned long);
         std::string getWordStr() const;
         void setWordStr(const std::string& str);
-        std::vector<std::pair<int, unsigned long>>& getQuestionData();
 
         std::vector<unsigned long> getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData);
 
@@ -39,8 +37,8 @@ class Word
         bool operator==(const Word& rhs) const;
         bool operator!=(const Word& rhs) const;
         Word& operator=(const Word& input);
-        bool operator>(const Word& rhs);
-        bool operator<(const Word& rhs);
+        bool operator>(const Word& rhs) const;
+        bool operator<(const Word& rhs) const;
 
         friend std::ostream& operator<< (std::ostream& out, const Word& wordOut) {
 

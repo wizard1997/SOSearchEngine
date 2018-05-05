@@ -244,6 +244,8 @@ void FileParser::runMenu() {
         run = selectDetectedFile();
     }
 
+    std::cout << "testaddy" << std::endl;
+
 }
 
 

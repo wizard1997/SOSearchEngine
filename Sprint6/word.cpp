@@ -38,10 +38,6 @@ void Word::setWordStr(const std::string& str)
     stringData = str;
 }
 
-std::vector<std::pair<int, unsigned long>>& Word::getQuestionData()
-{
-    return questionData;
-}
 
 
 /**
@@ -93,12 +89,12 @@ Word &Word::operator=(const Word &input)
     return *this;
 }
 
-bool Word::operator>(const Word &rhs)
+bool Word::operator>(const Word &rhs) const
 {
     return stringData > rhs.getWordStr();
 }
 
-bool Word::operator<(const Word &rhs)
+bool Word::operator<(const Word &rhs) const
 {
     return stringData < rhs.getWordStr();
 }

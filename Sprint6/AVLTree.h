@@ -21,15 +21,16 @@ class AVLTree {
         };
 
         AVLNode* root;
+        size_t count;
 
 
 
-        void insert(const T& dataIn, AVLNode *&nodeIn, AVLNode*& refNode);
+        void insert(const T& dataIn, AVLNode *&nodeIn);
 
         void rotateWithLeftChild(AVLNode*& k2);
         void rotateWithRightChild(AVLNode*& k2);
         int checkBalance(AVLNode* nodeIn);
-        T& getWord(T);
+        T& getElement(AVLNode*&, const T&);
 
         void deleteNode(AVLNode* nodeIn);
         void printInOrder(AVLNode* nodeIn);
@@ -42,7 +43,7 @@ class AVLTree {
 
         int height(AVLNode* node);
 
-        T* insert(const T& dataIn);
+        T& insert(const T& dataIn);
 
         int max(const int& int1, const int& int2) const {return (int1 > int2) ? int1 : int2; }
         void printInOrder();
@@ -50,6 +51,8 @@ class AVLTree {
 
         AVLNode* getRoot() const {return root; }
         void setRoot(AVLNode* value);
+        size_t getCount() const;
+        void setCount(const size_t& value);
 };
 
 template<class T>
@@ -66,15 +69,14 @@ int AVLTree<T>::height(AVLTree::AVLNode* nodeIn) {
     }
 
 }
-/*
-template<class T>
-T* AVLTree<T>::insert(const T& dataIn) {
 
-    AVLTree::AVLNode* refNode;
-    insert(dataIn,root,refNode);
-    return &refNode->element;
+template<class T>
+T& AVLTree<T>::insert(const T& dataIn) {
+
+    insert(dataIn,root);
+    return getElement(root,dataIn);
 }
-*/
+
 template<class T>
 void AVLTree<T>::printInOrder(AVLNode* nodeIn) {
 
@@ -103,18 +105,32 @@ void AVLTree<T>::setRoot(AVLNode* value) {
 }
 
 template<class T>
-void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn, AVLTree::AVLNode*& refNode) {
+size_t AVLTree<T>::getCount() const
+{
+
+    return count;
+}
+
+template<class T>
+void AVLTree<T>::setCount(const size_t& value)
+{
+
+    count = value;
+}
+
+template<class T>
+void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn) {
 
 
     if (nodeIn == nullptr) {
 
         nodeIn = new AVLNode(dataIn,nullptr,nullptr);
-        refNode = nodeIn;
+        count++;
 
     } else if (dataIn < nodeIn->element) {
 
 
-        insert(dataIn,nodeIn->left,refNode);
+        insert(dataIn,nodeIn->left);
 
         if (height(nodeIn->left) - height(nodeIn->right) == 2) {
 
@@ -134,7 +150,7 @@ void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn, AVLTree::AVL
     } else if (nodeIn->element < dataIn) {
 
 
-        insert(dataIn,nodeIn->right,refNode);
+        insert(dataIn,nodeIn->right);
 
         if (height(nodeIn->right) - height(nodeIn->left) == 2) {
 
@@ -208,6 +224,24 @@ int AVLTree<T>::checkBalance(AVLTree::AVLNode* nodeIn) {
     return height(nodeIn->left) - height(nodeIn->right);
 
 
+
+}
+
+template<class T>
+T& AVLTree<T>::getElement(AVLTree::AVLNode*& nodeIn, const T& keyIn) {
+
+    if (keyIn < nodeIn->element) {
+
+        return getElement(nodeIn->left, keyIn);
+
+    } else if (keyIn > nodeIn->element) {
+
+        return getElement(nodeIn->right, keyIn);
+    } else if (keyIn == nodeIn->element) {
+
+
+        return nodeIn->element;
+    }
 
 }
 

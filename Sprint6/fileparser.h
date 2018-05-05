@@ -33,10 +33,6 @@ class FileParser
 
         FileParser(std::string dirIn);
 
-
-
-        AVLTree<std::string> tree;
-        HashTable<std::string> table;
         IndexHandler indexhandler;
 
 
