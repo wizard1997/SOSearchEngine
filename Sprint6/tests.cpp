@@ -19,6 +19,11 @@ TEST_CASE("Hash Table", "[HashTable]") {
 
 
 }
+TEST_CASE("frequency") {
+
+
+
+}
 
 
 

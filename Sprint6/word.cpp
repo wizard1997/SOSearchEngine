@@ -56,10 +56,10 @@ std::vector<unsigned long> Word::getMostFrequent(std::vector<std::pair<int, unsi
 
     //Sorts the vector pair and inserts the ID number into the return vector
     std::sort(inputVectData.begin(), inputVectData.end(), std::greater<>());
-    for (size_t i = 0; i < inputVectData.size(); i++) {
+    for (size_t i = 0; i < 10; i++) {
 
         sortedIDVec.push_back(inputVectData[i].second);
-        //std::cout << inputVectData[i].second << std::endl;
+        std::cout << inputVectData[i].second << std::endl;
 
     }
 

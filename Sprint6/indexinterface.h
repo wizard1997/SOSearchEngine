@@ -14,13 +14,10 @@ class IndexInterface
         //IndexInterface() {std::cout << "base constructor" << std::endl;}
         virtual void addWord(std::string, unsigned long) = 0;
         virtual void print() = 0;
-//        //returns a Word
-//        virtual Word& getWord(Word&) = 0;
 
-//        //adds a question id to the word's vector if that question has that word
-//        virtual void addQuestionForWord(unsigned long) = 0;
+        virtual Word& getWord(const Word&) = 0;
 
-//        virtual std::list<unsigned long>& getQuestionsForWord() = 0;
+        virtual std::vector<unsigned long> mostFrequentOccurance(Word&) = 0;
 
 //        virtual bool alreadyIndexed(Word&) = 0;
 
@@ -31,4 +28,6 @@ class IndexInterface
         }
 
 };
+
+
 

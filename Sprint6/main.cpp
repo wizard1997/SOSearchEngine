@@ -16,32 +16,21 @@ int main(int argc, char* argv[]) {
 
     if (argc > 1 && strcmp(argv[1], "-t") == 0) {
 
-        std::string str = "fortnite";
-        std::string str1 = "lol";
-        unsigned long num = 123345;
-        unsigned long num1 = 298342;
 
-        IndexInterface* x = new HashTableIndex;
-        x->addWord(str, num);
-        x->addWord(str, num);
-        x->addWord(str1, num);
-        x->addWord(str, num1);
-
-
-        std::cout << "test";
-        //return Catch::Session().run();
+        return Catch::Session().run();
 
 
     } else if (argc > 1 && strcmp(argv[1], "-p") == 0) {
 
-
-
+        std::string str = "store";
+        Word w(str);
         FileParser fp1(argv[2]);
 
         fp1.runMenu();
 
         fp1.indexhandler.index->print();
-        //std::cout << "test";
+        fp1.indexhandler.index->getWord(w);
+        fp1.indexhandler.index->mostFrequentOccurance(w);
 
     } else {
 
