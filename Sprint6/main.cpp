@@ -40,6 +40,9 @@ int main(int argc, char* argv[]) {
 
         fp1.runMenu();
 
+
+        std::cout << "test";
+
     } else {
 
 

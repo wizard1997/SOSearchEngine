@@ -4,18 +4,17 @@
 
 void HashTableIndex::addWord(std::string word, unsigned long idNum)
 {
-
     Word &wordObj = table.insert(Word(word));
-
-
     if (wordObj.questionData.size() > 0) {
 
-
+        std::cout << "tstingaddword";
         for (auto& w: wordObj.questionData) {
 
             if (w.second == idNum) {
 
                 w.first++;
+
+                std::cout << "in fiif" << std::endl;
                 return;
 
             }
@@ -34,9 +33,9 @@ void HashTableIndex::addWord(std::string word, unsigned long idNum)
     }
 */
 }
-
+/*
 Word &HashTableIndex::getWord(Word& word)
 {
     return table.getWord(word);
 }
-
+*/
