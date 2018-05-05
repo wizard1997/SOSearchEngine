@@ -16,7 +16,7 @@ class IndexInterface
         virtual void print() = 0;
 
 //        //returns a Word
-//        virtual Word& getWord(Word&) = 0;
+        virtual Word& getWord(const Word&) = 0;
 
         virtual std::vector<unsigned long> mostFrequentOccurance(Word&) = 0;
 

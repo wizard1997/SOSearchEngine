@@ -265,6 +265,12 @@ void FileParser::runMenu() {
         }
 
         std::cout << found << std::endl;
+        for (auto& q: found.questionData) {
+
+
+            std::cout << std::endl << q.second;
+
+        }
 
 
     }
