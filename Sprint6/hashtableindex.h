@@ -1,23 +1,22 @@
-#pragma once
+//#pragma once
 
-#include "hashtable.h"
-#include "indexinterface.h"
+//#include "hashtable.h"
+//#include "indexinterface.h"
 
 
 
-class HashTableIndex: public IndexInterface
-{
+//class HashTableIndex: public IndexInterface
+//{
 
-    private:
+//    private:
 
-        HashTable<Word> table;
+//        HashTable<Word> table;
 
-    public:
+//    public:
 
-        //HashTableIndex();
-        void addWord(std::string, unsigned long);
-        Word& getWord(Word&);
+//        void addWord(std::string, unsigned long);
+//       // Word& getWord(Word&);
 
-};
+//};
 
 

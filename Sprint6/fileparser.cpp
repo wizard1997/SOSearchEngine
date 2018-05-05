@@ -118,7 +118,7 @@ void FileParser::parseQuestionFile(std::string file)
             int titleEndIndex = buffer.find('|',titleBeginIndex+1);
             std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex-1);
 
-            parseString(titleString);
+            parseString(titleString,questionID);
 
             //std::cout << questionID << std::endl;
             int codeBeginIndex = buffer.find("<>!<>!<>", titleEndIndex+1);
@@ -179,13 +179,13 @@ bool FileParser::selectDetectedFile() {
     }
 
 
-
+    return true;
 
 
 
 }
 
-void FileParser::parseString(std::string& stringIn) {
+void FileParser::parseString(std::string& stringIn,unsigned long idNum) {
 
     auto done = stringIn.end();
     auto end = stringIn.begin();
@@ -231,12 +231,17 @@ void FileParser::parseAllValidFiles() {
 void FileParser::runMenu() {
 
 
+    bool run = true;
+    while (run) {
 
-    while (true) {
-        inde
+        run = indexhandler.selectDS();
 
+    }
 
+    run = true;
+    while (run) {
 
+        run = selectDetectedFile();
     }
 
 }

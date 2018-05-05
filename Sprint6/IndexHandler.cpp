@@ -1,4 +1,6 @@
 #include "IndexHandler.h"
+#include "avltreeindex.h"
+//#include "hashtableindex.h"
 
 IndexHandler::IndexHandler() {
 
@@ -7,7 +9,7 @@ IndexHandler::IndexHandler() {
 
 
 }
-/*
+
 IndexHandler::~IndexHandler() {
 
     if (index) {
@@ -23,24 +25,30 @@ bool IndexHandler::selectDS() {
     while (true) {
 
 
-        std::cout
-        std::cout << "Welcome! Please select which underlying data structure you wish to use:"
-        std::string indexChoice(choiceIn);
-        if (indexChoice == "tree") {
+        std::cout << "--------------------------------------------------------------\n"
+                     "1. AVL Tree\n"
+                     "2. Hash Table\n"
+                     "Welcome! Please select which data structure you wish to use: ";
+        int indexChoice = 0;
+        std::cin >> indexChoice;
+        if (indexChoice == 1) {
 
 
             index = new AVLTreeIndex;
+            return false;
 
-        } else if (indexChoice == "table") {
+        } else if (indexChoice == 2) {
 
 
-            index = new HashTableIndex;
+          //  index = new HashTableIndex;
+            return false;
 
         } else {
 
 
             std::cout << "\nNo valid data structure selected.";
             index = nullptr;
+            return true;
         }
 
     }
@@ -48,4 +56,4 @@ bool IndexHandler::selectDS() {
 
 
 }
-*/
+

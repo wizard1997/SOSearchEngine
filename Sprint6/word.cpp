@@ -1,14 +1,16 @@
 #include "word.h"
 
-Word::Word()
-{
+
+Word::Word(std::string &str)
+    : stringData(str) {
 
 }
 
-Word::Word(std::string &str)
-{
+Word::Word(const Word& wordIn)
+    : stringData(wordIn.getWordStr()) {
 
-    stringData = str;
+
+    questionData = wordIn.questionData;
 }
 
 Word::~Word()
@@ -28,7 +30,7 @@ Word::~Word()
  **/
 void Word::addQuestionData(int freq, unsigned long id)
 {
-    questionData.push_back(std::make_pair (freq, id) );
+    questionData.insert(std::pair<int,unsigned long> (freq, id));
 }
 
 void Word::setWordStr(const std::string& str)
@@ -36,10 +38,7 @@ void Word::setWordStr(const std::string& str)
     stringData = str;
 }
 
-std::unordered_set<std::pair<int, unsigned long>>& Word::getQuestionData()
-{
-    return questionData;
-}
+
 
 /**
  * @brief Word::getMostFrequent Function that finds the questions
@@ -50,23 +49,23 @@ std::unordered_set<std::pair<int, unsigned long>>& Word::getQuestionData()
  * @return A vector of question IDs sorted so that the first element
  * in the vector is the question where the Word is most common. Descending order
  **/
-std::vector<unsigned long> Word::getMostFrequent(std::vector<std::pair<int, unsigned long>>& inputVectData)
-{
-    //Vector to be returned
-    std::vector<unsigned long> sortedIDVec;
+//std::vector<unsigned long> Word::getMostFrequent(std::map<int, unsigned long>& inputVectData)
+//{
+//    //Vector to be returned
+//    std::vector<unsigned long> sortedIDVec;
 
-    //Sorts the vector pair and inserts the ID number into the return vector
-    std::sort(inputVectData.begin(), inputVectData.end(), std::greater<>());
-    for (size_t i = 0; i < inputVectData.size(); i++) {
+//    //Sorts the vector pair and inserts the ID number into the return vector
+//    std::sort(inputVectData.begin(), inputVectData.end(), std::greater<>());
+//    for (auto& w: inputVectData) {
 
-        sortedIDVec.push_back(inputVectData[i].second);
-        //std::cout << inputVectData[i].second << std::endl;
+//        sortedIDVec.push_back(w.second);
+//        //std::cout << inputVectData[i].second << std::endl;
 
-    }
+//    }
 
-    return sortedIDVec;
+//    return sortedIDVec;
 
-}
+//}
 
 std::string Word::getWordStr() const
 {
@@ -89,12 +88,12 @@ Word &Word::operator=(const Word &input)
     return *this;
 }
 
-bool Word::operator>(const Word &rhs)
+bool Word::operator>(const Word &rhs) const
 {
     return stringData > rhs.getWordStr();
 }
 
-bool Word::operator<(const Word &rhs)
+bool Word::operator<(const Word &rhs) const
 {
     return stringData < rhs.getWordStr();
 }

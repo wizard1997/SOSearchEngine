@@ -44,7 +44,7 @@ class FileParser
         void parseTagFile(); //TODO
         bool selectDetectedFile();
         bool selectDataType;
-        void parseString(std::string& stringIn);
+        void parseString(std::string& stringIn,unsigned long idNum);
         void parseAllValidFiles();
 
         void runMenu();

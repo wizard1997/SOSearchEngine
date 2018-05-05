@@ -24,13 +24,7 @@ int main(int argc, char* argv[]) {
 
         FileParser fp1(argv[2]);
 
-        bool run = true;
-        while (run) {
-
-            run = fp1.selectDetectedFile();
-
-        }
-
+       fp1.runMenu();
 
     } else {
 

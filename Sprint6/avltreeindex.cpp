@@ -1,23 +1,31 @@
 #include "avltreeindex.h"
 
+
+
 void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 {
+   // Word wordT(word);
+    Word* inplaceWord = tree.insert(Word(word));
+    if (inplaceWord->questionData.size() > 0) {
 
-    Word inplaceWord = tree.insert(Word(word));
-    for (auto& w: inplaceWord.getQuestionData()) {
+
+        for (auto& w: inplaceWord->questionData) {
 
 
-        if (w.second() == idNum) {
+            if (w.second == idNum) {
 
-            w.first()++;
-            return;
+                w.first++;
+                return;
+            }
         }
+
     }
-    inplaceWord.getQuestionData().insert(std::make_pair(1,idNum);
+
+    inplaceWord->addQuestionData(1,idNum);
 
 }
 
-Word& AVLTreeIndex::getWord(Word &)
-{
+//Word& AVLTreeIndex::getWord(Word &)
+//{
 
-}
+//}

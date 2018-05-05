@@ -15,7 +15,7 @@ class AVLTree {
                 AVLNode* right;
                 int height;
 
-                AVLNode(T& data, AVLNode* leftTree = nullptr, AVLNode* rightTree = nullptr, int h = 0)
+                AVLNode(const T& data, AVLNode* leftTree = nullptr, AVLNode* rightTree = nullptr, int h = 0)
                     : element(data), left(leftTree), right(rightTree), height(h) {}
 
         };
@@ -24,7 +24,7 @@ class AVLTree {
 
 
 
-        T& insert(T dataIn, AVLNode *&nodeIn);
+        void insert(const T& dataIn, AVLNode *&nodeIn, AVLNode*& refNode);
 
         void rotateWithLeftChild(AVLNode*& k2);
         void rotateWithRightChild(AVLNode*& k2);
@@ -42,7 +42,7 @@ class AVLTree {
 
         int height(AVLNode* node);
 
-        bool insert(T dataIn);
+        T* insert(const T& dataIn);
 
         int max(const int& int1, const int& int2) const {return (int1 > int2) ? int1 : int2; }
         void printInOrder();
@@ -68,9 +68,11 @@ int AVLTree<T>::height(AVLTree::AVLNode* nodeIn) {
 }
 
 template<class T>
-void AVLTree<T>::insert(T dataIn) {
+T* AVLTree<T>::insert(const T& dataIn) {
 
-    insert(dataIn,root);
+    AVLTree::AVLNode* refNode;
+    insert(dataIn,root,refNode);
+    return &refNode->element;
 }
 
 template<class T>
@@ -101,17 +103,18 @@ void AVLTree<T>::setRoot(AVLNode* value) {
 }
 
 template<class T>
-T& AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
+void AVLTree<T>::insert(const T& dataIn, AVLTree::AVLNode*& nodeIn, AVLTree::AVLNode*& refNode) {
 
 
     if (nodeIn == nullptr) {
 
         nodeIn = new AVLNode(dataIn,nullptr,nullptr);
+        refNode = nodeIn;
 
     } else if (dataIn < nodeIn->element) {
 
 
-        insert(dataIn,nodeIn->left);
+        insert(dataIn,nodeIn->left,refNode);
 
         if (height(nodeIn->left) - height(nodeIn->right) == 2) {
 
@@ -131,7 +134,7 @@ T& AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
     } else if (nodeIn->element < dataIn) {
 
 
-        insert(dataIn,nodeIn->right);
+        insert(dataIn,nodeIn->right,refNode);
 
         if (height(nodeIn->right) - height(nodeIn->left) == 2) {
 
@@ -156,7 +159,7 @@ T& AVLTree<T>::insert(T dataIn, AVLTree::AVLNode*& nodeIn) {
     }
 
     nodeIn->height = (max(height(nodeIn->left),height(nodeIn->right))) + 1;
-    return nodeIn->element;
+
 }
 
 
