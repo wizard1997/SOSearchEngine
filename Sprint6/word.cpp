@@ -116,6 +116,7 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 {
 
     Word returnWord(firstWord.stringData);
+    unsigned long newFreq;
 
     if (firstWord.questionData.size() > secondWord.questionData.size()) {
 
@@ -127,7 +128,7 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 
                 if (secondWord.questionData[i].second == firstWord.questionData[j].second) {
 
-                    unsigned long newFreq = firstWord.questionData[j].second + secondWord.questionData[i].second;
+                    newFreq = firstWord.questionData[j].first + secondWord.questionData[i].first;
                     returnWord.addQuestionData(newFreq, secondWord.questionData[i].second);
 
                 }
@@ -136,7 +137,48 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 
         }
 
+    } else if (firstWord.questionData.size() < secondWord.questionData.size()) {
+
+        for (int i = 0; i < firstWord.questionData.size(); i++) {
+
+            for (int j = 0; j < secondWord.questionData.size(); j++) {
+
+                if (firstWord.questionData[i].second == secondWord.questionData[j].second) {
+
+                    newFreq = secondWord.questionData[j].first + firstWord.questionData[i].first;
+                    returnWord.addQuestionData(newFreq, firstWord.questionData[i].second);
+
+                }
+
+            }
+
+        }
+
+    } else if (firstWord.questionData.size() == secondWord.questionData.size()) {
+
+        for (int i = 0; i < firstWord.questionData.size(); i++) {
+
+            for (int j = 0; j < secondWord.questionData.size(); j++) {
+
+                if (firstWord.questionData[i].second == secondWord.questionData[j].second) {
+
+                    newFreq = secondWord.questionData[j].first + firstWord.questionData[i].first;
+                    returnWord.addQuestionData(newFreq, firstWord.questionData[i].second);
+
+                }
+
+            }
+
+        }
+
+
     }
+
+    //If there are no AND occurences of two Words return
+    if (returnWord.questionData.size() == 0)
+        returnWord.addQuestionData(0,0);
+
+
     return returnWord;
 }
 
