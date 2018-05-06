@@ -117,8 +117,27 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 
     Word returnWord(firstWord.stringData);
 
+    if (firstWord.questionData.size() > secondWord.questionData.size()) {
 
+        for (int i = 0; i < secondWord.questionData.size(); i++) {
 
+            //For loop to iterate through the firstWord questionData to see if any of the questions
+            //are the same as this index of the second
+            for (int j = 0; j < firstWord.questionData.size(); j++) {
+
+                if (secondWord.questionData[i].second == firstWord.questionData[j].second) {
+
+                    unsigned long newFreq = firstWord.questionData[j].second + secondWord.questionData[i].second;
+                    returnWord.addQuestionData(newFreq, secondWord.questionData[i].second);
+
+                }
+
+            }
+
+        }
+
+    }
+    return returnWord;
 }
 
 std::string Word::getWordStr() const

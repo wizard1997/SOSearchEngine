@@ -29,15 +29,16 @@ TEST_CASE("or") {
     w.addQuestionData(1, 458949);
     w.addQuestionData(4, 580203);
     w.addQuestionData(2, 679298);
+    w.addQuestionData(8, 902939);
 
     w1.addQuestionData(6, 123456);
     w1.addQuestionData(3, 248929);
-    w1.addQuestionData(5, 389012);
+    w1.addQuestionData(5, 902939);
 
 
     Word testW(s);
-    testW = testW.queryOR(w,w1);
-
+    //testW = testW.queryOR(w,w1);
+    testW = testW.queryAND(w,w1);
 
 
     std::cout << "test" << std::endl;
