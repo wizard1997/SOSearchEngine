@@ -33,6 +33,12 @@ class Word
         std::vector<std::pair<int, unsigned long>> getMostFrequent();
 
 
+        //To deal with query booleans
+        Word queryOR(Word, Word);
+        Word queryAND(Word, Word);
+
+
+
         //operators
         bool operator==(const Word& rhs) const;
         bool operator!=(const Word& rhs) const;

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include "word.h"
+#include "indexinterface.h"
+#include "fileparser.h"
 
 class QueryProcessor
 {
@@ -8,6 +11,11 @@ class QueryProcessor
 
     public:
         QueryProcessor();
-        bool isBoolQuery(std::string&);
+        bool isBoolQuery(std::string);
+
+
+
+
+
 };
 

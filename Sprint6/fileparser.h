@@ -13,6 +13,7 @@
 #include "hashtable.h"
 #include <dirent.h>
 #include "IndexHandler.h"
+#include "queryprocessor.h"
 
 class FileParser
 {
@@ -42,6 +43,8 @@ class FileParser
         bool selectDataType;
         void parseString(std::string& stringIn,unsigned long idNum);
         void parseAllValidFiles();
+
+        bool isBoolQuery(std::string str);
 
         void runMenu();
         static bool isStopWord(std::string& word);

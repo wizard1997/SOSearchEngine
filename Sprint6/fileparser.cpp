@@ -228,6 +228,11 @@ void FileParser::parseAllValidFiles() {
 
 }
 
+bool FileParser::isBoolQuery(std::string str)
+{
+    return (str == "AND" || str == "OR" || str == "NOT") ? true : false;
+}
+
 void FileParser::runMenu() {
 
 
@@ -250,15 +255,27 @@ void FileParser::runMenu() {
         std::cout << std::endl << "Please enter a search query (0 to exit): ";
         std::string query = "placeholder";
         std::cin >> query;
-        Porter2Stemmer::trim(query);
-        Porter2Stemmer::stem(query);
-        Word queryword(query);
+
         if (query == "0") {
 
             std::cout << "\nThanks for searching!\n";
             break;
         }
+
+        Porter2Stemmer::trim(query);
+        Porter2Stemmer::stem(query);
+
+
+
+
+
+        Word queryword(query);
+
         Word& found = indexhandler.index->getWord(queryword);
+
+
+
+
         if (found != queryword) {
 
 

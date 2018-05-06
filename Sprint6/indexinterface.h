@@ -15,12 +15,15 @@ class IndexInterface
         virtual void addWord(std::string, unsigned long) = 0;
         virtual void print() = 0;
 
-//        //returns a Word
+        //returns a Word
         virtual Word& getWord(const Word&) = 0;
 
         virtual std::vector<unsigned long> mostFrequentOccurance(Word&) = 0;
 
-//        virtual bool alreadyIndexed(Word&) = 0;
+
+
+
+
 
         virtual ~IndexInterface() {
 

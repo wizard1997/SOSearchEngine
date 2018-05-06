@@ -9,8 +9,8 @@ Word::Word(std::string &str)
 Word::Word(const Word& wordIn)
     : stringData(wordIn.getWordStr()) {
 
-
     questionData = wordIn.questionData;
+
 }
 
 Word::~Word()
@@ -59,16 +59,65 @@ std::vector<std::pair<int, unsigned long>> Word::getMostFrequent()
     int i = 0;
     for (auto& q: questionData) {
 
-        i++;
+        ++i;
         if (i > 10) {
 
             break;
+
         }
         sortedIDVec.push_back(std::make_pair (questionData[i].first, questionData[i].second) );
 
     }
 
     return sortedIDVec;
+
+}
+
+Word Word::queryOR(Word firstWord, Word secondWord)
+{
+
+    Word returnWord(firstWord.stringData);
+
+    if (firstWord.questionData.size() > secondWord.questionData.size()) {
+
+        for (int i = 0; i < secondWord.questionData.size(); i++) {
+
+            returnWord.addQuestionData(firstWord.questionData[i].first, firstWord.questionData[i].second);
+            returnWord.addQuestionData(secondWord.questionData[i].first, secondWord.questionData[i].second);
+
+        }
+
+    } else if (firstWord.questionData.size() < secondWord.questionData.size()) {
+
+        for (int i = 0; i < firstWord.questionData.size(); i++) {
+
+            returnWord.addQuestionData(firstWord.questionData[i].first, firstWord.questionData[i].second);
+            returnWord.addQuestionData(secondWord.questionData[i].first, secondWord.questionData[i].second);
+
+        }
+
+    } else {
+
+        for (int i = 0; i < firstWord.questionData.size(); i++) {
+
+            returnWord.addQuestionData(firstWord.questionData[i].first, firstWord.questionData[i].second);
+            returnWord.addQuestionData(secondWord.questionData[i].first, secondWord.questionData[i].second);
+
+        }
+
+    }
+
+    std::cout << "test in OR " << std::endl;
+    return returnWord;
+
+}
+
+Word Word::queryAND(Word firstWord, Word secondWord)
+{
+
+    Word returnWord(firstWord.stringData);
+
+
 
 }
 
