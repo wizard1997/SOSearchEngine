@@ -20,8 +20,10 @@ class Word
 
         std::vector<std::pair<int, unsigned long>> questionData;
 
+        //Constructors, destructor
         Word();
         Word(std::string& str);
+        Word(const Word& wordIn);
         ~Word();
 
         unsigned long getIDNumber();
@@ -56,7 +58,7 @@ class Word
         }
 
 
-        Word(const Word& wordIn);
+
 };
 
 

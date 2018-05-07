@@ -22,7 +22,7 @@ class HashTable {
 
         };
 
-        int LENGTH = 1000; //Size of the hashtable
+        int LENGTH = 20000; //Size of the hashtable
         int numEntries; //How many times insert has been called
         int numUniqueWords; //How many unique words are in the table
         std::list<T>* table;
@@ -75,12 +75,12 @@ template<typename T>
 T& HashTable<T>::insert(const T& key)
 {
 
-    //Create a string that can be hashed from a Word
+    //Create a string that can be hashed from the input data
     std::string keyWord = key.getWordStr();
     size_t index = std::hash<std::string>()(keyWord);
     index = index % LENGTH;
 
-    //If it's already inserted return a reference to that word
+    //If it's already inserted return a reference to that element
     //in the table
     if (exists(key, index)) {
 
@@ -89,7 +89,7 @@ T& HashTable<T>::insert(const T& key)
 
     }
 
-    //Else add the word to the table and return a reference to it
+    //Else add the element to the table and return a reference to it
     table[index].push_back(key);
     numUniqueWords++;
     numEntries++;
@@ -178,6 +178,11 @@ void HashTable<T>::displayTable()
     }
 }
 
+/**
+ * Funcion that returns a boolean variable.
+ * True if the element already exists in the table, false
+ * if it doesn't
+ */
 template<typename T>
 bool HashTable<T>::exists(T key, size_t index)
 {
