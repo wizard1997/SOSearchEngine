@@ -34,10 +34,7 @@ std::vector<unsigned long> AVLTreeIndex::mostFrequentOccurance(Word& word)
     std::cout << "AvlIndex mostFreqwunt" << std::endl;
 }
 
-std::vector<unsigned long> AVLTreeIndex::getQuestionsForWord(Word& word)
-{
 
-}
 
 Word& AVLTreeIndex::getWord(const Word& wordIn) {
 

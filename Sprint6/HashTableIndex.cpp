@@ -38,10 +38,7 @@ std::vector<unsigned long> HashTableIndex::mostFrequentOccurance(Word& word)
     word.getMostFrequent();
 }
 
-std::vector<unsigned long> HashTableIndex::getQuestionsForWord(Word& word)
-{
 
-}
 
 Word& HashTableIndex::getWord(const Word& word)
 {
