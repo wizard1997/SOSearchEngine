@@ -33,6 +33,7 @@ void QueryProcessor::runQuery()
         std::cout << std::endl << "Load index from output.dat? (Y or N): ";
         char selection = 'N';
         std::cin >> selection;
+        std::cin.sync();
         if (selection == 'Y') {
 
             indexhandler.loadIndex();
@@ -49,14 +50,8 @@ void QueryProcessor::runQuery()
     }
 
     while (true) {
-
+        std::cin.sync();
         std::cout << std::endl << "Please enter a search query (0 to exit): ";
-
-        std::cin.clear();
-        while (std::cin.get() != '\n')
-        {
-            continue;
-        }
 
         std::string query;
         std::getline(std::cin, query);
@@ -66,7 +61,7 @@ void QueryProcessor::runQuery()
             std::cout << "\nThanks for searching!\n";
             break;
         }
-
+        std::cin.sync();
         std::string temp;
         std::vector<std::string> queryWords;
         for (std::stringstream s(query); s >> temp; )
