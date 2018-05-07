@@ -220,7 +220,7 @@ void FileProcessor::parseString(std::string& stringIn,unsigned long idNum) {
 
 }
 
-void FileParser::parseAllValidFiles() {
+void FileProcessor::parseAllValidFiles() {
 
 
     for (size_t i = 0; i < fileVec.size(); i++) {
@@ -233,7 +233,7 @@ void FileParser::parseAllValidFiles() {
 
 }
 
-void FileParser::runMenu() {
+void FileProcessor::runMenu() {
 
 
     bool run = true;
@@ -250,112 +250,6 @@ void FileParser::runMenu() {
     }
 
 
-    while (true) {
-
-        std::cout << std::endl << "Please enter a search query (0 to exit): ";
-
-        std::string query;
-        std::getline(std::cin, query);
-
-        if (query == "0") {
-
-            std::cout << "\nThanks for searching!\n";
-            break;
-        }
-
-        std::string temp;
-        std::vector<std::string> queryWords;
-        for (std::stringstream s(query); s >> temp; )
-            queryWords.push_back(temp);
-
-        if(queryWords.size() >= 2) {
-
-            //Stem the all of the query input first
-            for (size_t i = 0; i < queryWords.size(); i++) {
-                Porter2Stemmer::trim(queryWords[i]);
-                Porter2Stemmer::stem(queryWords[i]);
-            }
-
-            for (size_t i = 0; i < queryWords.size(); i++) {
-
-                if (queryWords[i] == "not") {
-
-                    std::string notWord = queryWords[i+1];
-                    std::cout << "NOT detected. NOT word is:  " << notWord << std::endl;
-                }
-            }
-
-
-            if (queryWords[0] == "and") {
-                std::cout << "Bool query 'AND' found" << std::endl;
-                Word str1(queryWords[1]);
-                Word str2(queryWords[2]);
-                Word& found1 = indexhandler.index->getWord(str1);
-                Word& found2 = indexhandler.index->getWord(str2);
-                Word intersection(found1.queryAND(found1,found2));
-                for (auto& q: intersection.getMostFrequent()) {
-
-                    std::cout << std::endl << q.second << " - " << q.first;
-
-                }
-            }
-
-            if (queryWords[0] == "or") {
-                std::cout << "Bool query 'OR' found" << std::endl;
-                Word str1(queryWords[1]);
-                Word str2(queryWords[2]);
-                Word& found1 = indexhandler.index->getWord(str1);
-                if (found1 != queryWords[1]) {
-
-                    std::cout << "\nFirst query argument not found. Try again." << std::endl;
-                    continue;
-                }
-                Word& found2 = indexhandler.index->getWord(str2);
-                if (found2 != queryWords[2]) {
-
-
-                    std::cout << "\nSecond query argument not found. Try again." << std::endl;
-                    continue;
-                }
-                Word intersection(found1.queryOR(found1,found2));
-                for (auto& q: intersection.getMostFrequent()) {
-
-                    std::cout << std::endl << q.second << " - " << q.first;
-
-                }
-            }
-
-        } else {
-
-            Porter2Stemmer::trim(query);
-            Porter2Stemmer::stem(query);
-
-            Word queryword(query);
-
-            Word& found = indexhandler.index->getWord(queryword);
-
-            if (found != queryword) {
-
-
-                std::cout << "\nQuery not found. Try again." << std::endl;
-                continue;
-            }
-
-            std::cout << found << std::endl;
-
-
-            int i = 0;
-            for (auto& q: found.getMostFrequent()) {
-
-                i++;
-
-                std::cout << std::endl << q.second << " - " << q.first;
-
-            }
-        }
-
-
-    }
 
 
 
@@ -371,7 +265,7 @@ void FileParser::runMenu() {
  * @param word The word that will be tested to see if it's a stop word
  * @return True if word is a stop word, false if not
  */
-bool FileParser::isStopWord(std::string &word)
+bool FileProcessor::isStopWord(std::string &word)
 {
     return stopWords.count(word);
 }
@@ -379,7 +273,7 @@ bool FileParser::isStopWord(std::string &word)
 
 //Stop words from the website given by the project handout, minus a few that
 //I thought to be unnecessary and a few that I didn't believe to be stopWords, like "zero"
-std::unordered_set<std::string> FileParser::stopWords {
+std::unordered_set<std::string> FileProcessor::stopWords {
     "able", "about", "above", "abroad", "accordingly", "across", "actually",
     "adj", "after", "afterwards", "again", "against", "ago", "ahead", "ain't",
     "all", "allow", "almost", "alone", "along", "alongside", "already", "also",

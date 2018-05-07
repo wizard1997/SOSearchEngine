@@ -20,7 +20,6 @@ class AVLTreeIndex : public IndexInterface {
         void print();
         void addWord(std::string,unsigned long);
         std::vector<unsigned long> mostFrequentOccurance(Word&);
-        std::vector<unsigned long> getQuestionsForWord(Word&);
         Word& getWord(const Word&);
         void saveIndex(std::ofstream&);
 
