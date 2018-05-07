@@ -17,6 +17,32 @@ TEST_CASE("AVL Tree", "[AVLTree]") {
 }
 TEST_CASE("Hash Table", "[HashTable]") {
 
+    std::string str = "taco";
+    std::string str1 = "taco";
+    std::string str2 = "notTaco";
+    Word t1(str);
+    Word t2(str1);
+    Word t3(str2);
+
+    HashTable<Word> htable;
+    htable.insert(t1);
+    htable.insert(t2);
+    htable.insert(t3);
+
+    SECTION ("get word") {
+
+        Word sol = htable.getWord(t3);
+        REQUIRE (sol == t3);
+
+    }
+    SECTION ("get num entries") {
+        REQUIRE (htable.getNumEntries() == 3);
+    }
+    SECTION ("get num unique words") {
+        REQUIRE (htable.getNumUniqueWords() == 2);
+    }
+
+
 
 
 }
@@ -55,8 +81,6 @@ TEST_CASE("") {
     w.addQuestionData(2, 679298);
 
     std::vector<unsigned long> v  = w.getQuestions();
-
-    std::cout << "tesstiosngaoisngaoingoain";
 
     std::vector<std::string> queryWords;
     queryWords.push_back(s);
