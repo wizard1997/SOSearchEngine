@@ -33,6 +33,8 @@ void QueryProcessor::runQuery()
         std::cout << std::endl << "Load index from output.dat? (Y or N): ";
         char selection = 'N';
         std::cin >> selection;
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if (selection == 'Y') {
 
             indexhandler.loadIndex();
@@ -48,15 +50,11 @@ void QueryProcessor::runQuery()
 
     }
 
+
     while (true) {
 
-        std::cout << std::endl << "Please enter a search query (0 to exit): ";
 
-        std::cin.clear();
-        while (std::cin.get() != '\n')
-        {
-            continue;
-        }
+        std::cout << "\nPlease enter a search query (0 to exit): ";
 
         std::string query;
         std::getline(std::cin, query);
