@@ -55,7 +55,7 @@ void QueryProcessor::runQuery()
 
     while (true) {
 
-
+        bool notDetected = false;
         std::cout << "\nPlease enter a search query (0 to exit): ";
 
         std::string query;
@@ -85,7 +85,7 @@ void QueryProcessor::runQuery()
             for (size_t i = 0; i < queryWords.size(); i++) {
 
                 if (queryWords[i] == "not") {
-
+                    notDetected = true;
                     std::string notWord = queryWords[i+1];
                     std::cout << "NOT detected. NOT word is:  " << notWord << std::endl;
                     if (queryWords[0] == "and" || queryWords[0] == "or") {
@@ -99,15 +99,16 @@ void QueryProcessor::runQuery()
                     }
                 }
             }
+            if (!notDetected) {
+                //Process an AND boolean query
+                if (queryWords[0] == "and") {
+                    runAND(queryWords);
+                }
 
-            //Process an AND boolean query
-            if (queryWords[0] == "and") {
-                runAND(queryWords);
-            }
-
-            //Process an OR boolean query
-            if (queryWords[0] == "or") {
-                runOR(queryWords);
+                //Process an OR boolean query
+                if (queryWords[0] == "or") {
+                    runOR(queryWords);
+                }
             }
 
         } else {
