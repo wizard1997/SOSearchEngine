@@ -18,7 +18,6 @@ class HashTableIndex: public IndexInterface
         HashTableIndex() {std::cout << "hashtable construct" << std::endl;}
         void addWord(std::string, unsigned long);
 
-        std::vector<unsigned long> mostFrequentOccurance(Word&);
         Word& getWord(const Word&);
         void saveIndex(std::ofstream&);
 

@@ -205,7 +205,11 @@ void FileProcessor::parseString(std::string& stringIn,unsigned long idNum) {
             Porter2Stemmer::trim(word);
             Porter2Stemmer::stem(word); 
 
-            indexhandler.index->addWord(word,idNum);
+            if (((word[0] >= 'A') && (word[0] <= 'Z')) || ((word[0] >= 'a') && (word[0] <= 'z'))) {
+
+                indexhandler.index->addWord(word,idNum);
+
+            }
 
         }
 
@@ -243,11 +247,33 @@ void FileProcessor::runMenu() {
 
     }
 
+    while (true) {
+
+        std::cout << std::endl << "Load index from output.dat? (Y or N): ";
+        char selection = 'N';
+        std::cin >> selection;
+        if (selection == 'Y') {
+
+            indexhandler.loadIndex();
+            break;
+        } else if (selection == 'N') {
+
+            break;
+
+        } else {
+
+            std::cout << "\nTry again, wrong selection.\n";
+        }
+
+    }
+
     run = true;
     while (run) {
 
         run = selectDetectedFile();
     }
+
+    indexhandler.saveIndex("output.dat");
 
 
 

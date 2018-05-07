@@ -65,7 +65,7 @@ std::vector<std::pair<int, unsigned long>> Word::getMostFrequent()
             break;
 
         }
-        sortedIDVec.push_back(std::make_pair (questionData[i].first, questionData[i].second) );
+        sortedIDVec.push_back(std::make_pair (q.first, q.second) );
 
     }
 

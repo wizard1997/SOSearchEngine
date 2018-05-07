@@ -106,6 +106,7 @@ T& AVLTree<T>::access(const T& dataIn) {
         return current->element;
     }
 
+
 }
 
 template<class T>

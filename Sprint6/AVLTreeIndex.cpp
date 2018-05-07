@@ -29,10 +29,6 @@ void AVLTreeIndex::addWord(std::string word,unsigned long idNum)
 
 }
 
-std::vector<unsigned long> AVLTreeIndex::mostFrequentOccurance(Word& word)
-{
-    std::cout << "AvlIndex mostFreqwunt" << std::endl;
-}
 
 
 

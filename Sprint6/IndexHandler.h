@@ -16,8 +16,8 @@ class IndexHandler
 
         bool selectDS();
         void saveIndex(std::string filePath);
-        void loadIndex();
 
 
+        bool loadIndex();
 };
 

@@ -81,3 +81,52 @@ void IndexHandler::saveIndex(std::string filePath) {
 
 }
 
+bool IndexHandler::loadIndex() {
+
+
+    std::ifstream inStream;
+    inStream.open("output.dat");
+    if (!inStream.is_open()) {
+
+        std::cout << "Unable to load index file. Is 'output.dat' missing?" << std::endl;
+        return false;
+
+    } else {
+
+        std::string wordLine;
+        while (std::getline(inStream,wordLine)) {
+
+            auto done = wordLine.end();
+            auto end = wordLine.begin();
+            auto itend = wordLine.begin();
+            while (*end != ' ') {
+
+                end++;
+            }
+            end++;
+            std::string wordstring(wordLine.begin(),end);
+            Word temp(wordstring);
+            itend = std::find(end,done,' ');
+            while (end <= done) {
+
+                std::string freqString(end,itend);
+                unsigned long id = atoi(freqString.c_str());
+                end = itend+1;
+                itend = std::find(end,done,' ');
+                std::string idString(end,itend);
+                unsigned long freq = atoi(idString.c_str());
+                temp.addQuestionData(freq,id);
+
+            }
+
+
+        }
+
+
+
+
+    }
+
+    return true;
+}
+
