@@ -30,6 +30,26 @@ void QueryProcessor::runQuery()
 
     while (true) {
 
+        std::cout << std::endl << "Load index from output.dat? (Y or N): ";
+        char selection = 'N';
+        std::cin >> selection;
+        if (selection == 'Y') {
+
+            indexhandler.loadIndex();
+            break;
+        } else if (selection == 'N') {
+
+            break;
+
+        } else {
+
+            std::cout << "\nTry again, wrong selection.\n";
+        }
+
+    }
+
+    while (true) {
+
         std::cout << std::endl << "Please enter a search query (0 to exit): ";
 
         std::string query;
