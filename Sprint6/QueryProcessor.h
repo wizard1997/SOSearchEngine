@@ -6,6 +6,8 @@
 #include "FileProcessor.h"
 #include "IndexHandler.h"
 #include "porter2_stemmer.h"
+#include <limits>
+#include "fstream"
 
 
 class QueryProcessor

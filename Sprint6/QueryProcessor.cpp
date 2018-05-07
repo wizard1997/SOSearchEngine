@@ -52,6 +52,12 @@ void QueryProcessor::runQuery()
 
         std::cout << std::endl << "Please enter a search query (0 to exit): ";
 
+        std::cin.clear();
+        while (std::cin.get() != '\n')
+        {
+            continue;
+        }
+
         std::string query;
         std::getline(std::cin, query);
 

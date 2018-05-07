@@ -44,6 +44,7 @@ void AVLTreeIndex::saveIndex(std::ofstream& outStream) {
 
     tree.printFile(outStream);
 
+
 }
 
 void AVLTreeIndex::insert(Word& wordIn) {

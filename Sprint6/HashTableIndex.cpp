@@ -40,11 +40,14 @@ Word& HashTableIndex::getWord(const Word& word)
     return table.getWord(word);
 }
 
-void HashTableIndex::saveIndex(std::ofstream&) {
+void HashTableIndex::saveIndex(std::ofstream& outStream) {
+
+    table.printFile(outStream);
+
 
 }
 
-void HashTableIndex::insert(Word&)
+void HashTableIndex::insert(Word& wordIn)
 {
-
+    table.insert(wordIn);
 }

@@ -32,6 +32,8 @@ class HashTable {
         HashTable();
         ~HashTable() {}
         T& insert(const T& key);
+        void printFile(std::ofstream& outStream);
+
         void remove(T);
         void resize();
         int hash(std::string str) const;
@@ -96,6 +98,21 @@ T& HashTable<T>::insert(const T& key)
 
     return getWord(key);
 
+}
+
+template<typename T>
+void HashTable<T>::printFile(std::ofstream &outStream)
+{
+    for (int i = 0; i < LENGTH; i++) {
+
+        for (auto& x : table[i]) {
+            outStream << x.getWordStr() << " ";
+            for (auto& y: x.questionData) {
+                outStream << y.second << " " << y.first << " ";
+            }
+            outStream << std::endl;
+        }
+    }
 }
 
 template<typename T>

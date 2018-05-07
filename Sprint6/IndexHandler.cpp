@@ -74,7 +74,7 @@ void IndexHandler::saveIndex(std::string filePath) {
 
 
         index->saveIndex(outStream);
-
+        outStream.close();
 
     }
 
