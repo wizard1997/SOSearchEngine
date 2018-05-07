@@ -220,7 +220,7 @@ void FileProcessor::parseString(std::string& stringIn,unsigned long idNum) {
 
 }
 
-void FileProcessor::parseAllValidFiles() {
+void FileParser::parseAllValidFiles() {
 
 
     for (size_t i = 0; i < fileVec.size(); i++) {
@@ -233,12 +233,7 @@ void FileProcessor::parseAllValidFiles() {
 
 }
 
-bool FileProcessor::isBoolQuery(std::string str)
-{
-    return (str == "AND" || str == "OR" || str == "NOT") ? true : false;
-}
-
-void FileProcessor::runMenu() {
+void FileParser::runMenu() {
 
 
     bool run = true;
@@ -280,6 +275,16 @@ void FileProcessor::runMenu() {
                 Porter2Stemmer::trim(queryWords[i]);
                 Porter2Stemmer::stem(queryWords[i]);
             }
+
+            for (size_t i = 0; i < queryWords.size(); i++) {
+
+                if (queryWords[i] == "not") {
+
+                    std::string notWord = queryWords[i+1];
+                    std::cout << "NOT detected. NOT word is:  " << notWord << std::endl;
+                }
+            }
+
 
             if (queryWords[0] == "and") {
                 std::cout << "Bool query 'AND' found" << std::endl;
@@ -366,7 +371,7 @@ void FileProcessor::runMenu() {
  * @param word The word that will be tested to see if it's a stop word
  * @return True if word is a stop word, false if not
  */
-bool FileProcessor::isStopWord(std::string &word)
+bool FileParser::isStopWord(std::string &word)
 {
     return stopWords.count(word);
 }
@@ -374,7 +379,7 @@ bool FileProcessor::isStopWord(std::string &word)
 
 //Stop words from the website given by the project handout, minus a few that
 //I thought to be unnecessary and a few that I didn't believe to be stopWords, like "zero"
-std::unordered_set<std::string> FileProcessor::stopWords {
+std::unordered_set<std::string> FileParser::stopWords {
     "able", "about", "above", "abroad", "accordingly", "across", "actually",
     "adj", "after", "afterwards", "again", "against", "ago", "ahead", "ain't",
     "all", "allow", "almost", "alone", "along", "alongside", "already", "also",
