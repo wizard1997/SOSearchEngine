@@ -9,6 +9,7 @@
 #include "porter2_stemmer.h"
 #include "AVLTree.h"
 #include "HashTable.h"
+#include "QueryProcessor.h"
 
 
 
@@ -28,11 +29,17 @@ int main(int argc, char* argv[]) {
         fp1.runMenu();
 
 
+    } else if (argc > 1 && strcmp(argv[1], "-s") == 0) {
+
+        QueryProcessor qp1;
+        qp1.runQuery();
+
     } else {
 
         std::cout << "Invalid flag input" << std::endl;
 
     }
+
 
 
 

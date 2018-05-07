@@ -220,7 +220,7 @@ void FileProcessor::parseString(std::string& stringIn,unsigned long idNum) {
 
 }
 
-void FileParser::parseAllValidFiles() {
+void FileProcessor::parseAllValidFiles() {
 
 
     for (size_t i = 0; i < fileVec.size(); i++) {
@@ -233,7 +233,7 @@ void FileParser::parseAllValidFiles() {
 
 }
 
-void FileParser::runMenu() {
+void FileProcessor::runMenu() {
 
 
     bool run = true;
@@ -371,7 +371,7 @@ void FileParser::runMenu() {
  * @param word The word that will be tested to see if it's a stop word
  * @return True if word is a stop word, false if not
  */
-bool FileParser::isStopWord(std::string &word)
+bool FileProcessor::isStopWord(std::string &word)
 {
     return stopWords.count(word);
 }
@@ -379,7 +379,7 @@ bool FileParser::isStopWord(std::string &word)
 
 //Stop words from the website given by the project handout, minus a few that
 //I thought to be unnecessary and a few that I didn't believe to be stopWords, like "zero"
-std::unordered_set<std::string> FileParser::stopWords {
+std::unordered_set<std::string> FileProcessor::stopWords {
     "able", "about", "above", "abroad", "accordingly", "across", "actually",
     "adj", "after", "afterwards", "again", "against", "ago", "ahead", "ain't",
     "all", "allow", "almost", "alone", "along", "alongside", "already", "also",
