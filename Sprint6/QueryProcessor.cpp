@@ -98,7 +98,7 @@ void QueryProcessor::runQuery()
 
                     } else {
                         std::string goodWord = queryWords[0];
-                        runNOT(goodWord, notWord);
+                        runNOT(goodWord, notWord,found);
                     }
                 }
             }
@@ -125,8 +125,15 @@ void QueryProcessor::runQuery()
             }
 
             Word queryword(query);
+            try {
 
-            found = indexhandler.index->getWord(queryword);
+                found =  (indexhandler.index->getWord(queryword));
+
+            } catch (std::bad_alloc) {
+
+
+            }
+
 
 
 
@@ -251,7 +258,7 @@ void QueryProcessor::runOR(std::vector<std::string> queryWords, Word& found)
  * files
  *
  **/
-void QueryProcessor::runNOT(std::string goodWord, std::string notWord)
+void QueryProcessor::runNOT(std::string goodWord, std::string notWord, Word& found)
 {
     Word keep(goodWord);
     Word trashWord(notWord);
@@ -268,11 +275,7 @@ void QueryProcessor::runNOT(std::string goodWord, std::string notWord)
         return;
     }
     Word outputWord(found1.queryNOT(found1,found2));
-    for (auto& q: outputWord.getMostFrequent()) {
-
-        std::cout << std::endl << q.second << " - " << q.first;
-
-    }
+    found.questionData = outputWord.questionData;
 }
 
 /**

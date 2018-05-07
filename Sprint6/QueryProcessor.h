@@ -27,7 +27,7 @@ class QueryProcessor
         //Functions to process query booleans
         void runAND(std::vector<std::string>, Word&);
         void runOR(std::vector<std::string>, Word&);
-        void runNOT(std::string, std::string);
+        void runNOT(std::string, std::string, Word& found);
         void runNOTadvanced(std::vector<std::string>, std::string, std::string);
 
         //Helper functions in case there is another bool query with a NOT
