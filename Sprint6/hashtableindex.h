@@ -20,6 +20,7 @@ class HashTableIndex: public IndexInterface
 
         std::vector<unsigned long> mostFrequentOccurance(Word&);
         Word& getWord(const Word&);
+        void saveIndex(std::ofstream&);
 
         void print();
 

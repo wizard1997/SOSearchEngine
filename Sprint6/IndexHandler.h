@@ -1,7 +1,8 @@
 #pragma once
 
 #include "indexinterface.h"
-
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/utility.hpp>
 
 class IndexHandler
 {
@@ -14,6 +15,8 @@ class IndexHandler
 
 
         bool selectDS();
+        void saveIndex(std::string filePath);
+        void loadIndex();
 
 
 };

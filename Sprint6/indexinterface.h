@@ -19,6 +19,7 @@ class IndexInterface
         virtual Word& getWord(const Word&) = 0;
 
         virtual std::vector<unsigned long> mostFrequentOccurance(Word&) = 0;
+        virtual void saveIndex(std::ofstream&) = 0;
 
 
 

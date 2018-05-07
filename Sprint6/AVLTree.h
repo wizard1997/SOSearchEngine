@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 
 template<class T>
 class AVLTree {
@@ -34,6 +35,8 @@ class AVLTree {
 
         void deleteNode(AVLNode* nodeIn);
         void printInOrder(AVLNode*& nodeIn);
+        void printFile(std::ofstream& outStream, AVLNode*& nodeIn);
+
 
 
     public:
@@ -48,7 +51,7 @@ class AVLTree {
 
         int max(const int& int1, const int& int2) const {return (int1 > int2) ? int1 : int2; }
         void printInOrder();
-
+        void printFile(std::ofstream& outStream);
 
         AVLNode* getRoot() const {return root; }
         void setRoot(AVLNode* value);
@@ -120,9 +123,36 @@ void AVLTree<T>::printInOrder(AVLNode*& nodeIn) {
 }
 
 template<class T>
+void AVLTree<T>::printFile(std::ofstream& outStream, AVLTree::AVLNode*& nodeIn) {
+
+    if (nodeIn != nullptr) {
+
+        printFile(outStream,nodeIn->left);
+        outStream << nodeIn->element.getWordStr() << " ";
+        for (auto& d: nodeIn->element.questionData) {
+
+
+            outStream << d.second << " " << d.first << " ";
+
+        }
+        outStream << std::endl;
+        printFile(outStream,nodeIn->right);
+
+    }
+
+}
+
+template<class T>
 void AVLTree<T>::printInOrder() {
 
     printInOrder(root);
+
+}
+
+template<class T>
+void AVLTree<T>::printFile(std::ofstream& outStream) {
+
+    printFile(outStream,root);
 
 }
 

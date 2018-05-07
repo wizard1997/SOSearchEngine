@@ -42,3 +42,7 @@ Word& HashTableIndex::getWord(const Word& word)
 {
     return table.getWord(word);
 }
+
+void HashTableIndex::saveIndex(std::ofstream&) {
+
+}

@@ -11,6 +11,7 @@ class AVLTreeIndex : public IndexInterface {
     private:
 
         AVLTree<Word> tree;
+        void saveWord(std::ofstream& outStream, const Word& wordIn);
 
     public:
 
@@ -20,6 +21,7 @@ class AVLTreeIndex : public IndexInterface {
         void addWord(std::string,unsigned long);
         std::vector<unsigned long> mostFrequentOccurance(Word&);
         Word& getWord(const Word&);
+        void saveIndex(std::ofstream&);
 
 
 

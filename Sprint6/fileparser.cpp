@@ -193,6 +193,11 @@ void FileParser::parseString(std::string& stringIn,unsigned long idNum) {
 
     while((index = std::find_if(end, done, std::not1(std::ptr_fun(isspace)))) != done) {
         end = std::find_if(index, done, std::ptr_fun(isspace));
+        while ( !(((*end >= 'A') && (*end <= 'Z')) || ((*end >= 'a') && (*end <= 'z'))) ) {
+
+
+            end++;
+        }
         std::string word(index, end);
         if (word.size() > 2 && !isStopWord(word)) {
 
@@ -294,11 +299,15 @@ void FileParser::runMenu() {
         }
 
 
+
+
     }
 
 
+    std::string filePath("output.txt");
+    indexhandler.saveIndex(filePath);
 
-    std::cout << "testaddy" << std::endl;
+
 
 }
 

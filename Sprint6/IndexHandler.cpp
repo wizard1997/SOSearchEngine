@@ -1,6 +1,9 @@
 #include "IndexHandler.h"
 #include "avltreeindex.h"
 #include "hashtableindex.h"
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+
 
 IndexHandler::IndexHandler() {
 
@@ -53,6 +56,28 @@ bool IndexHandler::selectDS() {
 
     }
 
+
+
+}
+
+
+void IndexHandler::saveIndex(std::string filePath) {
+
+    std::ofstream outStream;
+    outStream.open(filePath, std::ios::trunc);
+    if (!outStream.is_open()) {
+
+
+        std::cout << "\nUnable to save index to file specified." << std::endl;
+        return;
+
+    } else {
+
+
+        index->saveIndex(outStream);
+
+
+    }
 
 
 }

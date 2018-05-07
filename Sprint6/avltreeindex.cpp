@@ -40,3 +40,11 @@ Word& AVLTreeIndex::getWord(const Word& wordIn) {
     return (tree.access(wordIn));
 
 }
+
+void AVLTreeIndex::saveIndex(std::ofstream& outStream) {
+
+
+    tree.printFile(outStream);
+
+}
+
