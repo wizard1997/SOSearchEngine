@@ -248,10 +248,11 @@ void FileProcessor::runMenu() {
     }
 
     while (true) {
-
+        std::cin.sync();
         std::cout << std::endl << "Load index from output.dat? (Y or N): ";
         char selection = 'N';
         std::cin >> selection;
+        std::cin.sync();
         if (selection == 'Y') {
 
             indexhandler.loadIndex();
