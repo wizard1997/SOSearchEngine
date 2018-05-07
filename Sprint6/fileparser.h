@@ -45,8 +45,6 @@ class FileParser
         void parseString(std::string& stringIn,unsigned long idNum);
         void parseAllValidFiles();
 
-        bool isBoolQuery(std::string str);
-
         void runMenu();
         static bool isStopWord(std::string& word);
 

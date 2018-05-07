@@ -233,11 +233,6 @@ void FileParser::parseAllValidFiles() {
 
 }
 
-bool FileParser::isBoolQuery(std::string str)
-{
-    return (str == "AND" || str == "OR" || str == "NOT") ? true : false;
-}
-
 void FileParser::runMenu() {
 
 
@@ -276,10 +271,20 @@ void FileParser::runMenu() {
         if(queryWords.size() >= 2) {
 
             //Stem the all of the query input first
-            for (int i = 0; i < queryWords.size(); i++) {
+            for (size_t i = 0; i < queryWords.size(); i++) {
                 Porter2Stemmer::trim(queryWords[i]);
                 Porter2Stemmer::stem(queryWords[i]);
             }
+
+            for (size_t i = 0; i < queryWords.size(); i++) {
+
+                if (queryWords[i] == "not") {
+
+                    std::string notWord = queryWords[i+1];
+                    std::cout << "NOT detected. NOT word is:  " << notWord << std::endl;
+                }
+            }
+
 
             if (queryWords[0] == "and") {
                 std::cout << "Bool query 'AND' found" << std::endl;

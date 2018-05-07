@@ -36,9 +36,6 @@ TEST_CASE("or") {
    // w1.addQuestionData(5, 902939);
 
 
-    //Word testW(s);
-    //testW = testW.queryAND(w,w1);
-
     Word foo(w.queryNOT(w,w1));
 
     std::cout << "test" << std::endl;
@@ -48,6 +45,7 @@ TEST_CASE("") {
 
     std::string s = "str";
     std::string s1 = "taco";
+    std::string s2 = "and";
     Word w(s);
     Word w1(s1);
 
@@ -58,6 +56,14 @@ TEST_CASE("") {
     std::vector<unsigned long> v  = w.getQuestions();
 
     std::cout << "tesstiosngaoisngaoingoain";
+
+    std::vector<std::string> queryWords;
+    queryWords.push_back(s);
+    queryWords.push_back(s1);
+    queryWords.push_back(s2);
+    queryWords.push_back(s);
+
+
 
 }
 
