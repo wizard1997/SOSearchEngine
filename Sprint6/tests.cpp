@@ -1,3 +1,4 @@
+
 #include "catch.hpp"
 #include "AVLTree.h"
 #include "Word.h"
@@ -11,10 +12,46 @@
 TEST_CASE("AVL Tree", "[AVLTree]") {
 
 
-    //std::cout << "test" << std::endl;
+    AVLTree<int> tree;
+    tree.insert(55);
+    tree.insert(2);
+    tree.insert(1);
+    tree.insert(17);
+    tree.insert(9);
+    tree.insert(78);
+    tree.insert(42);
+    tree.insert(3);
+
+    REQUIRE (tree.getCount() == 8);
 
 }
 TEST_CASE("Hash Table", "[HashTable]") {
+
+    std::string str = "taco";
+    std::string str1 = "taco";
+    std::string str2 = "notTaco";
+    Word t1(str);
+    Word t2(str1);
+    Word t3(str2);
+
+    HashTable<Word> htable;
+    htable.insert(t1);
+    htable.insert(t2);
+    htable.insert(t3);
+
+    SECTION ("get word") {
+
+        Word sol = htable.getWord(t3);
+        REQUIRE (sol == t3);
+
+    }
+    SECTION ("get num entries") {
+        REQUIRE (htable.getNumEntries() == 3);
+    }
+    SECTION ("get num unique words") {
+        REQUIRE (htable.getNumUniqueWords() == 2);
+    }
+
 
 
 
@@ -54,8 +91,6 @@ TEST_CASE("") {
     w.addQuestionData(2, 679298);
 
     std::vector<unsigned long> v  = w.getQuestions();
-
-    std::cout << "tesstiosngaoisngaoingoain";
 
     std::vector<std::string> queryWords;
     queryWords.push_back(s);

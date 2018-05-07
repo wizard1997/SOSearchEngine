@@ -1,7 +1,16 @@
+/** Owner: Jake Watkins **/
+
 #include "HashTableIndex.h"
 
 
-
+/**
+ *
+ * @brief HashTableIndex::addWord Adds a word to the hash table
+ *
+ * @param word The string of the Word to be inserted into the table
+ * @param idNum The question ID that this word is in
+ *
+ */
 void HashTableIndex::addWord(std::string word, unsigned long idNum)
 {
     Word &wordObj = table.insert(Word(word));

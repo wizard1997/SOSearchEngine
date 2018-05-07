@@ -1,3 +1,5 @@
+/** Owner: Addison Kimball **/
+
 #pragma once
 
 #include "IndexInterface.h"

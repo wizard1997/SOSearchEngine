@@ -1,3 +1,5 @@
+/** Owner: Jake Watkins **/
+
 #pragma once
 
 #include <iostream>
