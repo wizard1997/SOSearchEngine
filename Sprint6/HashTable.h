@@ -24,7 +24,7 @@ class HashTable {
 
         };
 
-        int LENGTH = 20000; //Size of the hashtable
+        int LENGTH = 50000; //Size of the hashtable
         int numEntries; //How many times insert has been called
         int numUniqueWords; //How many unique words are in the table
         std::list<T>* table;

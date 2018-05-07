@@ -20,7 +20,7 @@ class AVLTreeIndex : public IndexInterface {
 
 
         //constructors
-        AVLTreeIndex() {std::cout << "avltree construct" << std::endl;}
+        AVLTreeIndex() {}
         //access
         Word& getWord(const Word&);
         void print();
