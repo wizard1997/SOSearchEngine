@@ -1,0 +1,7 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Catch::StringMaker\l\< R, typename std::enable\l_if\< is_range\< R \>::value\l &&!std::is_array\< R \>::value\l \>::type \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_catch_1_1_string_maker_3_01_r_00_01typename_01std_1_1enable__if_3_01is__range_3_01_r_01_4c4b9847e5785a63c39d0def3d3b542f5.html"];
+}

@@ -11,7 +11,6 @@ class IndexInterface
 
     public:
 
-        //IndexInterface() {std::cout << "base constructor" << std::endl;}
         virtual void addWord(std::string, unsigned long) = 0;
         virtual void print() = 0;
         virtual void insert(Word&) = 0;
@@ -27,8 +26,6 @@ class IndexInterface
 
 
         virtual ~IndexInterface() {
-
-            std::cout << "base destructor" << std::endl;
 
         }
 
