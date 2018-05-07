@@ -84,6 +84,21 @@ std::vector<unsigned long> Word::getQuestions()
     return returnVect;
 }
 
+/**
+ *
+ * @brief Word::queryOR Function that creates a new word to
+ * return that has the data from the two words in the
+ * parameter. OR means questions that have the first word or the
+ * second word, or both.  Also increments frequency based on how
+ * often each word occurs in the question.
+ *
+ * @param firstWord Word to be ORed
+ *
+ * @param secondWord Other Word to be ORed
+ *
+ * @return A word with the correct document information of ORed words
+ *
+ **/
 Word Word::queryOR(Word firstWord, Word secondWord)
 {
 
@@ -123,6 +138,18 @@ Word Word::queryOR(Word firstWord, Word secondWord)
 
 }
 
+/**
+ *
+ * @brief Word::queryAND Handles the process of ANDing two words. This
+ * means all of the questions that contain the first word AND the second
+ * word.
+ *
+ * @param firstWord First word to be ANDed
+ * @param secondWord Other word to be ANDed
+ *
+ * @return A word with the AND data of the two words inputed
+ *
+ **/
 Word Word::queryAND(Word firstWord, Word secondWord)
 {
 
@@ -186,13 +213,25 @@ Word Word::queryAND(Word firstWord, Word secondWord)
     }
 
     //If there are no AND occurences of two Words return
-    if (returnWord.questionData.size() == 0)
-        returnWord.addQuestionData(0,0);
+    if (returnWord.questionData.empty())
+        returnWord.addQuestionData(0,000000);
 
 
     return returnWord;
 }
 
+/**
+ *
+ * @brief Word::queryNOT Handles the function of finding the questions
+ * that include one word but not another.
+ *
+ * @param keepWord The word that we want to see in the question
+ * @param notWord The word we don't want to see in the question
+ *
+ * @return A word containing only the questions containg the keep Word
+ * and not the not word
+ *
+ **/
 Word Word::queryNOT(Word keepWord, Word notWord)
 {
     bool isMatch = false;
