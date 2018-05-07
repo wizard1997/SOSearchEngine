@@ -43,3 +43,8 @@ Word& HashTableIndex::getWord(const Word& word)
 void HashTableIndex::saveIndex(std::ofstream&) {
 
 }
+
+void HashTableIndex::insert(Word&)
+{
+
+}

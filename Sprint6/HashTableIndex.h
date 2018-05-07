@@ -20,7 +20,7 @@ class HashTableIndex: public IndexInterface
 
         Word& getWord(const Word&);
         void saveIndex(std::ofstream&);
-
+        void insert(Word &);
         void print();
 
 };

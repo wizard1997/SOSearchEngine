@@ -330,6 +330,7 @@ template<class T>
 AVLTree<T>::AVLTree() {
 
     root = nullptr;
+    count = 0;
 
 }
 

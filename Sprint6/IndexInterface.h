@@ -14,6 +14,7 @@ class IndexInterface
         //IndexInterface() {std::cout << "base constructor" << std::endl;}
         virtual void addWord(std::string, unsigned long) = 0;
         virtual void print() = 0;
+        virtual void insert(Word&) = 0;
 
         //returns a Word
         virtual Word& getWord(const Word&) = 0;

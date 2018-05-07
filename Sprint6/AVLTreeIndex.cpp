@@ -46,3 +46,10 @@ void AVLTreeIndex::saveIndex(std::ofstream& outStream) {
 
 }
 
+void AVLTreeIndex::insert(Word& wordIn) {
+
+    tree.insert(wordIn);
+
+
+}
+

@@ -95,29 +95,35 @@ bool IndexHandler::loadIndex() {
 
         std::string wordLine;
         while (std::getline(inStream,wordLine)) {
-
+            wordLine += '\n';
             auto done = wordLine.end();
+            auto begin = wordLine.begin();
             auto end = wordLine.begin();
-            auto itend = wordLine.begin();
-            while (*end != ' ') {
-
-                end++;
-            }
-            end++;
+            end = std::find(begin,done,' ');
             std::string wordstring(wordLine.begin(),end);
             Word temp(wordstring);
-            itend = std::find(end,done,' ');
+            begin = end+1;
             while (end <= done) {
 
-                std::string freqString(end,itend);
-                unsigned long id = atoi(freqString.c_str());
-                end = itend+1;
-                itend = std::find(end,done,' ');
-                std::string idString(end,itend);
-                unsigned long freq = atoi(idString.c_str());
-                temp.addQuestionData(freq,id);
+                end = std::find(begin,done,' ');
+                std::string idString(begin,end);
+                unsigned long id = atoi(idString.c_str());
+                begin = end+1;
+                end = std::find(begin,done,' ');
+                std::string freqString(begin,end);
+                begin = end+1;
+                unsigned long freq = atoi(freqString.c_str());
+                if ((freq > 0) && (id > 0)) {
+
+                    temp.addQuestionData(freq,id);
+                }
+                if (*begin == '\n') {
+
+                    break;
+                }
 
             }
+            index->insert(temp);
 
 
         }
