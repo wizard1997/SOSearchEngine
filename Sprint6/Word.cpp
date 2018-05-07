@@ -1,4 +1,4 @@
-#include "word.h"
+#include "Word.h"
 
 
 Word::Word(std::string &str)
@@ -91,7 +91,7 @@ Word Word::queryOR(Word firstWord, Word secondWord)
 
     if (firstWord.questionData.size() > secondWord.questionData.size()) {
 
-        for (int i = 0; i < secondWord.questionData.size(); i++) {
+        for (size_t i = 0; i < secondWord.questionData.size(); i++) {
 
             returnWord.addQuestionData(firstWord.questionData[i].first, firstWord.questionData[i].second);
             returnWord.addQuestionData(secondWord.questionData[i].first, secondWord.questionData[i].second);
@@ -100,7 +100,7 @@ Word Word::queryOR(Word firstWord, Word secondWord)
 
     } else if (firstWord.questionData.size() < secondWord.questionData.size()) {
 
-        for (int i = 0; i < firstWord.questionData.size(); i++) {
+        for (size_t i = 0; i < firstWord.questionData.size(); i++) {
 
             returnWord.addQuestionData(firstWord.questionData[i].first, firstWord.questionData[i].second);
             returnWord.addQuestionData(secondWord.questionData[i].first, secondWord.questionData[i].second);
@@ -109,7 +109,7 @@ Word Word::queryOR(Word firstWord, Word secondWord)
 
     } else {
 
-        for (int i = 0; i < firstWord.questionData.size(); i++) {
+        for (size_t i = 0; i < firstWord.questionData.size(); i++) {
 
             returnWord.addQuestionData(firstWord.questionData[i].first, firstWord.questionData[i].second);
             returnWord.addQuestionData(secondWord.questionData[i].first, secondWord.questionData[i].second);
@@ -131,11 +131,11 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 
     if (firstWord.questionData.size() > secondWord.questionData.size()) {
 
-        for (int i = 0; i < secondWord.questionData.size(); i++) {
+        for (size_t i = 0; i < secondWord.questionData.size(); i++) {
 
             //For loop to iterate through the firstWord questionData to see if any of the questions
             //are the same as this index of the second
-            for (int j = 0; j < firstWord.questionData.size(); j++) {
+            for (size_t j = 0; j < firstWord.questionData.size(); j++) {
 
                 if (secondWord.questionData[i].second == firstWord.questionData[j].second) {
 
@@ -150,9 +150,9 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 
     } else if (firstWord.questionData.size() < secondWord.questionData.size()) {
 
-        for (int i = 0; i < firstWord.questionData.size(); i++) {
+        for (size_t i = 0; i < firstWord.questionData.size(); i++) {
 
-            for (int j = 0; j < secondWord.questionData.size(); j++) {
+            for (size_t j = 0; j < secondWord.questionData.size(); j++) {
 
                 if (firstWord.questionData[i].second == secondWord.questionData[j].second) {
 
@@ -167,9 +167,9 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 
     } else if (firstWord.questionData.size() == secondWord.questionData.size()) {
 
-        for (int i = 0; i < firstWord.questionData.size(); i++) {
+        for (size_t i = 0; i < firstWord.questionData.size(); i++) {
 
-            for (int j = 0; j < secondWord.questionData.size(); j++) {
+            for (size_t j = 0; j < secondWord.questionData.size(); j++) {
 
                 if (firstWord.questionData[i].second == secondWord.questionData[j].second) {
 
@@ -198,9 +198,9 @@ Word Word::queryNOT(Word keepWord, Word notWord)
     bool isMatch = false;
     Word returnWord(keepWord.stringData);
 
-    for (int i = 0; i < keepWord.questionData.size(); i++) {
+    for (size_t i = 0; i < keepWord.questionData.size(); i++) {
 
-        for (int j = 0; j < notWord.questionData.size(); j++) {
+        for (size_t j = 0; j < notWord.questionData.size(); j++) {
 
             if (keepWord.questionData[i].second == notWord.questionData[j].second) {
 

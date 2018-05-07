@@ -1,8 +1,8 @@
 #pragma once
 
-#include "hashtable.h"
-#include "indexinterface.h"
-#include "word.h"
+#include "HashTable.h"
+#include "IndexInterface.h"
+#include "Word.h"
 
 
 

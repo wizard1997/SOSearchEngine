@@ -1,9 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include "word.h"
-#include "indexinterface.h"
-#include "fileparser.h"
+#include "Word.h"
+#include "IndexInterface.h"
+#include "FileProcessor.h"
 
 class QueryProcessor
 {

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <list>
 #include <algorithm>
-#include <word.h>
+#include <Word.h>
 #include <array>
 
 template<typename T>

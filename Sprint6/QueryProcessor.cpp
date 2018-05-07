@@ -1,4 +1,4 @@
-#include "queryprocessor.h"
+#include "QueryProcessor.h"
 
 QueryProcessor::QueryProcessor()
 {

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "AVLTree.h"
-#include "indexinterface.h"
-#include "word.h"
+#include "IndexInterface.h"
+#include "Word.h"
 
 
 class AVLTreeIndex : public IndexInterface {

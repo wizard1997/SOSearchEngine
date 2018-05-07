@@ -1,6 +1,6 @@
 #pragma once
 
-#include "word.h"
+#include "Word.h"
 #include <iostream>
 #include <vector>
 #include <list>

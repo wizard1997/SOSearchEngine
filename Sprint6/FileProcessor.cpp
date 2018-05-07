@@ -1,6 +1,6 @@
-#include "fileparser.h"
+#include "FileProcessor.h"
 
-void FileParser::selectDetectedFile(size_t index) {
+void FileProcessor::selectDetectedFile(size_t index) {
 
     std::string path = fileVec[index];
     if (path.substr(path.size()-3,3) == "psv") {
@@ -10,7 +10,7 @@ void FileParser::selectDetectedFile(size_t index) {
 
 }
 
-FileParser::FileParser(std::string dirIn) {
+FileProcessor::FileProcessor(std::string dirIn) {
 
      DIR* dirp;
      dirent* dp;
@@ -42,7 +42,7 @@ FileParser::FileParser(std::string dirIn) {
  * @brief FileParser::parseQuestionFile
  * @param file
  */
-void FileParser::parseQuestionFile(std::string file)
+void FileProcessor::parseQuestionFile(std::string file)
 {
 
     //Open the question file
@@ -134,7 +134,7 @@ void FileParser::parseQuestionFile(std::string file)
 
 }
 
-bool FileParser::selectDetectedFile() {
+bool FileProcessor::selectDetectedFile() {
 
     std::cout << "----------------------------------------\n"
                  "List of files detected in specific path:\n"
@@ -185,7 +185,7 @@ bool FileParser::selectDetectedFile() {
 
 }
 
-void FileParser::parseString(std::string& stringIn,unsigned long idNum) {
+void FileProcessor::parseString(std::string& stringIn,unsigned long idNum) {
 
     auto done = stringIn.end();
     auto end = stringIn.begin();
@@ -220,7 +220,7 @@ void FileParser::parseString(std::string& stringIn,unsigned long idNum) {
 
 }
 
-void FileParser::parseAllValidFiles() {
+void FileProcessor::parseAllValidFiles() {
 
 
     for (size_t i = 0; i < fileVec.size(); i++) {
@@ -233,12 +233,12 @@ void FileParser::parseAllValidFiles() {
 
 }
 
-bool FileParser::isBoolQuery(std::string str)
+bool FileProcessor::isBoolQuery(std::string str)
 {
     return (str == "AND" || str == "OR" || str == "NOT") ? true : false;
 }
 
-void FileParser::runMenu() {
+void FileProcessor::runMenu() {
 
 
     bool run = true;
@@ -276,7 +276,7 @@ void FileParser::runMenu() {
         if(queryWords.size() >= 2) {
 
             //Stem the all of the query input first
-            for (int i = 0; i < queryWords.size(); i++) {
+            for (size_t i = 0; i < queryWords.size(); i++) {
                 Porter2Stemmer::trim(queryWords[i]);
                 Porter2Stemmer::stem(queryWords[i]);
             }
@@ -366,7 +366,7 @@ void FileParser::runMenu() {
  * @param word The word that will be tested to see if it's a stop word
  * @return True if word is a stop word, false if not
  */
-bool FileParser::isStopWord(std::string &word)
+bool FileProcessor::isStopWord(std::string &word)
 {
     return stopWords.count(word);
 }
@@ -374,7 +374,7 @@ bool FileParser::isStopWord(std::string &word)
 
 //Stop words from the website given by the project handout, minus a few that
 //I thought to be unnecessary and a few that I didn't believe to be stopWords, like "zero"
-std::unordered_set<std::string> FileParser::stopWords {
+std::unordered_set<std::string> FileProcessor::stopWords {
     "able", "about", "above", "abroad", "accordingly", "across", "actually",
     "adj", "after", "afterwards", "again", "against", "ago", "ahead", "ain't",
     "all", "allow", "almost", "alone", "along", "alongside", "already", "also",

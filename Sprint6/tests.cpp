@@ -1,11 +1,11 @@
 #include "catch.hpp"
 #include "AVLTree.h"
-#include "word.h"
+#include "Word.h"
 #include <iostream>
 #include <cstring>
 #include <string>
 #include <vector>
-#include "hashtable.h"
+#include "HashTable.h"
 
 
 TEST_CASE("AVL Tree", "[AVLTree]") {

@@ -11,12 +11,12 @@
 #include <porter2_stemmer.h>
 #include "MemoryMapped.h"
 #include "AVLTree.h"
-#include "hashtable.h"
+#include "HashTable.h"
 #include <dirent.h>
 #include "IndexHandler.h"
-#include "queryprocessor.h"
+#include "QueryProcessor.h"
 
-class FileParser
+class FileProcessor
 {
     private:
 
@@ -33,7 +33,7 @@ class FileParser
     public:
 
 
-        FileParser(std::string dirIn);
+        FileProcessor(std::string dirIn);
 
         IndexHandler indexhandler;
 

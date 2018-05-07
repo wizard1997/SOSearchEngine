@@ -1,14 +1,14 @@
 #define CATCH_CONFIG_RUNNER
 
-#include "hashtableindex.h"
-#include "indexinterface.h"
+#include "HashTableIndex.h"
+#include "IndexInterface.h"
 #include <iostream>
 #include <cstring>
 #include "catch.hpp"
-#include "fileparser.h"
+#include "FileProcessor.h"
 #include "porter2_stemmer.h"
 #include "AVLTree.h"
-#include "hashtable.h"
+#include "HashTable.h"
 
 
 
@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
     } else if (argc > 1 && strcmp(argv[1], "-p") == 0) {
 
 
-        FileParser fp1(argv[2]);
+        FileProcessor fp1(argv[2]);
 
         fp1.runMenu();
 

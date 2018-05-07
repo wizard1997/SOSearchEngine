@@ -1,6 +1,6 @@
 #pragma once
 
-#include "indexinterface.h"
+#include "IndexInterface.h"
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/utility.hpp>
 
