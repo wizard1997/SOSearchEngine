@@ -73,6 +73,17 @@ std::vector<std::pair<int, unsigned long>> Word::getMostFrequent()
 
 }
 
+std::vector<unsigned long> Word::getQuestions()
+{
+    std::vector<unsigned long> returnVect;
+    for (auto& q: questionData) {
+
+        returnVect.push_back(q.second);
+
+    }
+    return returnVect;
+}
+
 Word Word::queryOR(Word firstWord, Word secondWord)
 {
 
@@ -180,6 +191,34 @@ Word Word::queryAND(Word firstWord, Word secondWord)
 
 
     return returnWord;
+}
+
+Word Word::queryNOT(Word keepWord, Word notWord)
+{
+    bool isMatch = false;
+    Word returnWord(keepWord.stringData);
+
+    for (int i = 0; i < keepWord.questionData.size(); i++) {
+
+        for (int j = 0; j < notWord.questionData.size(); j++) {
+
+            if (keepWord.questionData[i].second == notWord.questionData[j].second) {
+
+                isMatch = true;
+
+            }
+        //std::cout << "testing this fucking NOT query ";
+        }
+        if (!isMatch) {
+            returnWord.addQuestionData(keepWord.questionData[i].first, keepWord.questionData[i].second);
+        }
+        isMatch = false;
+
+    }
+
+
+    return returnWord;
+
 }
 
 std::string Word::getWordStr() const

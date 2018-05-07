@@ -28,12 +28,9 @@ int main(int argc, char* argv[]) {
         fp1.runMenu();
 
 
-
     } else {
 
-
         std::cout << "Invalid flag input" << std::endl;
-
 
     }
 

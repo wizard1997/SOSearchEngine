@@ -20,6 +20,7 @@ class IndexInterface
 
         virtual std::vector<unsigned long> mostFrequentOccurance(Word&) = 0;
 
+        virtual std::vector<unsigned long> getQuestionsForWord(Word&) = 0;
 
 
 

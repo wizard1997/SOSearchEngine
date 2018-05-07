@@ -442,6 +442,7 @@ std::unordered_set<std::string> FileParser::stopWords {
     "which", "whichever", "while", "whilst", "whither", "who", "who'd", "whoever", "whole",
     "who'll", "whom", "whomever", "who's", "whose", "why", "will", "willing", "wish", "with",
     "within", "without", "wonder", "won't", "would", "wouldn't", "yes", "yet", "you", "you'd",
-    "you'll", "your", "you're", "yours", "yourself", "yourself", "yourselves", "you've", "how", "why"
+    "you'll", "your", "you're", "yours", "yourself", "yourself", "yourselves", "you've", "how", "why",
+    "about"
 };
 

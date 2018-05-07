@@ -31,12 +31,12 @@ class Word
         void setWordStr(const std::string& str);
 
         std::vector<std::pair<int, unsigned long>> getMostFrequent();
-
+        std::vector<unsigned long> getQuestions();
 
         //To deal with query booleans
         Word queryOR(Word, Word);
         Word queryAND(Word, Word);
-
+        Word queryNOT(Word, Word);
 
 
         //operators
