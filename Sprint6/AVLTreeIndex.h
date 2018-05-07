@@ -11,18 +11,22 @@ class AVLTreeIndex : public IndexInterface {
     private:
 
         AVLTree<Word> tree;
+        //private version of saveWord
         void saveWord(std::ofstream& outStream, const Word& wordIn);
 
     public:
 
+
+        //constructors
         AVLTreeIndex() {std::cout << "avltree construct" << std::endl;}
-        void print();
-        void addWord(std::string,unsigned long);
+        //access
         Word& getWord(const Word&);
-        void saveIndex(std::ofstream&);
+        void print();
+        //modify
+        void addWord(std::string,unsigned long);
         void insert(Word &);
-
-
+        //index persistence
+        void saveIndex(std::ofstream&);
 
 };
 

@@ -1,15 +1,11 @@
 #include "FileProcessor.h"
 
-void FileProcessor::selectDetectedFile(size_t index) {
-
-    std::string path = fileVec[index];
-    if (path.substr(path.size()-3,3) == "psv") {
-
-        parseQuestionFile(path);
-    }
-
-}
-
+/**
+ * @brief FileProcessor::FileProcessor(std::string) Constructor for supplying a directory to
+ * scan for files.
+ *
+ * @param dirIn String of path to directory.
+ **/
 FileProcessor::FileProcessor(std::string dirIn) {
 
      DIR* dirp;
@@ -39,8 +35,82 @@ FileProcessor::FileProcessor(std::string dirIn) {
 }
 
 /**
- * @brief FileParser::parseQuestionFile
- * @param file
+ * @brief FileProcessor::selectDetectedFile Private definition for selecting and
+ *  parsing individual files.
+ *
+ * @param index Numerical pos of file in displayed list that user wants to parse.
+ **/
+void FileProcessor::selectDetectedFile(size_t index) {
+
+    std::string path = fileVec[index];
+    if (path.substr(path.size()-3,3) == "psv") {
+
+        parseQuestionFile(path);
+    }
+
+}
+
+
+/**
+ * @brief FileParser::selectDetectedFile Public declaration for selecting file, or parsing all
+ * at once. Presents UI to user.
+ * @return bool Bool for continued menu display.
+ */
+bool FileProcessor::selectDetectedFile() {
+
+    std::cout << "----------------------------------------\n"
+                 "List of files detected in specific path:\n"
+                 "----------------------------------------\n";
+
+    for (size_t i = 0; i < fileVec.size(); i++) {
+
+        std::cout << i+1 << ".\t" << fileVec[i] << std::endl;
+    }
+    std::cout << "X.\tParse all valid detected files" << std::endl;
+    std::cout << "Please enter number of file to parse: ";
+    char selection;
+    std::cin >> selection;
+    if (selection == 'X') {
+
+        parseAllValidFiles();
+        std::cout << std::endl;
+        return true;
+
+    } else if (selection == '0') {
+
+        std::cout << "\nFinished parsing. Exiting.\n";
+        return false;
+
+    } else if (selection == 'S') {
+
+
+
+
+    } else if (selection < '9' && selection > '0') {
+
+        size_t selectionNum = selection - '0';
+        std::cout << "\nParsing file: " << fileVec[selectionNum-1] << std::endl;
+        parseQuestionFile(fileVec[selectionNum-1]);
+        return true;
+
+    } else {
+
+
+        return true;
+
+    }
+
+
+    return true;
+
+
+
+}
+/**
+ * @brief FileParser::parseQuestionFile Takes in string file path and parses
+ * the file chunk by chunk, and then question by question. Credits to
+ * Stephen Brumme for the memory mapped library.
+ * @param file  String file path
  */
 void FileProcessor::parseQuestionFile(std::string file)
 {
@@ -51,13 +121,14 @@ void FileProcessor::parseQuestionFile(std::string file)
 
     if (!data.isValid()) {
         std::cout << "********** Error the question file was NOT opened **********\n\n";
-        exit(0);
+        return;
     }
 
-    std::cout << "\t\t******** Question File mapped to memory *********\n\n";
+
+    std::cout << "\t\tQuestion File mapped to memory!\n\n";
 
 
-
+    size_t qcount = 0;
     size_t it = 50;
     size_t bufferSize = 1000000;
 
@@ -117,9 +188,13 @@ void FileProcessor::parseQuestionFile(std::string file)
             }
             int titleEndIndex = buffer.find('|',titleBeginIndex+1);
             std::string titleString = buffer.substr(titleBeginIndex+1,titleEndIndex-titleBeginIndex-1);
-
+            qcount++;
             parseString(titleString,questionID);
 
+            int bodyBeginIndex = buffer.find("<>?<>?<>", titleEndIndex+1)+7;
+            int bodyEndIndex = buffer.find("<>?<>?<>", bodyBeginIndex+1);
+            std::string bodyString = buffer.substr(bodyBeginIndex+1,bodyEndIndex-bodyBeginIndex-1);
+            parseString(bodyString,questionID);
             //std::cout << questionID << std::endl;
             int codeBeginIndex = buffer.find("<>!<>!<>", titleEndIndex+1);
             int codeEndIndex = buffer.find("<>!<>!<>", codeBeginIndex+1);
@@ -128,63 +203,22 @@ void FileProcessor::parseQuestionFile(std::string file)
 
         }
 
+
     }
 
+    std::cout << std::endl << qcount << " questions parsed!\n";
 
 
 }
 
-bool FileProcessor::selectDetectedFile() {
 
-    std::cout << "----------------------------------------\n"
-                 "List of files detected in specific path:\n"
-                 "----------------------------------------\n";
-
-    for (size_t i = 0; i < fileVec.size(); i++) {
-
-        std::cout << i+1 << ".\t" << fileVec[i] << std::endl;
-    }
-    std::cout << "X.\tParse all valid detected files" << std::endl;
-    std::cout << "Please enter number of file to parse: ";
-    char selection;
-    std::cin >> selection;
-    if (selection == 'X') {
-
-        parseAllValidFiles();
-        std::cout << std::endl;
-        return true;
-
-    } else if (selection == '0') {
-
-        std::cout << "\nFinished parsing. Exiting.\n";
-        return false;
-
-    } else if (selection == 'S') {
-
-
-
-
-    } else if (selection < '9' && selection > '0') {
-
-        size_t selectionNum = selection - '0';
-        std::cout << "\nParsing file: " << fileVec[selectionNum-1] << std::endl;
-        parseQuestionFile(fileVec[selectionNum-1]);
-        return true;
-
-    } else {
-
-
-        return true;
-
-    }
-
-
-    return true;
-
-
-
-}
-
+/**
+ * @brief FileParser::parseString Parses actual string of words, separates into
+ * words, stems, trims, and inserts into index.
+ * @param stringIn String of words to parse, extracted from overall
+ * question.
+ * @param idNum ID number extracted from question.
+ */
 void FileProcessor::parseString(std::string& stringIn,unsigned long idNum) {
 
     auto done = stringIn.end();
@@ -207,23 +241,24 @@ void FileProcessor::parseString(std::string& stringIn,unsigned long idNum) {
 
             if (((word[0] >= 'A') && (word[0] <= 'Z')) || ((word[0] >= 'a') && (word[0] <= 'z'))) {
 
-                indexhandler.index->addWord(word,idNum);
+                if (idNum > 0) {
+
+                    indexhandler.index->addWord(word,idNum);
+
+                }
 
             }
 
         }
 
-
-
-
     }
-
-//        for(auto&& p: wordsMap)
-//            std::cout << p.first << ": " << p.second << '\n';
-
 
 }
 
+/**
+ * @brief FileProcessor::parseAllValidFiles Parses all files
+ * detected in supplied directory.
+ */
 void FileProcessor::parseAllValidFiles() {
 
 
@@ -237,6 +272,11 @@ void FileProcessor::parseAllValidFiles() {
 
 }
 
+
+/**
+ * @brief FileProcessor::runMenu Continually display menu to user for operating program
+ * in parsing mode.
+ */
 void FileProcessor::runMenu() {
 
 
@@ -275,12 +315,6 @@ void FileProcessor::runMenu() {
     }
 
     indexhandler.saveIndex("output.dat");
-
-
-
-
-
-    std::cout << "testaddy" << std::endl;
 
 }
 
