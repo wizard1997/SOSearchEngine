@@ -46,7 +46,9 @@ class FileProcessor
         bool selectDataType;
         void parseString(std::string& stringIn,unsigned long idNum);
         void parseAllValidFiles();
+        bool scanFile(std::string file, unsigned long idNum);
 
+        void displayQuestion(unsigned long);
         void runMenu();
         static bool isStopWord(std::string& word);
 

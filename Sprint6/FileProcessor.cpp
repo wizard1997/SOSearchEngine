@@ -274,6 +274,86 @@ void FileProcessor::parseAllValidFiles() {
 
 }
 
+bool FileProcessor::scanFile(std::string file, unsigned long idNum) {
+
+    //Open the question file
+    MemoryMapped data(file,0);
+    std::string idString(std::to_string(idNum));
+
+
+    if (!data.isValid()) {
+        std::cout << "********** Error the question file was NOT opened **********\n\n";
+        return false;
+    }
+
+
+
+    size_t it = 0;
+    std::string foundString;
+
+
+    while (it < data.size()) {
+
+
+        foundString = "0";
+        while (data[it] != idString[0]) {
+
+            it++;
+        }
+        foundString[0] = data[it];
+        for (size_t i = 1; i  < idString.length()+1; i++) {
+
+            if (data[it+i] == idString[i]) {
+
+
+                foundString += data[it+i];
+            } else {
+
+                break;
+            }
+
+        }
+        if (foundString == idString) {
+
+            std::string buffString;
+            for (int i = 0; i < 4000; i++) {
+
+                buffString += data[it+i];
+            }
+            int codeBeginIndex = buffString.find("<>!<>!<>", 0);
+            int codeEndIndex = buffString.find("<>!<>!<>", codeBeginIndex+1);
+            std::string qString = buffString.substr(0,codeEndIndex);
+            std::cout << buffString;
+            return true;
+        }
+        it++;
+
+
+
+
+    }
+
+    return false;
+
+
+}
+
+void FileProcessor::displayQuestion(unsigned long idNum) {
+
+    for (auto& q: fileVec) {
+
+        if (q.substr(q.size()-3,3) == "psv") {
+
+             if (scanFile(q,idNum)) {
+
+                break;
+            }
+        }
+    }
+
+
+}
+
 
 /**
  * @brief FileProcessor::runMenu Continually display menu to user for operating program
@@ -294,7 +374,8 @@ void FileProcessor::runMenu() {
         std::cout << std::endl << "Load index from output.dat? (Y or N): ";
         char selection = 'N';
         std::cin >> selection;
-        std::cin.sync();
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if (selection == 'Y') {
 
             indexhandler.loadIndex();

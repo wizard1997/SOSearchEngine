@@ -56,6 +56,7 @@ void QueryProcessor::runQuery()
     while (true) {
 
 
+
         std::cout << "\nPlease enter a search query (0 to exit): ";
 
         std::string query;
@@ -69,9 +70,11 @@ void QueryProcessor::runQuery()
 
         std::string temp;
         std::vector<std::string> queryWords;
-        for (std::stringstream s(query); s >> temp; )
+        for (std::stringstream s(query); s >> temp; ) {
             queryWords.push_back(temp);
 
+        }
+        Word found(query);
         //If the size is greater than 1 then it must be a bool query search
         if(queryWords.size() >= 2) {
 
@@ -102,12 +105,12 @@ void QueryProcessor::runQuery()
 
             //Process an AND boolean query
             if (queryWords[0] == "and") {
-                runAND(queryWords);
+                runAND(queryWords,found);
             }
 
             //Process an OR boolean query
             if (queryWords[0] == "or") {
-                runOR(queryWords);
+                runOR(queryWords,found);
             }
 
         } else {
@@ -123,25 +126,45 @@ void QueryProcessor::runQuery()
 
             Word queryword(query);
 
-            Word& found = indexhandler.index->getWord(queryword);
-
-            if (found != queryword) {
+            found = indexhandler.index->getWord(queryword);
 
 
-                std::cout << "\nQuery not found. Try again." << std::endl;
-                continue;
-            }
 
-            std::cout << found << std::endl;
+        }
 
-            int i = 0;
-            for (auto& q: found.getMostFrequent()) {
+        if (found.questionData.size() < 1) {
 
-                i++;
 
-                std::cout << std::endl << q.second << " - " << q.first;
+            std::cout << "\nQuery not found. Try again." << std::endl;
+            continue;
+        }
 
-            }
+
+        int i = 0;
+        std::cout << std::endl;
+        for (auto& q: found.getMostFrequent()) {
+
+            i++;
+
+            std::cout << i << ".\t"<< q.second << " frequency: " << q.first << std::endl;
+
+        }
+        while (true) {
+
+                std::cout << "\nChoose question to view more (1-10, 0 to exit): ";
+                int selection;
+                std::cin >> selection;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                if (selection == 0) {
+
+                    break;
+                }
+                unsigned long id = found.getMostFrequent()[selection-1].second;
+                FileProcessor fp2("../Sprint6/data/");
+                fp2.displayQuestion(id);
+
+
         }
 
     }
@@ -158,7 +181,7 @@ void QueryProcessor::runQuery()
  * @param queryWords the vector that contains the query input
  *
  **/
-void QueryProcessor::runAND(std::vector<std::string> queryWords)
+void QueryProcessor::runAND(std::vector<std::string> queryWords, Word& found)
 {
 
     std::cout << "Bool query 'AND' found" << std::endl;
@@ -180,11 +203,7 @@ void QueryProcessor::runAND(std::vector<std::string> queryWords)
 
     }
     Word intersection(found1.queryAND(found1,found2));
-    for (auto& q: intersection.getMostFrequent()) {
-
-        std::cout << std::endl << q.second << " - " << q.first;
-
-    }
+    found = intersection;
 
 }
 
@@ -198,7 +217,7 @@ void QueryProcessor::runAND(std::vector<std::string> queryWords)
  * @param queryWords the vector that contains the query input
  *
  **/
-void QueryProcessor::runOR(std::vector<std::string> queryWords)
+void QueryProcessor::runOR(std::vector<std::string> queryWords, Word& found)
 {
     std::cout << "Bool query 'OR' found" << std::endl;
     Word str1(queryWords[1]);
@@ -217,11 +236,7 @@ void QueryProcessor::runOR(std::vector<std::string> queryWords)
         return;
     }
     Word intersection(found1.queryOR(found1,found2));
-    for (auto& q: intersection.getMostFrequent()) {
-
-        std::cout << std::endl << q.second << " - " << q.first;
-
-    }
+    found.questionData = intersection.questionData;
 }
 
 /**
