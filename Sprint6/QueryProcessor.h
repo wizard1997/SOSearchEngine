@@ -20,6 +20,13 @@ class QueryProcessor
         IndexHandler indexhandler;
         void runQuery();
 
+        Word runAND(std::vector<std::string>);
+        Word runOR(std::vector<std::string>);
+        void runNOT(std::string, std::string);
+        void runNOTadvanced(std::vector<std::string>, std::string, std::string);
+
+        Word runHelperAND(std::vector<std::string>);
+        Word runHelperOR(std::vector<std::string>);
 
 
 };
