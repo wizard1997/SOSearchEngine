@@ -125,11 +125,6 @@ void QueryProcessor::runQuery()
             }
         }
 
-
     }
-
-
-
-    std::cout << "testaddy" << std::endl;
 
 }
