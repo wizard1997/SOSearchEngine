@@ -7,6 +7,7 @@
 #include <list>
 #include <sstream>
 #include <cstring>
+#include <string>
 #include <porter2_stemmer.h>
 #include "MemoryMapped.h"
 #include "AVLTree.h"

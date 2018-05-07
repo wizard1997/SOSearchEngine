@@ -7,7 +7,6 @@
 #include <bits/stdc++.h>
 #include <functional>
 #include <unordered_set>
-#include <boost/serialization/access.hpp>
 
 
 class Word
@@ -15,13 +14,11 @@ class Word
     private:
 
         std::string stringData;
-        friend class boost::serialization::access;
 
 
     public:
 
         std::vector<std::pair<int, unsigned long>> questionData;
-
 
         Word();
         Word(std::string& str);
@@ -34,17 +31,12 @@ class Word
         void setWordStr(const std::string& str);
 
         std::vector<std::pair<int, unsigned long>> getMostFrequent();
-        template<class Archive>
-        void serialize(Archive &ar, const unsigned int& fv) {
-            ar & stringData;
-            ar & questionData;
-        }
-
+        std::vector<unsigned long> getQuestions();
 
         //To deal with query booleans
         Word queryOR(Word, Word);
         Word queryAND(Word, Word);
-
+        Word queryNOT(Word, Word);
 
 
         //operators
