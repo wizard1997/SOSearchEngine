@@ -1,3 +1,5 @@
+/** Owner: Jake Watkins **/
+
 #include "Word.h"
 
 
@@ -132,8 +134,12 @@ Word Word::queryOR(Word firstWord, Word secondWord)
         }
 
     }
-
-    std::cout << "test in OR " << std::endl;
+    if (returnWord.questionData.size() < firstWord.questionData.size()) {
+        return firstWord;
+    }
+    if (returnWord.questionData.size() < secondWord.questionData.size()) {
+        return secondWord;
+    }
     return returnWord;
 
 }

@@ -1,3 +1,4 @@
+
 #include "catch.hpp"
 #include "AVLTree.h"
 #include "Word.h"

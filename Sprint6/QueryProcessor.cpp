@@ -1,3 +1,5 @@
+/** Owner: Jake Watkins **/
+
 #include "QueryProcessor.h"
 
 QueryProcessor::QueryProcessor()

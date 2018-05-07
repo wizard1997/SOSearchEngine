@@ -1,3 +1,5 @@
+/** Owner: Addison Kimball **/
+
 #include "IndexHandler.h"
 #include "AVLTreeIndex.h"
 #include "HashTableIndex.h"
